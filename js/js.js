@@ -16,6 +16,11 @@ document.querySelector('#btn-form-number-report').addEventListener('click', func
 })
 document.querySelector('#btn-form-preamble').addEventListener('click', function(){
     writePreamble()
+    showModal('#form-objective')
+})
+document.querySelector('#btn-form-objective').addEventListener('click', function(){
+    writeObjective()
+    //showModal('#form-objective')
 })
 function inverter(num){
     num1 = num
@@ -77,6 +82,36 @@ function writePreamble(){
     }
     let texto = `Em ${designatedDate}, na cidade de Limeira e no Instituto de Criminalística, da Superintendência da Polícia Técnico-Científica, da Secretaria de Segurança Pública do Estado de São Paulo, em conformidade com o disposto no art. 178 do Decreto-Lei 3689 de 3-10-1941 e Decreto-Lei 42847 de 9-2-1998, ${director}, foi ${expert} para proceder ao Exame Pericial especificado em requisição de exame assinada pela Autoridade Policial, ${delegate}.`
     document.querySelector('#article-preamble').innerHTML = `<p>${texto}</p>`
+    hideModal()
+}
+function writeObjective(){
+    let rdo = document.querySelector('#irdo').value.trim()
+    if(rdo==''){
+        rdo = `recebeda via telefonema e e-mail`
+    }else{
+        let ano = new Date(document.querySelector('#input-designated-date').value).getFullYear()
+        rdo = `referente ao ${document.querySelector('#selectrdo').value} ${rdo.toUpperCase()}/${ano}`
+    }
+    let delegacia = document.querySelector('#idelpol').value.trim()
+    if(delegacia==''){
+        alert('digite o nome da delegacia.')
+        document.querySelector('#idelpol').focus()
+        retur
+    }
+    let objective = document.querySelector('#iobjective').value.trim()
+    if(objective==''){
+        alert('digite o objetivo.')
+        document.querySelector('#iobjective').focus()
+        retur
+    }
+    let nature = document.querySelector('#inature').value.trim()
+    if(nature==''){
+        alert('digite a natureza do exame.')
+        document.querySelector('#inature').focus()
+        retur
+    }
+    const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia} era ${objective}, sendo sua natureza, ${nature}.`
+    document.querySelector('#article-objective').innerHTML = `<h2>Objetivo</h2><p>${texto}</p>` 
     hideModal()
 }
 function showModal(element_){

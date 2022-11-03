@@ -197,15 +197,17 @@ div.level-button, div.level-top{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:gray;
 }
-.modal-body p, .modal-body select{
-    font-size: 0.8rem;
+p.longtext2, select.longtext2, p.longtext4, select.longtext4{
+    font-family: 'Times New Roman', Times, serif;
     margin-top: 1.5rem;
     color:gray;
+    line-height: 1.2rem;
+    font-size: 0.8rem;
 }
-.modal input{
+.modal input[type='text'], .modal input[type='date']{
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(14, 4, 155);
     line-height: 1.5rem;
 }

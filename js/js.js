@@ -1,18 +1,21 @@
-document.querySelector('#btn-teste').addEventListener('click', function(){
+/* document.querySelector('#btn-teste').addEventListener('click', function(){
     showModal('#form-model')
-})
+}) */
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
         hideModal()
     })
 })
-document.querySelector('#btn-model').addEventListener('click', function(){
+document.querySelector('#i-number').addEventListener('click', function(){
     hideModal()
     showModal('#form-number-report')
 })
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     writeNumberReport()
-    hideModal()
+    showModal('#form-preamble')
+})
+document.querySelector('#btn-form-preamble').addEventListener('click', function(){
+    writePreamble()
 })
 function inverter(num){
     num1 = num
@@ -33,11 +36,48 @@ resultado = ''
     }
     return inverter(resultado)
 }
+function formatDate(data){
+    const date = new Date(data)
+    const day = date.getDate()
+    const month = date.getMonth()+1
+    const year = date.getFullYear()
+    return `${day}-${month}-${year}`
+}
 function writeNumberReport(){
     const numberReport = formatMilhar(document.querySelector('#input-number-report').value.trim())
     const designatedDate = new Date(document.querySelector('#input-designated-date').value).getFullYear()
     texto = `${numberReport}/${designatedDate}`
     document.querySelector('#article-number-report').innerHTML = `<h1>Laudo ${texto}</h1>`
+}
+function writePreamble(){
+    let designatedDate = formatDate(new Date(document.querySelector('#input-designated-date').value))
+    let director = document.querySelector('#input-director').value.trim()
+    if(director == ''){
+        alert('Informe o nome do diretor.')
+        document.querySelector('#input-director').focus()
+        return
+    }else{
+        director = `${document.querySelector('#select-director').value} ${director}`
+    }
+    let expert = document.querySelector('#input-expert').value.trim()
+    if(expert == ''){
+        alert('Informe o nome do perito.')
+        document.querySelector('#input-expert').focus()
+        return
+    }else{
+        expert = `${document.querySelector('#select-expert').value} ${expert}`
+    }
+    let delegate =document.querySelector('#input-delegate').value.trim()
+    if(delegate == ''){
+        alert('Informe o nome do delegado.')
+        document.querySelector('#input-delegate').focus()
+        return
+    }else{
+        delegate = `${document.querySelector('#select-delegate').value} ${delegate}`
+    }
+    let texto = `Em ${designatedDate}, na cidade de Limeira e no Instituto de Criminalística, da Superintendência da Polícia Técnico-Científica, da Secretaria de Segurança Pública do Estado de São Paulo, em conformidade com o disposto no art. 178 do Decreto-Lei 3689 de 3-10-1941 e Decreto-Lei 42847 de 9-2-1998, ${director}, foi ${expert} para proceder ao Exame Pericial especificado em requisição de exame assinada pela Autoridade Policial, ${delegate}.`
+    document.querySelector('#article-preamble').innerHTML = `<p>${texto}</p>`
+    hideModal()
 }
 function showModal(element_){
     const fade = document.querySelector('#fade').style 

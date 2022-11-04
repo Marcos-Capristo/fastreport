@@ -1,38 +1,25 @@
 document.querySelector('#i-number').addEventListener('click', function(){
-    hideModal()
+    //hideModal()
     showModal('#form-number-report')
 })
 document.querySelector('#magic-number').addEventListener('click', function(){
     writeNumberReport()
 })
-/* document.querySelector('#input-designated-date').addEventListener('change', function(){
-    writeNumberReport()
-}) */
-document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){
-    writePreamble()
-})
-
-//toolbar-preamble-magic
-document.querySelector('#i-preamble').addEventListener('click', function(){
-    showModal('#form-preamble')
-})
-document.querySelector('#i-objective').addEventListener('click', function(){
-    showModal('#form-objective')
-})
-document.querySelector('#i-historic').addEventListener('click', function(){
-    showModal('#form-historic')
-})
-document.querySelectorAll('.btn-close').forEach(element=>{
-    element.addEventListener('click', function(){
-        hideModal()
-    })
-})
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     sendNumerReport()
     showModal('#form-preamble')
 })
+document.querySelector('#i-preamble').addEventListener('click', function(){
+    showModal('#form-preamble')
+})
+document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){
+    writePreamble()
+})
 document.querySelector('#btn-form-preamble').addEventListener('click', function(){
     sendPreamble()
+    showModal('#form-objective')
+})
+document.querySelector('#i-objective').addEventListener('click', function(){
     showModal('#form-objective')
 })
 document.querySelector('#toolbar-magic').addEventListener('click', function(){
@@ -42,10 +29,26 @@ document.querySelector('#btn-form-objective').addEventListener('click', function
     sendObjective()
     showModal('#form-historic')
 })
-document.querySelector('#btn-form-historic').addEventListener('click', function(){
+document.querySelector('#i-historic').addEventListener('click', function(){
+    showModal('#form-historic')
+})
+document.querySelector('#magic-historic').addEventListener('click', function(){
     writeHistoric()
     //showModal('#form-historic')
 })
+document.querySelector('#btn-form-historic').addEventListener('click', function(){
+    sendHistoric()
+    //showModal('#form-historic')
+})
+document.querySelectorAll('.btn-close').forEach(element=>{
+    element.addEventListener('click', function(){
+        hideModal()
+    })
+})
+
+
+
+
 function inverter(num){
     num1 = num
     resultado = ''
@@ -149,12 +152,35 @@ function writeObjective(){
 function sendObjective(){
     let texto = quillObjective.root.innerHTML
     document.querySelector('#article-objective').innerHTML = texto
-    hideModal()
+    //hideModal()
+
+
+/* início*/
+
+
 }
 function writeHistoric(){
-    alert('HIistórico')
-    hideModal()
+    let data = new Date(document.querySelector('#input-execution-date').value)
+    let year = data.getFullYear()
+    let month = data.getMonth()+1
+    if(month.length<2){
+        month=`0${month}`
+    }
+    let day = data.getDate()
+    let hour = data.getHours()
+    let min = data.getMinutes()
+    let texto = `Em ${day}-${month}-${year} às ${hour}h${min}, `
+    quillHistoric.root.innerHTML = `<h2>Histórico</h2><p>${texto}</p>`
+    //hideModal()
 }
+function sendHistoric(){
+    document.querySelector('#article-historic').innerHTML = quillHistoric.root.innerHTML
+}
+
+
+/*Fim*/
+
+
 function showModal(element_){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style

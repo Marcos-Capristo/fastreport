@@ -1,14 +1,20 @@
-/* document.querySelector('#btn-teste').addEventListener('click', function(){
-    showModal('#form-model')
-}) */
+document.querySelector('#i-number').addEventListener('click', function(){
+    hideModal()
+    showModal('#form-number-report')
+})
+document.querySelector('#i-preamble').addEventListener('click', function(){
+    showModal('#form-preamble')
+})
+document.querySelector('#i-objective').addEventListener('click', function(){
+    showModal('#form-objective')
+})
+document.querySelector('#i-historic').addEventListener('click', function(){
+    showModal('#form-historic')
+})
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
         hideModal()
     })
-})
-document.querySelector('#i-number').addEventListener('click', function(){
-    hideModal()
-    showModal('#form-number-report')
 })
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     writeNumberReport()
@@ -18,9 +24,16 @@ document.querySelector('#btn-form-preamble').addEventListener('click', function(
     writePreamble()
     showModal('#form-objective')
 })
-document.querySelector('#btn-form-objective').addEventListener('click', function(){
+document.querySelector('#inature').addEventListener('change', function(){
     writeObjective()
-    //showModal('#form-objective')
+})
+document.querySelector('#btn-form-objective').addEventListener('click', function(){
+    sendObjective()
+    showModal('#form-historic')
+})
+document.querySelector('#btn-form-historic').addEventListener('click', function(){
+    writeHistoric()
+    //showModal('#form-historic')
 })
 function inverter(num){
     num1 = num
@@ -87,7 +100,7 @@ function writePreamble(){
 function writeObjective(){
     let rdo = document.querySelector('#irdo').value.trim()
     if(rdo==''){
-        rdo = `recebeda via telefonema e e-mail`
+        rdo = `recebida via telefonema e e-mail`
     }else{
         let ano = new Date(document.querySelector('#input-designated-date').value).getFullYear()
         rdo = `referente ao ${document.querySelector('#selectrdo').value} ${rdo.toUpperCase()}/${ano}`
@@ -111,7 +124,15 @@ function writeObjective(){
         retur
     }
     const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia} era ${objective}, sendo sua natureza, ${nature}.`
-    document.querySelector('#article-objective').innerHTML = `<h2>Objetivo</h2><p>${texto}</p>` 
+    quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`    
+}
+function sendObjective(){
+    let texto = quillObjective.root.innerHTML
+    document.querySelector('#article-objective').innerHTML = texto
+    hideModal()
+}
+function writeHistoric(){
+    alert('HIistórico')
     hideModal()
 }
 function showModal(element_){
@@ -139,3 +160,7 @@ function hideModal(){
     fade.pointerEvents = 'none'
     fade.transition = '0.5s'
 }
+//quill
+let quillObjective = new Quill('#editorObjective', {
+    theme: 'snow'
+  });

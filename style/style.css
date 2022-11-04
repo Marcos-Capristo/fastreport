@@ -92,12 +92,18 @@ button:hover{
     opacity: 0.4;
     float: right;
     font-size: 0.5rem;
-    margin-top: -3rem;
+    margin-top: -4rem;
+    margin-right: -1rem;
 }
 .btn-send{
     background-color: #007bff;
     float: right;
     margin-top: 1.8rem;
+}
+.btn-transp{
+    float: right;
+    margin-top: 1.8rem;
+    font-size: 0.8rem;
 }
 div.left, div.right{
     padding: 0px 5px 0px 5px;
@@ -210,4 +216,11 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     border-left: none;
     border-bottom: 1px solid rgb(14, 4, 155);
     line-height: 1.5rem;
+}
+.left, .right, .midle{
+    padding: 0px 20px 0px 20px;
+}
+.quilleditor{
+    width: 500px;
+    height: 270px;
 }

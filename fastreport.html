@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Quill Editor-->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script>
+
     <link rel="stylesheet" href="./style/style.css">
     <script src="./js/js.js" defer></script>
     <!-- title irá mudar dinamicamente no momento da impressão-->
@@ -21,12 +25,12 @@
             <button class="btn-close">X</button>
         </div>
         <div class="modal-body">
-            <div class="level-midle">
+            <div class="level-left">
                 <div class="left">
                     <p class="longtext2">Número do Laudo</p>
                     <input type="text" id="input-number-report" class="longtext2" value="12345">
-                </div>
-                <div class="right">
+                <!-- </div>
+                <div class="right"> -->
                     <p class="longtext2">Data da Designação</p>
                     <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12">
                 </div>
@@ -78,28 +82,80 @@
         </div>
         <div class="modal-body">
             <!-- Aqui vai o contéudo do frmulário -->         
-            </div>
             <div class="level-midle">
-                <div class="midle">
-                    <select id="selectrdo" class="longtext2">
+                <div class="left">
+                    <select id="selectrdo" class="longtext4">
                         <option value="RDO">RDO</option>
                         <option value="BO">BO</option>
                         <option value="IP">IP</option>
                     </select>
-                    <input type="text" class="longtext2" id="irdo">
+                    <input type="text" class="longtext4" id="irdo">
+                    <p class="longtext4">Delegacia</p>
+                    <input type="text" class="longtext4" id="idelpol" placeholder="Ex: Del. Sec. Limeira Plantão">
+                    <p class="longtext4">Objetivo do Exame</p>
+                    <input type="text" class="longtext4" id="iobjective">
+                    <p class="longtext4">Natureza</p>
+                    <input type="text" class="longtext4" id="inature">
+                    <!-- <button class="btn-transp">-></button> -->
                 </div>
-                <div class="right">
-                    <p class="longtext2">Delegacia</p>
-                    <input type="text" class="longtext2" id="idelpol" placeholder="Delegacia ...">
+                <div class="midle">
+                    <div id="editorObjective" class="quilleditor">
+                        <p>Hello World!</p>
+                        <p>Some initial <strong>bold</strong> text</p>
+                        <p><br></p>
+                      </div>
                 </div>
             </div>
             <div class="level-button">
-                <p class="longtext4">Objetivo do Exame</p>
-                <input type="text" class="longtext4" id="iobjective">
-                <p class="longtext4">Natureza</p>
-                <input type="text" class="longtext4" id="inature">
-                <hr>
                 <button class="btn-send" id="btn-form-objective">Avançar</button>
+            </div>            
+        </div>
+    </div>
+
+    <!-- FORMULÁRIO HISTÓRICO -->
+    <div class="modal" id="form-historic">
+        <div class="modal-header">
+            <!-- Aqui vai ocabeçalho do formulário -->
+            <h2>Histórico</h2>
+            <button class="btn-close">X</button>
+        </div>
+        <div class="modal-body">
+            <!-- Aqui vai o contéudo do frmulário -->
+            <div class="level-top">
+                <!-- Conteúdo do topo -->
+            </div>
+            <div class="level-midle">
+                <div class="left">
+                    <p class="longtext2">Data do Atendimento</p>
+                    <input type="date" id="input-execution-date" class="longtext2">
+                    <p class="longtext2">Hora do Atendimento</p>
+                    <input type="time" id="input-execution-hour" class="longtext2">
+                </div>
+                <div class="midle">
+                    <select class = "longtext2" id="selectlocal">
+                        <option value="local">Exame de Local Externo</option>
+                        <option value="veiculoepcl">Veículo Apresentado na Base</option>
+                        <option value="veiculoepcl">Veículo Apresentado na Delegacia</option>
+                        <option value="veiculopatio">Veículo Apresentado no Pátio</option>
+                    </select>
+                    <input type="text" class="longtext4"  id="ilocaltype" placeholder="tipo de local, cidade, rua, numero, logradouro ...">
+                        <select class="longtext2"  id="selectguarnicao">
+                            <option value="Polícia Militar">Polícia Militar</option>
+                            <option value="Polícia Militar Rodoviária">Polícia Militar Rodoviária</option>
+                            <option value="Guarda Civil Metropolitana">Guarda Civil Metropolitana</option>
+                            <option value="Polícia Civil">Polícia Civil</option>
+                        </select>
+                    <input type="text" class="longtext2" id="iguarnicaopatente" placeholder="do / da + patente">
+                </div>
+                <div class="right">
+                    <p>
+                        <!-- Conteúdo que deve aparecer à direita da tela -->
+                    </p>
+                </div>
+            </div>
+            <div class="level-button">
+                <!-- Conteúdo de baixo. -->
+                <button class="btn-send" id="btn-form-historic">Avançar</button>
             </div>
         </div>
     </div>
@@ -135,7 +191,7 @@
             </div>
             <div class="level-button">
                 Conteúdo de baixo.
-                <button class="btn-send" id="btn-model">Avançar</button>
+                <button class="btn-send" id="btn-form-model">Avançar</button>
             </div>
         </div>
     </div>
@@ -159,8 +215,8 @@
                 <ul>            
                     <li><a href="#" id="i-number">Numero</a></li>
                     <li><a href="#" id="i-preamble">Preâmbulo</a></li>
-                    <li><a href="#" id="i_objective">Objetivo</a></li>
-                    <li><a href="#" id="i_historic">Histórico</a></li>
+                    <li><a href="#" id="i-objective">Objetivo</a></li>
+                    <li><a href="#" id="i-historic">Histórico</a></li>
                     <li><a href="#" id="i_informs">Informes</a></li>
                     <li><a href="#" id="i_local">Local</a></li>
                     <li><a href="#" id="i_veicle">Veículo</a></li>

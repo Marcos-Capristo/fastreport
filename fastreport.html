@@ -25,14 +25,16 @@
             <button class="btn-close">X</button>
         </div>
         <div class="modal-body">
-            <div class="level-left">
+            <div class="level-midle">
                 <div class="left">
                     <p class="longtext2">Número do Laudo</p>
                     <input type="text" id="input-number-report" class="longtext2" value="12345">
-                <!-- </div>
-                <div class="right"> -->
                     <p class="longtext2">Data da Designação</p>
                     <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12">
+                </div>
+                <div class="midle">
+                    <img src="./img/magic.png" alt="Gerar número do laudo" id="magic-number" class="toolbarbutton">
+                    <input type="text" id="editor-number" placeholder="Número do Laudo">
                 </div>
             </div>
             <div class="level-button">
@@ -66,6 +68,10 @@
                     </select>
                     <input type="text" id="input-delegate" class="longtext4" value="Rodrigo Rodriges">
                 </div>
+                <div class="midle">
+                    <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
+                    <textarea id="editor-preamble" class="quilleditor" placeholder="Após clicar no ícone acima, o praâmbulo será exibido aqui."></textarea>
+                </div>
             </div>
             <div class="level-button">
                 <button class="btn-send" id="btn-form-preamble">Avançar</button>
@@ -98,12 +104,26 @@
                     <input type="text" class="longtext4" id="inature">
                     <!-- <button class="btn-transp">-></button> -->
                 </div>
+                <!-- <div class="toolbar" id="toolbar">
+                    <img src="./img/title.png" alt="Título">
+                    <img src="./img/paragraph.png" alt="Parágrafo">
+                </div> -->
                 <div class="midle">
-                    <div id="editorObjective" class="quilleditor">
-                        <p>Hello World!</p>
-                        <p>Some initial <strong>bold</strong> text</p>
-                        <p><br></p>
-                      </div>
+                    <div id="toolbar">
+                        <!-- <select class="ql-size">
+                        <option value="small"></option>
+                        <option selected></option>
+                        <option value="large"></option>
+                        <option value="huge"></option>
+                        </select>
+                        <button class="ql-bold"></button>
+                        <button class="ql-script" value="sub"></button>
+                        <button class="ql-script" value="super"></button> -->
+                        <img src="./img/magic.png" alt="Gerar texto" id="toolbar-magic" class="toolbarbutton">
+                        <img src="./img/title.png" alt="Título" class="toolbarbutton">
+                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton">
+                    </div>
+                    <div id="editorObjective" class="quilleditor"></div>
                 </div>
             </div>
             <div class="level-button">

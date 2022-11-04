@@ -15,10 +15,13 @@ body{
     padding: 1rem;
     background-color: whitesmoke;
 }
-body p{
+body p, textarea{
     text-align: justify;
     line-height: 1.5rem;
     padding-bottom: 1rem;
+}
+textarea{
+    padding: 1rem;
 }
 header{
     text-align: center;
@@ -72,9 +75,19 @@ button{
 button:hover{
     opacity: 1;
 }
+textarea{
+    resize: none;
+}
 #article-preamble{
     padding-left: 20rem;
     font-size: 0.8rem;
+}
+#editor-number{
+    width:350px;
+    font-size: 2rem;
+    border: none;
+    text-align: center;
+    line-height: 3rem;
 }
 #fade{
     position: fixed;
@@ -223,4 +236,11 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
 .quilleditor{
     width: 500px;
     height: 270px;
+}
+.toolbarbutton{
+    cursor: pointer;
+    opacity: 0.5;
+}
+.toolbarbutton:hover{
+    opacity: 1;
 }

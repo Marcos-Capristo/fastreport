@@ -82,12 +82,10 @@
     <!-- FORMULÁRIO OBJETIVO -->
     <div class="modal" id="form-objective">
         <div class="modal-header">
-            <!-- Aqui vai ocabeçalho do formulário -->
             <h2>Objetivo</h2>
             <button class="btn-close">X</button>
         </div>
-        <div class="modal-body">
-            <!-- Aqui vai o contéudo do frmulário -->         
+        <div class="modal-body">       
             <div class="level-midle">
                 <div class="left">
                     <select id="selectrdo" class="longtext4">
@@ -102,23 +100,9 @@
                     <input type="text" class="longtext4" id="iobjective">
                     <p class="longtext4">Natureza</p>
                     <input type="text" class="longtext4" id="inature">
-                    <!-- <button class="btn-transp">-></button> -->
                 </div>
-                <!-- <div class="toolbar" id="toolbar">
-                    <img src="./img/title.png" alt="Título">
-                    <img src="./img/paragraph.png" alt="Parágrafo">
-                </div> -->
                 <div class="midle">
                     <div id="toolbar">
-                        <!-- <select class="ql-size">
-                        <option value="small"></option>
-                        <option selected></option>
-                        <option value="large"></option>
-                        <option value="huge"></option>
-                        </select>
-                        <button class="ql-bold"></button>
-                        <button class="ql-script" value="sub"></button>
-                        <button class="ql-script" value="super"></button> -->
                         <img src="./img/magic.png" alt="Gerar texto" id="toolbar-magic" class="toolbarbutton">
                         <img src="./img/title.png" alt="Título" class="toolbarbutton">
                         <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton">
@@ -146,31 +130,37 @@
             </div>
             <div class="level-midle">
                 <div class="left">
-                    <p class="longtext2">Data do Atendimento</p>
-                    <input type="date" id="input-execution-date" class="longtext2">
-                    <p class="longtext2">Hora do Atendimento</p>
-                    <input type="time" id="input-execution-hour" class="longtext2">
-                </div>
-                <div class="midle">
-                    <select class = "longtext2" id="selectlocal">
+                    <p class="longtext4">Data e Hora do Atendimento</p>
+                    <input type="datetime-local" id="input-execution-date" class="longtext4">
+                    <!-- <p class="longtext4">Hora do Atendimento</p>
+                    <input type="time" id="input-execution-hour" class="longtext4"> -->
+                    <select class = "longtext4" id="selectlocal">
                         <option value="local">Exame de Local Externo</option>
                         <option value="veiculoepcl">Veículo Apresentado na Base</option>
                         <option value="veiculoepcl">Veículo Apresentado na Delegacia</option>
                         <option value="veiculopatio">Veículo Apresentado no Pátio</option>
                     </select>
                     <input type="text" class="longtext4"  id="ilocaltype" placeholder="tipo de local, cidade, rua, numero, logradouro ...">
-                        <select class="longtext2"  id="selectguarnicao">
+                        <select class="longtext4"  id="selectguarnicao">
                             <option value="Polícia Militar">Polícia Militar</option>
                             <option value="Polícia Militar Rodoviária">Polícia Militar Rodoviária</option>
                             <option value="Guarda Civil Metropolitana">Guarda Civil Metropolitana</option>
                             <option value="Polícia Civil">Polícia Civil</option>
                         </select>
-                    <input type="text" class="longtext2" id="iguarnicaopatente" placeholder="do / da + patente">
+                    <input type="text" class="longtext4" id="iguarnicaopatente" placeholder="ex: do Soldado / da Soldado">
+                    <p class="longtext4">Responsavel pela Guarnição</p>
+                    <input type="text" id="iguarnicaonome" class="longtext4">
+                    <p class="longtext4">Viatura</p>
+                    <input type="text" id="iguarnicaovtr" class="longtext4">
+                    <input type="checkbox" id="check-authorit" value = 'false'><label for="check-authorit">  Delegado Presente no Local</label>
                 </div>
-                <div class="right">
-                    <p>
-                        <!-- Conteúdo que deve aparecer à direita da tela -->
-                    </p>
+                <div class="midle">
+                    <div id="toolbar-historic">
+                        <img src="./img/magic.png" alt="Gerar texto" id="magic-historic" class="toolbarbutton">
+                        <img src="./img/title.png" alt="Título" class="toolbarbutton">
+                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton">
+                    </div>
+                    <div id="editorHistoric" class="quilleditor"></div>
                 </div>
             </div>
             <div class="level-button">

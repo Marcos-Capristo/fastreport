@@ -187,3 +187,10 @@ let quillObjective = new Quill('#editorObjective', {
       },
     theme: 'snow'
   });
+
+  let quillHistoric = new Quill('#editorHistoric', {
+    modules: {
+        toolbar: '#toolbar-historic'
+      },
+    theme: 'snow'
+  });

@@ -27,11 +27,9 @@ header{
     text-align: center;
     padding: 50px 0px 30px 0px;
 }
-
 header > div{
     display: inline-block;
 }
-
 header > div >p{
     text-align: center;
     font-size: 0.9rem;
@@ -39,11 +37,9 @@ header > div >p{
     margin: auto;
     padding: 0;
 }
-
 header > div >p.top2{
     font-size: 0.7em;
 }
-
 header > div > img{
     width: 80px;
     margin: 0px 50px;
@@ -99,6 +95,9 @@ textarea{
     z-index: 50;
     opacity: 0;
     pointer-events: none;
+}
+#irdo{
+    text-transform: uppercase;
 }
 .btn-close{
     background-color: #f00;
@@ -223,12 +222,15 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     line-height: 1.2rem;
     font-size: 0.8rem;
 }
-.modal input[type='text'], .modal input[type='date']{
+.modal input[type='text'], .modal input[type='date'], .modal input[type='checkbox']{
     border-top: none;
     border-right: none;
     border-left: none;
     border-bottom: 1px solid rgb(14, 4, 155);
     line-height: 1.5rem;
+}
+.modal input[type='checkbox']{
+    margin-top:1.5rem;
 }
 .left, .right, .midle{
     padding: 0px 20px 0px 20px;

@@ -222,7 +222,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     line-height: 1.2rem;
     font-size: 0.8rem;
 }
-.modal input[type='text'], .modal input[type='date'], .modal input[type='checkbox']{
+.modal input[type='text'], .modal input[type='date'], .modal input[type='checkbox'], .modal input[type='datetime-local']{
     border-top: none;
     border-right: none;
     border-left: none;

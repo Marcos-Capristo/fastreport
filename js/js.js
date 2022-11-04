@@ -32,6 +32,28 @@ document.querySelector('#btn-form-objective').addEventListener('click', function
 document.querySelector('#i-historic').addEventListener('click', function(){
     showModal('#form-historic')
 })
+document.querySelector('#selectlocal').addEventListener('change', function(){
+    let element = document.querySelector('#ilocaltype')
+    switch(this.selectedIndex){
+    case 0:
+        element.value = ''
+        element.placeholder = 'ex: um imóvel residencial localizado na cidade de Limeira ...'
+        break
+    case 1:
+        element.value = 'base da EPCL - Equipe de Perícias Criminalísticas de Limeira'
+        element.placeholder = 'o nome da Base da Equipe de Perícias'
+        break
+    case 2: 
+        element.value = 'base do Plantão Policial da Delegacia Seccional de Limeira'
+        element.placeholder = 'o nome da delegacia e da cidade onde foi realizado o exame'
+        break
+    case 3: 
+        element.value = 'pátio Assist na cidade de Limeira'
+        element.placeholder = 'o nome do pátio e da cidade onde foi realizado o exame'
+        break
+    }
+})
+
 document.querySelector('#magic-historic').addEventListener('click', function(){
     writeHistoric()
     //showModal('#form-historic')
@@ -45,10 +67,15 @@ document.querySelectorAll('.btn-close').forEach(element=>{
         hideModal()
     })
 })
-
-
-
-
+function oneToTwo(num){
+    let two=num.toString()
+    if(two.length<2){
+        two = `0${num}`
+    }else{
+        two = num
+    }
+    return two
+}
 function inverter(num){
     num1 = num
     resultado = ''
@@ -160,21 +187,48 @@ function sendObjective(){
 
 }
 function writeHistoric(){
+    let expert = `${document.querySelector('#input-expert').value.trim()}, perito criminal,`
+    let ftp = `e ${document.querySelector('#iftp').value.trim()}, fotógrafo técnico pericial,`
+    let localDoExame = ''
+    let police = document.querySelector('#selectguarnicao').value
+    let partner = `${document.querySelector('#iguarnicaopatente').value.trim()} ${document.querySelector('#iguarnicaonome').value.trim()}`
+    let vtr = document.querySelector('#iguarnicaovtr').value.trim()
+    let delegate = ''
+    if(document.querySelector('#check-authorit').checked){
+        delegate = `${document.querySelector('#select-delegate').value} ${document.querySelector('#input-delegate').value.trim()}, presente ao local, acompanhou o trabalho da perícia`
+        delegate = `<p>${delegate[0].toUpperCase()}${delegate.slice(1)}.</p>`
+    }
+    
+    switch(document.querySelector('#selectlocal').selectedIndex){
+        case 0:
+            localDoExame = `dirigiram-se ao local indicado, ${document.querySelector('#ilocaltype').value.trim()}. Quando da chegada da equipe, a ${police}, representada na pessoa ${partner}, de posse da viatura ${vtr}, guarnecia o local`
+            break
+        case 1:
+            localDoExame = 'procederam ao exame do veículo apresentado na base da EPCL - Equipe de Perícias Criminalísticas de Limeira'
+            break
+        case 2:
+            localDoExame = `dirigiram-se à ${document.querySelector('#ilocaltype').value.trim()} e proccederam ao exame requisitado. Quando da chegada da equipe, servidores indicaram o veículo a ser examinado`
+            break
+        case 3: 
+            localDoExame = `dirigiram-se ao ${document.querySelector('#ilocaltype').value.trim()} e proccederam ao exame requisitado. Quando da chegada da equipe, funcionários do pátio indicaram o veículo a ser examinado`
+            break
+    }    
     let data = new Date(document.querySelector('#input-execution-date').value)
     let year = data.getFullYear()
-    let month = data.getMonth()+1
-    if(month.length<2){
+    let month = oneToTwo(data.getMonth()+1)
+    /* if(month.length<2){
         month=`0${month}`
-    }
-    let day = data.getDate()
-    let hour = data.getHours()
-    let min = data.getMinutes()
+    } */
+    let day = oneToTwo(data.getDate())
+    let hour = oneToTwo(data.getHours())
+    let min = oneToTwo(data.getMinutes())
     let texto = `Em ${day}-${month}-${year} às ${hour}h${min}, `
-    quillHistoric.root.innerHTML = `<h2>Histórico</h2><p>${texto}</p>`
+    quillHistoric.root.innerHTML = `<h2>Histórico</h2><p>${texto} ${expert} ${ftp} ${localDoExame}.</p>${delegate}`
     //hideModal()
 }
 function sendHistoric(){
-    document.querySelector('#article-historic').innerHTML = quillHistoric.root.innerHTML
+    texto = quillHistoric.root.innerHTML.trim()
+    document.querySelector('#article-historic').innerHTML = texto
 }
 
 

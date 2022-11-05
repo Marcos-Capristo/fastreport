@@ -27,7 +27,7 @@ document.querySelector('#toolbar-magic').addEventListener('click', function(){
 })
 document.querySelector('#btn-form-objective').addEventListener('click', function(){
     sendObjective()
-    showModal('#form-historic')
+    showModal('#form-informs')
 })
 document.querySelector('#i-historic').addEventListener('click', function(){
     showModal('#form-historic')
@@ -60,7 +60,23 @@ document.querySelector('#magic-historic').addEventListener('click', function(){
 })
 document.querySelector('#btn-form-historic').addEventListener('click', function(){
     sendHistoric()
-    //showModal('#form-historic')
+    showModal('#form-informs')
+})
+document.querySelector('#i-informs').addEventListener('click', function(){
+    showModal('#form-informs')
+})
+document.querySelector('#i-local').addEventListener('click', function(){
+    showModal('#form-local')
+})
+document.querySelector('#btn-form-informs').addEventListener('click', function(){
+    sendInforms()
+    showModal('#form-local')
+    //showModal('#form-local')
+})
+document.querySelector('#btn-form-local').addEventListener('click', function(){
+    sendLocal()
+    hideModal()
+    //showModal('#form-local')
 })
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
@@ -230,6 +246,19 @@ function sendHistoric(){
     texto = quillHistoric.root.innerHTML.trim()
     document.querySelector('#article-historic').innerHTML = texto
 }
+function sendInforms(){
+    texto = quillInforms.root.innerHTML.trim()
+    document.querySelector('#article-informs').innerHTML = texto
+   // alert('Informs')
+}
+function writeLocal(){
+    texto = `Texto do local`
+}
+function sendLocal(){
+    texto = quillLocal.root.innerHTML.trim()
+    document.querySelector('#article-local').innerHTML = texto
+}
+
 
 
 /*Fim*/
@@ -262,11 +291,19 @@ function hideModal(){
 }
 //quill
 
-var toolbarOptions = [
-    [{ 'header': [1, 2, 3, false] }],
+let toolbarOptions = [
+    [{ 'header': [2, 3, false] }],
     ['bold', 'italic', 'underline'],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
     [{ 'script': 'sub'}, { 'script': 'super' }],                                                        
+  ];
+
+let toolbarOptionsImg = [
+    [{ 'header': [2, 3, false] }],
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],
+    ['image']                                                        
   ];
   
 
@@ -292,11 +329,27 @@ let quillObjective = new Quill('#editorObjective', {
   });
 
   //QUILL HISTÓRICO
-  //let toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
   let quillHistoric = new Quill('#editorHistoric', {
     modules: {
         toolbar: '#toolbar-historic',
         toolbar: toolbarOptions,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL INFORMES
+  let quillInforms = new Quill('#editorInforms', {
+    modules: {
+        toolbar: toolbarOptions,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL LOCAL
+  let quillLocal = new Quill('#editorLocal', {
+    modules: {
+        toolbar: '#toolbar-local',
+        toolbar: toolbarOptionsImg,
       },
     theme: 'snow'
   });

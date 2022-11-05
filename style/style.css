@@ -58,9 +58,16 @@ header input{
 }
 h1{
     text-align: center;
+    font-size: 2rem;
+}
+h2{
+    font-size: 1.2rem;
 }
 h1, h2{
     padding: 1rem;
+}
+h3{
+    margin-left: 4rem;
 }
 button{
     padding: 0.4rem 0.6rem 0.4rem 0.6rem;
@@ -244,8 +251,15 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     width: 500px;
     height: 270px;
 }
+.quilleditor p, .quilleditor h3{
+    margin-left: 40px;
+}
 #editorHistoric{
     height: 400px;
+}
+#editorLocal{
+    width: 700px;
+    height: 350px;
 }
 .toolbarbutton{
     cursor: pointer;

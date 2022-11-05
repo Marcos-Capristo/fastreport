@@ -68,6 +68,18 @@ document.querySelector('#i-informs').addEventListener('click', function(){
 document.querySelector('#i-local').addEventListener('click', function(){
     showModal('#form-local')
 })
+document.querySelector('#i-veicle').addEventListener('click', function(){
+    showModal('#form-veicle')
+})
+document.querySelector('#i-thing').addEventListener('click', function(){
+    showModal('#form-thing')
+})
+document.querySelector('#i-corpuses').addEventListener('click', function(){
+    showModal('#form-corpuses')
+})
+document.querySelector('#i-conclusion').addEventListener('click', function(){
+    showModal('#form-conclusion')
+})
 document.querySelector('#btn-form-informs').addEventListener('click', function(){
     sendInforms()
     showModal('#form-local')
@@ -75,8 +87,23 @@ document.querySelector('#btn-form-informs').addEventListener('click', function()
 })
 document.querySelector('#btn-form-local').addEventListener('click', function(){
     sendLocal()
+    showModal('#form-veicle')
+})
+document.querySelector('#btn-form-veicle').addEventListener('click', function(){
+    sendVeicle()
+    showModal('#form-thing')
+})
+document.querySelector('#btn-form-thing').addEventListener('click', function(){
+    sendThing()
+    showModal('#form-corpuses')
+})
+document.querySelector('#btn-form-corpuses').addEventListener('click', function(){
+    sendCorpuses()
+    showModal('#form-conclusion')
+})
+document.querySelector('#btn-form-conclusion').addEventListener('click', function(){
+    sendConclusion()
     hideModal()
-    //showModal('#form-local')
 })
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
@@ -175,19 +202,19 @@ function writeObjective(){
     if(delegacia==''){
         alert('digite o nome da delegacia.')
         document.querySelector('#idelpol').focus()
-        retur
+        return
     }
     let objective = document.querySelector('#iobjective').value.trim()
     if(objective==''){
         alert('digite o objetivo.')
         document.querySelector('#iobjective').focus()
-        retur
+        return
     }
     let nature = document.querySelector('#inature').value.trim()
     if(nature==''){
         alert('digite a natureza do exame.')
         document.querySelector('#inature').focus()
-        retur
+        return
     }
     const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia} era ${objective}, sendo sua natureza, ${nature}.`
     quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`    
@@ -258,8 +285,22 @@ function sendLocal(){
     texto = quillLocal.root.innerHTML.trim()
     document.querySelector('#article-local').innerHTML = texto
 }
-
-
+function sendVeicle(){
+    texto = quillVeicle.root.innerHTML.trim()
+    document.querySelector('#article-veicle').innerHTML = texto
+}
+function sendThing(){
+    texto = quillThing.root.innerHTML.trim()
+    document.querySelector('#article-thing').innerHTML = texto
+}
+function sendCorpuses(){
+    texto = quillCorpuses.root.innerHTML.trim()
+    document.querySelector('#article-corpuses').innerHTML = texto
+}
+function sendConclusion(){
+    texto = quillConclusion.root.innerHTML.trim()
+    document.querySelector('#article-conclusion').innerHTML = texto
+}
 
 /*Fim*/
 
@@ -349,6 +390,42 @@ let quillObjective = new Quill('#editorObjective', {
   let quillLocal = new Quill('#editorLocal', {
     modules: {
         toolbar: '#toolbar-local',
+        toolbar: toolbarOptionsImg,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL VEÍCULO
+  let quillVeicle = new Quill('#editorVeicle', {
+    modules: {
+        //toolbar: '#toolbar-veicle',
+        toolbar: toolbarOptionsImg,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL PEÇA
+  let quillThing = new Quill('#editorThing', {
+    modules: {
+        //toolbar: '#toolbar-thing',
+        toolbar: toolbarOptionsImg,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL CADÁVER
+  let quillCorpuses = new Quill('#editorCorpuses', {
+    modules: {
+        //toolbar: '#toolbar-veicle',
+        toolbar: toolbarOptionsImg,
+      },
+    theme: 'snow'
+  });
+
+  //QUILL CONCLUSÃO
+  let quillConclusion = new Quill('#editorConclusion', {
+    modules: {
+        //toolbar: '#toolbar-veicle',
         toolbar: toolbarOptionsImg,
       },
     theme: 'snow'

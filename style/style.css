@@ -24,6 +24,13 @@ article p{
     margin-left: 4rem;
     margin-right: 1rem;
 }
+article img{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12cm;
+    border: 1px solid black;
+}
 textarea{
     padding: 1rem;
 }

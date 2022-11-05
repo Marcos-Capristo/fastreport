@@ -1,37 +1,35 @@
-document.querySelector('#i-number').addEventListener('click', function(){
-    //hideModal()
-    showModal('#form-number-report')
-})
-document.querySelector('#magic-number').addEventListener('click', function(){
-    writeNumberReport()
-})
+/*  COMANDOS DO MENU */
+document.querySelector('#i-number').addEventListener('click', function(){showModal('#form-number-report')})
+document.querySelector('#i-preamble').addEventListener('click', function(){showModal('#form-preamble')})
+document.querySelector('#i-objective').addEventListener('click', function(){showModal('#form-objective')})
+document.querySelector('#i-historic').addEventListener('click', function(){showModal('#form-historic')})
+document.querySelector('#i-informs').addEventListener('click', function(){showModal('#form-informs')})
+document.querySelector('#i-local').addEventListener('click', function(){showModal('#form-local')})
+document.querySelector('#i-veicle').addEventListener('click', function(){showModal('#form-veicle')})
+document.querySelector('#i-thing').addEventListener('click', function(){showModal('#form-thing')})
+document.querySelector('#i-corpuses').addEventListener('click', function(){showModal('#form-corpuses')})
+document.querySelector('#i-conclusion').addEventListener('click', function(){showModal('#form-conclusion')})
+
+/*  COMANDOS DO ÍCONE DO FORMULÁRIO */
+document.querySelector('#magic-number').addEventListener('click', function(){writeNumberReport()})
+document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
+document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
+document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
+
+/*  TRANSIÇÕES DE UM PARA OUTRO - BOTÃO ENVIAR */
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     sendNumerReport()
     showModal('#form-preamble')
-})
-document.querySelector('#i-preamble').addEventListener('click', function(){
-    showModal('#form-preamble')
-})
-document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){
-    writePreamble()
 })
 document.querySelector('#btn-form-preamble').addEventListener('click', function(){
     sendPreamble()
     showModal('#form-objective')
 })
-document.querySelector('#i-objective').addEventListener('click', function(){
-    showModal('#form-objective')
-})
-document.querySelector('#toolbar-magic').addEventListener('click', function(){
-    writeObjective()
-})
 document.querySelector('#btn-form-objective').addEventListener('click', function(){
     sendObjective()
-    showModal('#form-informs')
-})
-document.querySelector('#i-historic').addEventListener('click', function(){
     showModal('#form-historic')
 })
+/*  COMANDOS DO SELECT DO HISTÓRCIO*/
 document.querySelector('#selectlocal').addEventListener('change', function(){
     let element = document.querySelector('#ilocaltype')
     switch(this.selectedIndex){
@@ -53,37 +51,13 @@ document.querySelector('#selectlocal').addEventListener('change', function(){
         break
     }
 })
-
-document.querySelector('#magic-historic').addEventListener('click', function(){
-    writeHistoric()
-    //showModal('#form-historic')
-})
 document.querySelector('#btn-form-historic').addEventListener('click', function(){
     sendHistoric()
     showModal('#form-informs')
 })
-document.querySelector('#i-informs').addEventListener('click', function(){
-    showModal('#form-informs')
-})
-document.querySelector('#i-local').addEventListener('click', function(){
-    showModal('#form-local')
-})
-document.querySelector('#i-veicle').addEventListener('click', function(){
-    showModal('#form-veicle')
-})
-document.querySelector('#i-thing').addEventListener('click', function(){
-    showModal('#form-thing')
-})
-document.querySelector('#i-corpuses').addEventListener('click', function(){
-    showModal('#form-corpuses')
-})
-document.querySelector('#i-conclusion').addEventListener('click', function(){
-    showModal('#form-conclusion')
-})
 document.querySelector('#btn-form-informs').addEventListener('click', function(){
     sendInforms()
     showModal('#form-local')
-    //showModal('#form-local')
 })
 document.querySelector('#btn-form-local').addEventListener('click', function(){
     sendLocal()
@@ -150,7 +124,6 @@ function writeNumberReport(){
     const designatedDate = new Date(document.querySelector('#input-designated-date').value).getFullYear()
     texto = `${numberReport}/${designatedDate}`
     document.querySelector('#editor-number').value = `Laudo ${texto}`
-    //document.querySelector('#article-number-report').innerHTML = `<h1>Laudo ${texto}</h1>`
 }
 function sendNumerReport(){
     document.querySelector('#article-number-report').innerHTML = `<h1>${document.querySelector('#editor-number').value.trim()}</h1>`
@@ -183,11 +156,10 @@ function writePreamble(){
     }
     let texto = `Em ${designatedDate}, na cidade de Limeira e no Instituto de Criminalística, da Superintendência da Polícia Técnico-Científica, da Secretaria de Segurança Pública do Estado de São Paulo, em conformidade com o disposto no art. 178 do Decreto-Lei 3689 de 3-10-1941 e Decreto-Lei 42847 de 9-2-1998, ${director}, foi ${expert} para proceder ao Exame Pericial especificado em requisição de exame assinada pela Autoridade Policial, ${delegate}.`
     document.querySelector('#editor-preamble').value = texto
-    /* document.querySelector('#article-preamble').innerHTML = `<p>${texto}</p>`
-    hideModal() */
 }
 function sendPreamble(){
     document.querySelector('#article-preamble').innerHTML = `<p>${document.querySelector('#editor-preamble').value.trim()}</p>`
+    document.querySelector('#article-signature').innerHTML = `<p>${document.querySelector('#input-expert').value.trim()}</p><p>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p>`
     hideModal()
 }
 function writeObjective(){
@@ -231,7 +203,7 @@ function sendObjective(){
 }
 function writeHistoric(){
     let expert = `${document.querySelector('#input-expert').value.trim()}, perito criminal,`
-    let ftp = `e ${document.querySelector('#iftp').value.trim()}, fotógrafo técnico pericial,`
+    let ftp = `e ${document.querySelector('#iftp').value.trim()}, ${document.querySelector('#select-ftp').value},`
     let localDoExame = ''
     let police = document.querySelector('#selectguarnicao').value
     let partner = `${document.querySelector('#iguarnicaopatente').value.trim()} ${document.querySelector('#iguarnicaonome').value.trim()}`

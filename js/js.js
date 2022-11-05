@@ -207,7 +207,7 @@ function writeHistoric(){
             localDoExame = 'procederam ao exame do veículo apresentado na base da EPCL - Equipe de Perícias Criminalísticas de Limeira'
             break
         case 2:
-            localDoExame = `dirigiram-se à ${document.querySelector('#ilocaltype').value.trim()} e proccederam ao exame requisitado. Quando da chegada da equipe, servidores indicaram o veículo a ser examinado`
+            localDoExame = `dirigiram-se à ${document.querySelector('#ilocaltype').value.trim()} e procederam ao exame requisitado. Quando da chegada da equipe, servidores indicaram o veículo a ser examinado`
             break
         case 3: 
             localDoExame = `dirigiram-se ao ${document.querySelector('#ilocaltype').value.trim()} e proccederam ao exame requisitado. Quando da chegada da equipe, funcionários do pátio indicaram o veículo a ser examinado`
@@ -261,16 +261,42 @@ function hideModal(){
     fade.transition = '0.5s'
 }
 //quill
+
+var toolbarOptions = [
+    [{ 'header': [1, 2, 3, false] }],
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],                                                        
+  ];
+  
+
+
+function testeQuill(){
+    let selection = quillHistoric.getSelection()
+    let texto = quillHistoric.getText(selection)
+    quillHistoric.setContents([
+        { insert: 'Hello ' },
+        { insert: 'World!', attributes: { bold: true } },
+        { insert: '\n' }
+      ]);
+    console.log(texto)
+}
+
+// QUILL OBJETVO
 let quillObjective = new Quill('#editorObjective', {
     modules: {
-        toolbar: '#toolbar'
+        toolbar: '#toolbar',
+        toolbar: toolbarOptions,
       },
     theme: 'snow'
   });
 
+  //QUILL HISTÓRICO
+  //let toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
   let quillHistoric = new Quill('#editorHistoric', {
     modules: {
-        toolbar: '#toolbar-historic'
+        toolbar: '#toolbar-historic',
+        toolbar: toolbarOptions,
       },
     theme: 'snow'
   });

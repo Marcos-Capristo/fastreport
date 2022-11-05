@@ -34,8 +34,10 @@
                 </div>
                 <div class="midle">
                     <img src="./img/magic.png" alt="Gerar número do laudo" id="magic-number" class="toolbarbutton">
+                </div>                    
+                <div class="right">
                     <input type="text" id="editor-number" placeholder="Número do Laudo">
-                </div>
+                </div>                
             </div>
             <div class="level-button">
                 <button class="btn-send" id="btn-form-number-report">Avançar</button>
@@ -70,9 +72,11 @@
                 </div>
                 <div class="midle">
                     <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
-                    <textarea id="editor-preamble" class="quilleditor" placeholder="Após clicar no ícone acima, o praâmbulo será exibido aqui."></textarea>
                 </div>
-            </div>
+                <div class="right">
+                    <textarea id="editor-preamble" class="quilleditor" placeholder="Após clicar no ícone acima, o praâmbulo será exibido aqui."></textarea>
+                </div>                
+                </div>
             <div class="level-button">
                 <button class="btn-send" id="btn-form-preamble">Avançar</button>
             </div>
@@ -104,12 +108,14 @@
                 <div class="midle">
                     <div id="toolbar">
                         <img src="./img/magic.png" alt="Gerar texto" id="toolbar-magic" class="toolbarbutton">
-                        <img src="./img/title.png" alt="Título" class="toolbarbutton">
-                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton">
+                       <!--  <img src="./img/title.png" alt="Título" class="toolbarbutton">
+                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton"> -->
                     </div>
-                    <div id="editorObjective" class="quilleditor"></div>
                 </div>
-            </div>
+                <div class="right">
+                    <div id="editorObjective" class="quilleditor"></div>
+                </div>                
+                </div>
             <div class="level-button">
                 <button class="btn-send" id="btn-form-objective">Avançar</button>
             </div>            
@@ -133,7 +139,7 @@
                     <p class="longtext4">Data e Hora do Atendimento</p>
                     <input type="datetime-local" id="input-execution-date" class="longtext4">
                     <p class="longtext4">Fotógrafo</p>
-                    <input type="text" id="iftp" class="longtext4" value="Diego Danfrer vilella">
+                    <input type="text" id="iftp" class="longtext4" value="Paulo Pedron">
                     <select class = "longtext4" id="selectlocal">
                         <option value="local">Exame de Local Externo</option>
                         <option value="veiculoepcl">Veículo Apresentado na Base</option>
@@ -157,11 +163,13 @@
                 <div class="midle">
                     <div id="toolbar-historic">
                         <img src="./img/magic.png" alt="Gerar texto" id="magic-historic" class="toolbarbutton">
-                        <img src="./img/title.png" alt="Título" class="toolbarbutton">
-                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton">
+                        <!-- <img src="./img/title.png" alt="Título" class="toolbarbutton" onclick="testeQuill()">
+                        <img src="./img/paragraph.png" alt="Parágrafo" class="toolbarbutton"> -->
                     </div>
-                    <div id="editorHistoric" class="quilleditor"></div>
                 </div>
+                <div class="right">
+                    <div id="editorHistoric" class="quilleditor"></div>
+                </div>                
             </div>
             <div class="level-button">
                 <!-- Conteúdo de baixo. -->
@@ -246,7 +254,7 @@
                 <!-- <li><a href="#" onclick="Export2Word('report', 'html-content-with-image', filename = './docx/template2.docx')">Word</a></li> -->
             </ul>
         </nav>    
-        <div id="article-number-report">Laudo Técnico Pericial</div>
+        <div id="article-number-report"><h1>Laudo Técnico Pericial</h1></div>
         <div id="article-preamble"></div>
         <div id="article-objective"></div>
         <div id="article-historic"></div>

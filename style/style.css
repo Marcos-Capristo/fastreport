@@ -20,12 +20,17 @@ body p, textarea{
     line-height: 1.5rem;
     padding-bottom: 1rem;
 }
+article p{
+    margin-left: 4rem;
+    margin-right: 1rem;
+}
 textarea{
     padding: 1rem;
 }
 header{
     text-align: center;
     padding: 50px 0px 30px 0px;
+    margin:0px;
 }
 header > div{
     display: inline-block;
@@ -42,7 +47,7 @@ header > div >p.top2{
 }
 header > div > img{
     width: 80px;
-    margin: 0px 50px;
+    margin: 0px 30px;
 }
 
 header input{
@@ -75,7 +80,7 @@ textarea{
     resize: none;
 }
 #article-preamble{
-    padding-left: 20rem;
+    padding-left: 16rem;
     font-size: 0.8rem;
 }
 #editor-number{
@@ -239,10 +244,40 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     width: 500px;
     height: 270px;
 }
+#editorHistoric{
+    height: 400px;
+}
 .toolbarbutton{
     cursor: pointer;
     opacity: 0.5;
 }
 .toolbarbutton:hover{
     opacity: 1;
+}
+
+/* IMPRESSÃO */
+@media print {
+    *{
+        background-color: transparent;
+        text-shadow: none;
+        color: black;
+    }
+    @page{
+        margin-top: 3cm;
+        margin-bottom: 2cm;
+    }
+    header{
+        margin-top:0;
+        padding-top: 0;
+    }
+    p{
+        widows: 3;
+        orphans: 3;
+    }
+    h2{
+        page-break-before: avoid;
+    }
+    #modal, .submodal, .menu{
+        display: none;
+    }
 }

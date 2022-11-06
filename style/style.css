@@ -100,8 +100,23 @@ textarea{
     font-size: 0.8rem;
 }
 #article-signature p{
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.7rem;    
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0;
+}
+#article-signature p#signature-label{
+    margin-top: 0;
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: 0;
+    padding: 0;
+}
+#draw{
+    width: 12cm;
+    height: 8cm;
 }
 #editor-number{
     width:350px;
@@ -270,7 +285,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
 #editorHistoric{
     height: 400px;
 }
-#editorLocal{
+#editorLocal, #editorVeicle, #editorThing, #editorCorpuses, #editorConclusion{
     width: 700px;
     height: 350px;
 }

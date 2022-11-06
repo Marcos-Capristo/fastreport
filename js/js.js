@@ -159,7 +159,7 @@ function writePreamble(){
 }
 function sendPreamble(){
     document.querySelector('#article-preamble').innerHTML = `<p>${document.querySelector('#editor-preamble').value.trim()}</p>`
-    document.querySelector('#article-signature').innerHTML = `<p>${document.querySelector('#input-expert').value.trim()}</p><p>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p>`
+    document.querySelector('#article-signature').innerHTML = `<p>${document.querySelector('#input-expert').value.trim()}</p><p id='signature-label'>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p>`
     hideModal()
 }
 function writeObjective(){
@@ -362,8 +362,12 @@ let quillObjective = new Quill('#editorObjective', {
   let quillLocal = new Quill('#editorLocal', {
     modules: {
         toolbar: '#toolbar-local',
-        toolbar: toolbarOptionsImg,
-      },
+        toolbar: {
+            container: toolbarOptionsImg,
+            handlers:{image: showImageEditor}
+        }
+    },
+
     theme: 'snow'
   });
 
@@ -402,3 +406,7 @@ let quillObjective = new Quill('#editorObjective', {
       },
     theme: 'snow'
   });
+
+  function showImageEditor(){
+    showModal('#i-image');
+  }

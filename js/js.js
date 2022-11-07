@@ -1,3 +1,27 @@
+//document.onload = ini_()
+
+/* function ini_(){
+    let data = new Date()
+} */
+
+/*  A abordagem abaixo pode ser desenvovida em OO, mas por eqnuanto fica assim mesmo.*/
+let report_number = ''
+let report_preamble = ''
+let report_objective = ''
+let report_historic = ''
+let report_informs = ''
+let report_local = ''
+let report_veicle = ''
+let report_thing = ''
+let report_corpuses = ''
+let report_conclusion = ''
+let report_signature = ''
+
+function report_update(){
+texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
+document.querySelector('#report').innerHTML = texto
+//alert(texto)
+}
 /*  COMANDOS DO MENU */
 document.querySelector('#i-number').addEventListener('click', function(){showModal('#form-number-report')})
 document.querySelector('#i-preamble').addEventListener('click', function(){showModal('#form-preamble')})
@@ -126,7 +150,12 @@ function writeNumberReport(){
     document.querySelector('#editor-number').value = `Laudo ${texto}`
 }
 function sendNumerReport(){
-    document.querySelector('#article-number-report').innerHTML = `<h1>${document.querySelector('#editor-number').value.trim()}</h1>`
+    report_number = `${document.querySelector('#editor-number').value.trim()}`
+    if(report_number!=''){
+        report_number = `<h1>${report_number}</h1>`
+    }
+    report_update()
+    /* document.querySelector('#article-number-report').innerHTML = `<h1>${document.querySelector('#editor-number').value.trim()}</h1>` */
 }
 function writePreamble(){
     let designatedDate = formatDate(new Date(document.querySelector('#input-designated-date').value))
@@ -158,9 +187,18 @@ function writePreamble(){
     document.querySelector('#editor-preamble').value = texto
 }
 function sendPreamble(){
-    document.querySelector('#article-preamble').innerHTML = `<p>${document.querySelector('#editor-preamble').value.trim()}</p>`
-    document.querySelector('#article-signature').innerHTML = `<p>${document.querySelector('#input-expert').value.trim()}</p><p id='signature-label'>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p>`
-    hideModal()
+    report_preamble = document.querySelector('#editor-preamble').value.trim()
+    if(report_preamble!=''){
+        report_preamble = `<div id="article-preamble"><p>${report_preamble}</p></div>`
+    }    
+    /* document.querySelector('#article-preamble').innerHTML = `<p>${document.querySelector('#editor-preamble').value.trim()}</p>` */
+    if(document.querySelector('#check-signature').checked){
+        report_signature = `<div id="article-signature"><p>${document.querySelector('#input-expert').value.trim()}</p><p id='signature-label'>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p></div>`
+    }else{
+        report_signature = ''
+    }
+    report_update()
+    //hideModal()
 }
 function writeObjective(){
     let rdo = document.querySelector('#irdo').value.trim()
@@ -188,12 +226,19 @@ function writeObjective(){
         document.querySelector('#inature').focus()
         return
     }
-    const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia} era ${objective}, sendo sua natureza, ${nature}.`
+    const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia}, era ${objective}, sendo sua natureza, ${nature}.`
     quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`    
 }
 function sendObjective(){
+    if(quillObjective.getText().trim()!=''){
+        report_objective = quillObjective.root.innerHTML
+    }else{
+        report_objective = ''
+    }    
+    report_update()
+    /* 
     let texto = quillObjective.root.innerHTML
-    document.querySelector('#article-objective').innerHTML = texto
+    document.querySelector('#article-objective').innerHTML = texto */
     //hideModal()
 
 
@@ -242,36 +287,106 @@ function writeHistoric(){
     //hideModal()
 }
 function sendHistoric(){
-    texto = quillHistoric.root.innerHTML.trim()
+    if(quillHistoric.getText().trim()!=''){
+        report_historic = quillHistoric.root.innerHTML.trim()
+        }else{
+        report_historic = ''  
+        }
+    report_update()
+    /* texto = quillHistoric.root.innerHTML.trim()
     document.querySelector('#article-historic').innerHTML = texto
+    if(texto.lenght<80){
+        document.querySelector('#article-historic').style.display = 'none'
+    }else{
+        document.querySelector('#article-historic').style.display = 'block'
+    } */
 }
 function sendInforms(){
-    texto = quillInforms.root.innerHTML.trim()
+    if(quillInforms.getText().trim()!=''){
+        report_informs = quillInforms.root.innerHTML.trim()
+        }else{
+        report_informs = ''
+    }
+    report_update()
+    /* texto = quillInforms.root.innerHTML.trim()
     document.querySelector('#article-informs').innerHTML = texto
-   // alert('Informs')
+    if(texto.length<80){
+    document.querySelector('#article-informs').style.display = 'none'
+    }else{
+    document.querySelector('#article-informs').style.display = 'block' */
 }
 function writeLocal(){
     texto = `Texto do local`
 }
 function sendLocal(){
-    texto = quillLocal.root.innerHTML.trim()
-    document.querySelector('#article-local').innerHTML = texto
+    if(quillLocal.getText().trim()!=''){
+        report_local = quillLocal.root.innerHTML.trim()
+    }else{
+        report_local = ''
+    }    
+    report_update()
+    /* let texto = quillLocal.root.innerHTML.trim()
+    document.querySelector('#article-local').innerHTML = texto */
 }
 function sendVeicle(){
-    texto = quillVeicle.root.innerHTML.trim()
+    if(quillVeicle.getText().trim()!=''){
+        report_veicle = quillVeicle.root.innerHTML.trim()
+    }else{
+        report_veicle = ''
+    }    
+    report_update()
+   /*  texto = quillVeicle.root.innerHTML.trim()
     document.querySelector('#article-veicle').innerHTML = texto
+    if(texto.lenght<80){
+        document.querySelector('#article-veicle').style.display = 'none'
+    }else{
+        document.querySelector('#article-veicle').style.display = 'block'
+    } */
 }
 function sendThing(){
-    texto = quillThing.root.innerHTML.trim()
+    if(quillThing.getText().trim()!=''){
+        report_thing = quillThing.root.innerHTML.trim()
+    }else{
+        report_thing = ''
+    }
+    report_update()
+    /* texto = quillThing.root.innerHTML.trim()
     document.querySelector('#article-thing').innerHTML = texto
+    if(texto.lenght<80){
+        document.querySelector('#article-thing').style.display = 'none'
+    }else{
+        document.querySelector('#article-thing').style.display = 'block'
+    } */
 }
 function sendCorpuses(){
-    texto = quillCorpuses.root.innerHTML.trim()
+    if(quillCorpuses.getText().trim()!=''){
+        report_corpuses = quillCorpuses.root.innerHTML.trim()
+    }else{
+        report_corpuses = ''
+    }    
+    report_update()
+   /*  texto = quillCorpuses.root.innerHTML.trim()
     document.querySelector('#article-corpuses').innerHTML = texto
+    if(texto.lenght<80){
+        document.querySelector('#article-corpuses').style.display = 'none'
+    }else{
+        document.querySelector('#article-corpuses').style.display = 'block'
+    } */
 }
 function sendConclusion(){
-    texto = quillConclusion.root.innerHTML.trim()
+    if(quillConclusion.getText().trim()!=''){
+        report_conclusion = quillConclusion.root.innerHTML.trim()
+    }else{
+        report_conclusion = ''
+    }    
+    report_update()
+    /* texto = quillConclusion.root.innerHTML.trim()
     document.querySelector('#article-conclusion').innerHTML = texto
+    if(texto.lenght<80){
+        document.querySelector('#article-conclusion').style.display = 'none'
+    }else{
+        document.querySelector('#article-conclusion').style.display = 'block'
+    } */
 }
 
 /*Fim*/
@@ -364,7 +479,7 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar-local',
         toolbar: {
             container: toolbarOptionsImg,
-            handlers:{image: showImageEditor}
+           // handlers:{image: showImageEditor}
         }
     },
 
@@ -407,6 +522,7 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
-  function showImageEditor(){
+  /* function showImageEditor(){
+    let file = target.files()
     showModal('#i-image');
-  }
+  } */

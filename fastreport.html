@@ -19,13 +19,11 @@
 
     <div class="modal" id="i-image">
         <h1>Desenho</h1>
-        <div id="draw">
-            <canvas>
-
-            </canvas>
-        </div>
+        <canvas id="i-canvas">
+            <p>Sem suporte ao CANVAS</p>
+        </canvas>
         <input type="text" id="i-labelimg" placeholder="Legenda da imagem..."><br>
-        <button>Teste</button>
+        <button onclick="draw()">Teste</button>
         <input type="file" id="file-image">
     </div>
 
@@ -83,12 +81,12 @@
                     <input type="text" id="input-delegate" class="longtext4" value="Rodrigo Rodriges">
                     <input type="checkbox" id="check-signature" checked="on"><label for="check-signature"> - Inserir nome ao final do laudo</label>
                 </div>
-                <div class="midle">
-                    <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
-                </div>
-                <div class="right">
-                    <textarea id="editor-preamble" class="quilleditor" placeholder="... texto do praâmbulo será exibido aqui."></textarea>
-                </div>                
+                    <div class="midle">
+                        <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
+                    </div>
+                    <div class="right">
+                        <textarea id="editor-preamble" class="quilleditor" placeholder="... texto do praâmbulo será exibido aqui."></textarea>
+                    </div>                
                 </div>
             <div class="level-button">
                 <button class="btn-send" id="btn-form-preamble">Avançar</button>
@@ -232,37 +230,37 @@
     <!-- FORMULÁRIO LOCAL -->
     <div class="modal" id="form-local">
         <div class="modal-header">
-            <!-- Aqui vai ocabeçalho do formulário -->
             <h2>Local</h2>
             <button class="btn-close">X</button>
         </div>
         <div class="modal-body">
-            <!-- Aqui vai o contéudo do frmulário -->
-            <div class="level-top">
-                <!-- Conteúdo do topo -->
-            </div>
             <div class="level-midle">
-                <!-- <div class="left">
-                    
-                </div> -->
-                <!-- <div class="midle">
-                    
-                </div> -->
+                <div class="midle">
+                    <img src="./img/house.png" alt="Gerar texto" id="magic-local-hause" class="toolbarbutton">
+                    <img src="./img/street.png" alt="Gerar texto" id="magic-local-hause" class="toolbarbutton">
+                </div>
                 <div class="right">
-                    <div id="editorLocal" class="quilleditor">
-                        <h2>Descrição e Exame do Local</h2>
-                        <h3>Descrição</h3>
-                        <p>... descreva aqui as características do local ...</p>
-                        <h3>Exame</h3>
-                        <p>... descreva aqui os elementos e vestígios observados ...</p>
-                    </div>
-                </div>                
+                    <div class="right">
+                        <div id="editorLocal" class="quilleditor">
+                            <h2>Descrição e Exame do Local</h2>
+                            <h3>Descrição</h3>
+                            <p>... descreva aqui as características do local ...</p>
+                            <h3>Exame</h3>
+                            <p>... descreva aqui os elementos e vestígios observados ...</p>
+                        </div>
+                    </div>                
+                </div>
             </div>
             <div class="level-button">
-                <!-- Conteúdo de baixo. -->
                 <button class="btn-send" id="btn-form-local">Avançar</button>
             </div>
         </div>
+    </div>
+    <div id="subform-local-house" class="submodal">
+        <h2>Imóvel - Descrição e Exame</h2>
+        <button class="subbtn-close">X</button>
+        <p class = "longtext4">Tipo de imóvel</p>
+        <input type="text" id="imovel-tipo" class="longtext4" placeholder="ex: residencial, comercial">
     </div>
 
     <!-- FORMULÁRIO VEÍCULOS -->
@@ -477,7 +475,7 @@
                 <li><a href="#">Formulários</a>
                 <ul>
                     <li><a href="#">Requisição ao NBB</a></li>
-                    <li><a href="#">Requisição ao NBB</a></li>
+                    <li><a href="#" onclick="showModal('#i-image')">Testando Canvas</a></li>
                 </li>
                 </ul>
                 <li><a href="#" onclick="imprimir()">Imprimir</a></li>
@@ -485,17 +483,6 @@
                 <!-- <li><a href="#" onclick="Export2Word('report', 'html-content-with-image', filename = './docx/template2.docx')">Word</a></li> -->
             </ul>
         </nav>    
-       <!--  <div id="article-number-report"><h1>Laudo Técnico Pericial</h1></div>
-        <div id="article-preamble"></div>
-        <div id="article-objective"></div>
-        <div id="article-historic"></div>
-        <div id="article-informs"></div>
-        <div id="article-local"></div>
-        <div id="article-veicle"></div>
-        <div id="article-thing"></div>
-        <div id="article-corpuses"></div>
-        <div id="article-conclusion"></div>
-        <div id="article-signature"></div> -->
         <div id="report">
             
         </div>

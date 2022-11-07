@@ -28,12 +28,10 @@ article img{
     display:block;
     margin-left: auto;
     margin-right: auto;
-    width: 12cm;
+    width: 100%;
     border: 1px solid black;
 }
 article > div{
-    height: fit-content;
-    border: 1px solid gray;
 }
 textarea{
     padding: 1rem;
@@ -152,6 +150,14 @@ textarea{
     margin-top: -4rem;
     margin-right: -1rem;
 }
+.subbtn-close{
+    background-color: #f00;
+    opacity: 0.4;
+    float: right;
+    font-size: 0.5rem;
+    margin-top: -4rem;
+    margin-right: -1rem;
+}
 .btn-send{
     background-color: #007bff;
     float: right;
@@ -248,6 +254,19 @@ div.level-button, div.level-top{
     opacity: 0;
     pointer-events: none;
 }
+.submodal{
+    position: fixed;
+    padding: 1.2rem;
+    background-color: whitesmoke;
+    border:1px solid rgb(121, 121, 121);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    top: 50;
+    left: 50;
+    /* transform: translate(-50%, -50%); */
+    opacity: 0;
+    pointer-events: none;
+}
 .modal-header{
     display: flex;
     justify-content: space-between;
@@ -268,6 +287,13 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     font-size: 0.8rem;
 }
 .modal input[type='text'], .modal input[type='date'], .modal input[type='checkbox'], .modal input[type='datetime-local']{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid rgb(14, 4, 155);
+    line-height: 1.5rem;
+}
+.submodal input[type='text'], .submodal input[type='date'], .submodal input[type='checkbox'], .submodal input[type='datetime-local']{
     border-top: none;
     border-right: none;
     border-left: none;

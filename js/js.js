@@ -5,6 +5,7 @@
 } */
 
 /*  A abordagem abaixo pode ser desenvovida em OO, mas por eqnuanto fica assim mesmo.*/
+let report_header = ''
 let report_number = ''
 let report_preamble = ''
 let report_objective = ''
@@ -16,6 +17,7 @@ let report_thing = ''
 let report_corpuses = ''
 let report_conclusion = ''
 let report_signature = ''
+let report_footer = ''
 
 function report_update(){
 texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
@@ -39,6 +41,7 @@ document.querySelector('#magic-number').addEventListener('click', function(){wri
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
+document.querySelector('#magic-local-hause').addEventListener('click', function(){showSubModal('#subform-local-house')})
 
 /*  TRANSIÇÕES DE UM PARA OUTRO - BOTÃO ENVIAR */
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
@@ -106,6 +109,11 @@ document.querySelector('#btn-form-conclusion').addEventListener('click', functio
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
         hideModal()
+    })
+})
+document.querySelectorAll('.subbtn-close').forEach(element=>{
+    element.addEventListener('click', function(){
+        hideSubModal(this)
     })
 })
 function oneToTwo(num){
@@ -392,10 +400,10 @@ function sendConclusion(){
 /*Fim*/
 
 
-function showModal(element_){
+function showSubModal(element_){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style
-    hideModal(element_)
+    //lement_)
     fade.opacity = '1'
     fade.pointerEvents = 'all'
     fade.transition = '0.5s'
@@ -404,19 +412,49 @@ function showModal(element_){
     modal.zIndex = '100'
     modal.transition = '0.5s'
 }
+
+
+function showModal(element_){
+    const fade = document.querySelector('#fade').style 
+    const modal = document.querySelector(element_).style
+    hideModal(element_)
+    modal.zIndex = '100'
+    fade.opacity = '1'
+    fade.pointerEvents = 'all'
+    fade.transition = '0.5s'
+    modal.opacity = '1'
+    modal.pointerEvents = 'all'
+    modal.transition = '0.5s'
+}
 function hideModal(){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelectorAll('.modal')
+    const subModal = document.querySelectorAll('.submodal')
     modal.forEach(element => {
         element.style.opacity = '0'
         element.style.pointerEvents = 'none'
         element.style.zIndex = '1'
         element.style.transition = '0.5s'
     });
+    subModal.forEach(element => {
+        element.style.opacity = '0'
+        element.style.pointerEvents = 'none'
+        element.style.transition = '0.5s'
+        element.style.zIndex = '1'
+    });
     fade.opacity = '0'
     fade.pointerEvents = 'none'
     fade.transition = '0.5s'
 }
+
+function hideSubModal(element_){
+    let element = element_.parentNode
+        element.style.opacity = '0'
+        element.style.pointerEvents = 'none'
+        element.style.transition = '0.5s'
+        element.style.zIndex = '1'
+    }
+
 //quill
 
 let toolbarOptions = [
@@ -522,7 +560,11 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
-  /* function showImageEditor(){
-    let file = target.files()
-    showModal('#i-image');
-  } */
+  function draw(){
+    let canvas = document.querySelector('#i-canvas')
+    let ctx = canvas.getContext('2d')
+    let img=new Image()
+    img.src = './img/ceu.jpg'
+    ctx.fillStyle='#845'
+    ctx.drawImage(img, 10, 10)
+  }

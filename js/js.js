@@ -10,8 +10,11 @@ document.onload = ini_()
 
 /*  FUNÇÃO DE INICIALIZAÇÃO DA PÁGINA HTML, COLOCA ALGUNS VALORES COMO DEFAUTS */
 function ini_(){
-    document.querySelector('#input-designated-date').value = todayDate('Sun May 11,2014');
-    document.querySelector('#input-execution-date').value = todayDate()+'T12:00';
+    document.querySelector('#input-designated-date').value = todayDate('Sun May 11,2014')
+    document.querySelector('#input-execution-date').value = todayDate()+'T12:00'
+    document.querySelector('#input-director').value="Samuel Alves de Melo Neto"
+    document.querySelector('#input-expert').value="Marcos Capristo"
+    document.querySelector('#input-delegate').value="Rodrigo Rodrigues"
 }
 
 
@@ -1098,7 +1101,7 @@ function sendConclusion(){
 
 
 
-
+/*  EXIBE A JANELA PARA PREENCHIMENTO DOS TEXTOS QUE SERÃO ENVIADOS AO RELATÓRIO */
 function showModal(element_){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style
@@ -1111,6 +1114,8 @@ function showModal(element_){
     modal.pointerEvents = 'all'
     modal.transition = '0.5s'
 }
+
+/*  ESCONDE AS JANELAS MODAIS */
 function hideModal(){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelectorAll('.modal')
@@ -1120,18 +1125,19 @@ function hideModal(){
         element.style.pointerEvents = 'none'
         element.style.zIndex = '1'
         element.style.transition = '0.5s'
-    });
+    })
     subModal.forEach(element => {
         element.style.opacity = '0'
         element.style.pointerEvents = 'none'
         element.style.transition = '0.5s'
         element.style.zIndex = '1'
-    });
+    })
     fade.opacity = '0'
     fade.pointerEvents = 'none'
     fade.transition = '0.5s'
 }
 
+/*  ESCONDE AS JANELAS MODAIS AUXILIARES */
 function hideSubModal(element_){
     let element = element_.parentNode
         element.style.opacity = '0'
@@ -1140,8 +1146,37 @@ function hideSubModal(element_){
         element.style.zIndex = '1'
     }
 
-//quill
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*      QUILL EDITOR    */
+
+/*  BARRA DE FERRAMENTAS DE JANELAS QUE NÃO EXIBEM IMAGENS */
 let toolbarOptions = [
     [{ 'header': [2, 3, false] }],
     ['bold', 'italic', 'underline'],
@@ -1149,6 +1184,7 @@ let toolbarOptions = [
     [{ 'script': 'sub'}, { 'script': 'super' }],                                                        
   ];
 
+/*  BARRA DE FERRAMENTAS DE JANELAS QUE EXIBEM IMAGENS */
 let toolbarOptionsImg = [
     [{ 'header': [2, 3, false] }],
     ['bold', 'italic', 'underline'],
@@ -1157,31 +1193,38 @@ let toolbarOptionsImg = [
     ['image'],
     [{ 'align': 'center' }]                                                       
   ];
-  /*    TESTE DE BARRA DE FERRAMENTAS QUILL */
-  /* var toolbarOptions1 = {
-    handlers: {
-      // handlers object will be merged with default handlers object
-      'link': function(value) {
-        var href = prompt('Enter the URL');
-        this.quill.format('link', href);
-        //this.quill.format('link', false);
-        alert('link')
-      }
-    }
-  } */
   
 
 
-function testeQuill(){
-    let selection = quillHistoric.getSelection()
-    let texto = quillHistoric.getText(selection)
-    quillHistoric.setContents([
-        { insert: 'Hello ' },
-        { insert: 'World!', attributes: { bold: true } },
-        { insert: '\n' }
-      ]);
-    console.log(texto)
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // QUILL OBJETVO
 let quillObjective = new Quill('#editorObjective', {
@@ -1192,6 +1235,36 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //QUILL HISTÓRICO
   let quillHistoric = new Quill('#editorHistoric', {
     modules: {
@@ -1201,6 +1274,39 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //QUILL INFORMES
   let quillInforms = new Quill('#editorInforms', {
     modules: {
@@ -1208,6 +1314,39 @@ let quillObjective = new Quill('#editorObjective', {
       },
     theme: 'snow'
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //QUILL LOCAL
   let quillLocal = new Quill('#editorLocal', {
@@ -1224,6 +1363,43 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //QUILL VEÍCULO
   let quillVeicle = new Quill('#editorVeicle', {
     modules: {
@@ -1238,6 +1414,40 @@ let quillObjective = new Quill('#editorObjective', {
       },
     theme: 'snow'
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //QUILL PEÇA
   let quillThing = new Quill('#editorThing', {
@@ -1254,6 +1464,38 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //QUILL CADÁVER
   let quillCorpuses = new Quill('#editorCorpuses', {
     modules: {
@@ -1269,15 +1511,82 @@ let quillObjective = new Quill('#editorObjective', {
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //QUILL CONCLUSÃO
   let quillConclusion = new Quill('#editorConclusion', {
     modules: {
-        //toolbar: '#toolbar-veicle',
         toolbar: toolbarOptionsImg,
       },
     theme: 'snow'
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*    DESENHAR NO CANVAS = EM TESTE  */
   function draw(){
     let canvas = document.querySelector('#i-canvas')
     let ctx = canvas.getContext('2d')
@@ -1287,6 +1596,37 @@ let quillObjective = new Quill('#editorObjective', {
     ctx.drawImage(img, 10, 10)
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*    SELECIONAR IMAGEM NO EXPLORER - EM TESTE */
   function selectLocalImage() {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -1305,6 +1645,37 @@ let quillObjective = new Quill('#editorObjective', {
     };
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  FUNÇÃO PARA INSERIR HTML NO LOCAL DO CURSOR - TESTE */
   function addHTMLQuill(thisquill){
     let position = thisquill.getSelection().index
     let data = `<span>[textodalegendaasersubstituido]</span>`
@@ -1314,6 +1685,38 @@ let quillObjective = new Quill('#editorObjective', {
     thisquill.root.innerHTML = textHTML1
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*    DATA DE HOJE  */
   function todayDate() {
     let d = new Date()
     let month = '' + (d.getMonth() + 1)

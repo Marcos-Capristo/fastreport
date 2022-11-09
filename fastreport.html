@@ -236,8 +236,8 @@
         <div class="modal-body">
             <div class="level-midle">
                 <div class="midle">
-                    <img src="./img/house.png" alt="Gerar texto" id="magic-local-hause" class="toolbarbutton">
-                    <img src="./img/street.png" alt="Gerar texto" id="magic-local-hause" class="toolbarbutton">
+                    <img src="./img/house.png" alt="Gerar texto" id="magic-local-house" class="toolbarbutton">
+                    <img src="./img/street.png" alt="Gerar texto" id="magic-local-street" class="toolbarbutton">
                 </div>
                 <div class="right">
                     <div class="right">
@@ -252,6 +252,7 @@
                 </div>
             </div>
             <div class="level-button">
+                <input type="file" id="fileImg" accept=".jpg, .jpeg, .png">
                 <button class="btn-send" id="btn-form-local">Avançar</button>
             </div>
         </div>
@@ -261,6 +262,16 @@
         <button class="subbtn-close">X</button>
         <p class = "longtext4">Tipo de imóvel</p>
         <input type="text" id="imovel-tipo" class="longtext4" placeholder="ex: residencial, comercial">
+        <p class="longtext4">Térreo / Assobradado</p>
+        <input type="text" id="imovel-terreo" class="longtext4">
+        <p class="longtext4">Recuado?</p>
+        <input type="text" id="imovel-recuo" class="longtext4">
+        <button id="imovel-send" class="btn-send">Enviar</button>
+    </div>
+    <div id="subform-local-street" class="submodal">
+        <h2>Via - Descrição e Exame</h2>
+        <button class="subbtn-close">X</button>
+        <button id="via-send" class="btn-send">Enviar</button>
     </div>
 
     <!-- FORMULÁRIO VEÍCULOS -->
@@ -278,8 +289,9 @@
             <div class="level-midle">
                 <!-- <div class="left">                
                 </div> -->
-                <!-- <div class="midle">                
-                </div> -->
+                <div class="midle">  
+                    <img src="./img/carcrash.png" id="magic-carchash" class="toolbarbutton">              
+                </div>
                 <div class="right">
                     <div id="editorVeicle" class="quilleditor">
                         <h2>Tipo de Veículo</h2>

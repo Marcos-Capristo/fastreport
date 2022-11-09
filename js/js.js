@@ -22,6 +22,12 @@ let report_footer = ''
 function report_update(){
 texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
 document.querySelector('#report').innerHTML = texto
+let h2 = document.querySelectorAll('#report>h2')
+let h2Num = 1
+h2.forEach(element =>{
+    element.innerHTML=`${h2Num} - ${element.textContent}`
+    h2Num++
+})
 //alert(texto)
 }
 /*  COMANDOS DO MENU */
@@ -41,7 +47,18 @@ document.querySelector('#magic-number').addEventListener('click', function(){wri
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
-document.querySelector('#magic-local-hause').addEventListener('click', function(){showSubModal('#subform-local-house')})
+document.querySelector('#magic-local-house').addEventListener('click', function(){showSubModal('#subform-local-house')})
+document.querySelector('#magic-local-street').addEventListener('click', function(){showSubModal('#subform-local-street')})
+
+/*  BOTÕES DOS SUBMODAIS */
+document.querySelector('#imovel-send').addEventListener('click', function(){
+    quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
+    hideSubModal(this)
+})
+document.querySelector('#via-send').addEventListener('click', function(){
+    quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
+    hideSubModal(this)
+})
 
 /*  TRANSIÇÕES DE UM PARA OUTRO - BOTÃO ENVIAR */
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
@@ -469,8 +486,21 @@ let toolbarOptionsImg = [
     ['bold', 'italic', 'underline'],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
     [{ 'script': 'sub'}, { 'script': 'super' }],
-    ['image']                                                        
+    ['image'],
+    [{ 'align': 'center' }]                                                       
   ];
+  /*    TESTE DE BARRA DE FERRAMENTAS QUILL */
+  /* var toolbarOptions1 = {
+    handlers: {
+      // handlers object will be merged with default handlers object
+      'link': function(value) {
+        var href = prompt('Enter the URL');
+        this.quill.format('link', href);
+        //this.quill.format('link', false);
+        alert('link')
+      }
+    }
+  } */
   
 
 
@@ -517,10 +547,16 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar-local',
         toolbar: {
             container: toolbarOptionsImg,
-           // handlers:{image: showImageEditor}
+            handlers:{image:function(){
+                /* let val = this.quill.getSelection().index
+                var data = '<p class = "legenda">Imagem - </p>'
+                this.quill.clipboard.dangerouslyPasteHTML(val, data); */
+                addHTMLQuill(this.quill)
+            }
+        }
+            
         }
     },
-
     theme: 'snow'
   });
 
@@ -567,4 +603,43 @@ let quillObjective = new Quill('#editorObjective', {
     img.src = './img/ceu.jpg'
     ctx.fillStyle='#845'
     ctx.drawImage(img, 10, 10)
+  }
+
+  function selectLocalImage() {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
+
+    // Listen upload local image and save to server
+    input.onchange = () => {
+      const file = input.files[0].name;
+
+      // file type is only image.
+      if (/^image\//.test(file.type)) {
+        return file;
+      } else {
+        return 'You could only upload images.'
+      }
+    };
+  }
+
+  function addHTMLQuill(thisquill){
+    let myimgname = selectLocalImage()
+    alert(myimgname)
+    /* input.setAttribute('type', 'file');
+    input.click();
+    input.onchange = () => {
+    file = input.files[0]} */
+    let textHTML = thisquill.root.innerHTML
+    let position = thisquill.getSelection().index
+    let data = `<p><span>||||||||||||</span></p>`
+    thisquill.clipboard.dangerouslyPasteHTML(position, data)
+    let textHTML1 = thisquill.root.innerHTML
+    //textHTML1.replace('||||||||||||', '<p class=legenda>Imagem - </p>')
+    //textFull = textFull.
+    //thisquill.root.innerHTML = textFull
+    //alert(`${textHTML}\n${textHTML1}\n - posição do cursor = ${position}\n ${file.type}`)
+    textHTML1 = textHTML1.replace(`||||||||||||`, `<p class=legenda>Imagem -Imagem - </p>`)
+    //alert(`${textHTML}\n${textHTML1}\n - nova posição do cursor = ${position}\n ${file.type}`)
+    thisquill.root.innerHTML = textHTML1
   }

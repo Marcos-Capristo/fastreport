@@ -28,7 +28,7 @@ article img{
     display:block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 12cm;
     border: 1px solid black;
 }
 article > div{
@@ -320,7 +320,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     height: 270px;
 }
 .quillelditor img{
-    width: 200px;
+    width: 100px;
     display:block;
     margin-left: auto;
     margin-right: auto;

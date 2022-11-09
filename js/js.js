@@ -1,10 +1,51 @@
-//document.onload = ini_()
+document.onload = ini_()
 
-/* function ini_(){
-    let data = new Date()
-} */
 
-/*  A abordagem abaixo pode ser desenvovida em OO, mas por eqnuanto fica assim mesmo.*/
+
+
+
+
+
+
+
+/*  FUNÇÃO DE INICIALIZAÇÃO DA PÁGINA HTML, COLOCA ALGUNS VALORES COMO DEFAUTS */
+function ini_(){
+    document.querySelector('#input-designated-date').value = todayDate('Sun May 11,2014');
+    document.querySelector('#input-execution-date').value = todayDate()+'T12:00';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  VARIÁVEL QUE ARMAZENA O NOME DO FORMULÁRIO QUE DEVERÁ RETORNAR APÓS UMA JANELA AUXILIAR*/
+let previusForm = ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESTRUTURA DO LAUDO - A abordagem abaixo pode ser desenvovida em OO, mas por eqnuanto fica assim mesmo.*/
 let report_header = ''
 let report_number = ''
 let report_preamble = ''
@@ -19,6 +60,32 @@ let report_conclusion = ''
 let report_signature = ''
 let report_footer = ''
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ATUALIZAÇÃO DA PÁGINA A SER IMPRESSA, SERÁ CHAMADA SEMPRE QUE UM FORMULÁRIO FOR ENVIADO
+        Numera os títulos com a TAG H2 e as Legendas */
 function report_update(){
     texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
     document.querySelector('#report').innerHTML = texto
@@ -36,6 +103,37 @@ function report_update(){
         })
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  COMANDOS DO MENU */
 document.querySelector('#i-number').addEventListener('click', function(){showModal('#form-number-report')})
 document.querySelector('#i-preamble').addEventListener('click', function(){showModal('#form-preamble')})
@@ -48,25 +146,112 @@ document.querySelector('#i-thing').addEventListener('click', function(){showModa
 document.querySelector('#i-corpuses').addEventListener('click', function(){showModal('#form-corpuses')})
 document.querySelector('#i-conclusion').addEventListener('click', function(){showModal('#form-conclusion')})
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  COMANDOS DO ÍCONE DO FORMULÁRIO */
 document.querySelector('#magic-number').addEventListener('click', function(){writeNumberReport()})
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
-document.querySelector('#magic-local-house').addEventListener('click', function(){showSubModal('#subform-local-house')})
-document.querySelector('#magic-local-street').addEventListener('click', function(){showSubModal('#subform-local-street')})
+document.querySelector('#magic-local-house').addEventListener('click', function(){
+    showModal('#subform-local-house')
+    previusForm = '#form-local'
+})
+document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
 
-/*  BOTÕES DOS SUBMODAIS */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  BOTÕES DAS JANELAS AUXILIARES, ENVIAM TEXTOS PARA OS FORMULÁRIOS */
+/*      Preenche o formulário LOCAL com um texto de imóvel  */
 document.querySelector('#imovel-send').addEventListener('click', function(){
     quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
-    hideSubModal(this)
+    showModal('#form-local')
 })
+/*      Preenche o formulário LOCAL com um texto de via pública */
 document.querySelector('#via-send').addEventListener('click', function(){
     quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
-    hideSubModal(this)
+    showModal('#form-local')
 })
 
-/*  TRANSIÇÕES DE UM PARA OUTRO - BOTÃO ENVIAR */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  TRANSIÇÕES DE UM FORMULÁRIO PARA OUTRO - BOTÃO ENVIAR */
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     sendNumerReport()
     showModal('#form-preamble')
@@ -129,16 +314,90 @@ document.querySelector('#btn-form-conclusion').addEventListener('click', functio
     sendConclusion()
     hideModal()
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  FUNÇÃO DO BOTÃO FECHAR QUE APARECE NO CANTO SUPERIOR DE CADA FORMULÁRIO */
 document.querySelectorAll('.btn-close').forEach(element=>{
     element.addEventListener('click', function(){
         hideModal()
     })
 })
+
+/*  FUNÇÃO DO BOTÃO FECHAR QUE APARECE NO CANTO SUPERIOR DE CADA FORMULÁRIO AUXILIAR */
 document.querySelectorAll('.subbtn-close').forEach(element=>{
     element.addEventListener('click', function(){
-        hideSubModal(this)
+        showModal(previusForm)
     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  FUNCÇÃO PARA ACRESCENTAR UM 0 ANTES DO DÍGITO PARA TER DUAS CASAS NOS NUMEROS MENORS QUE 10 */
 function oneToTwo(num){
     let two=num.toString()
     if(two.length<2){
@@ -148,6 +407,36 @@ function oneToTwo(num){
     }
     return two
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  INVERTE UMA STRING - É USADA NA FUNÇÃO ABAIXO PARA FORMATAR CASAS DE MILHAR COM PONTO */
 function inverter(num){
     num1 = num
     resultado = ''
@@ -156,6 +445,8 @@ function inverter(num){
     }
     return resultado
 }
+
+/*  FORMATA CASA DE MILHAR COM PONTO PRA FICA NO PADRÃO XX.XXX.XXX */
 function formatMilhar(num){
 let num1 = inverter(num)
 resultado = ''
@@ -167,6 +458,40 @@ resultado = ''
     }
     return inverter(resultado)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  EXTRAI O DIA, MÊS E ANO DE UMA DATA E RETORNA NO FORMATO DD-MM-AAAA */
 function formatDate(data){
     const date = new Date(data)
     const day = date.getDate()
@@ -174,20 +499,86 @@ function formatDate(data){
     const year = date.getFullYear()
     return `${day}-${month}-${year}`
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESCREVE O NÚMERO DO LAUDO COM A FORMATAÇÃO Laudo XX.XXX/AAAA */
 function writeNumberReport(){
     const numberReport = formatMilhar(document.querySelector('#input-number-report').value.trim())
     const designatedDate = new Date(document.querySelector('#input-designated-date').value).getFullYear()
     texto = `${numberReport}/${designatedDate}`
     document.querySelector('#editor-number').value = `Laudo ${texto}`
 }
+/*  ENVIA O NUMERO DO LAUDO, DA FUNÇÃO ACIMA, PARA O RELATÓRIO */
 function sendNumerReport(){
     report_number = `${document.querySelector('#editor-number').value.trim()}`
     if(report_number!=''){
         report_number = `<h1>${report_number}</h1>`
     }
     report_update()
-    /* document.querySelector('#article-number-report').innerHTML = `<h1>${document.querySelector('#editor-number').value.trim()}</h1>` */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESCREVE O PREÂMBULO */
 function writePreamble(){
     let designatedDate = formatDate(new Date(document.querySelector('#input-designated-date').value))
     let director = document.querySelector('#input-director').value.trim()
@@ -217,20 +608,54 @@ function writePreamble(){
     let texto = `Em ${designatedDate}, na cidade de Limeira e no Instituto de Criminalística, da Superintendência da Polícia Técnico-Científica, da Secretaria de Segurança Pública do Estado de São Paulo, em conformidade com o disposto no art. 178 do Decreto-Lei 3689 de 3-10-1941 e Decreto-Lei 42847 de 9-2-1998, ${director}, foi ${expert} para proceder ao Exame Pericial especificado em requisição de exame assinada pela Autoridade Policial, ${delegate}.`
     document.querySelector('#editor-preamble').value = texto
 }
+
+/*  ENVIA O PREÃMBULO PARA O RELATÓRIO */
 function sendPreamble(){
     report_preamble = document.querySelector('#editor-preamble').value.trim()
     if(report_preamble!=''){
         report_preamble = `<div id="article-preamble"><p>${report_preamble}</p></div>`
     }    
-    /* document.querySelector('#article-preamble').innerHTML = `<p>${document.querySelector('#editor-preamble').value.trim()}</p>` */
     if(document.querySelector('#check-signature').checked){
         report_signature = `<div id="article-signature"><p>${document.querySelector('#input-expert').value.trim()}</p><p id='signature-label'>${document.querySelector('#select-expert').value.replace('designado o', '').replace('designada a', '').trim()}</p></div>`
     }else{
         report_signature = ''
     }
     report_update()
-    //hideModal()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESCREVE O OBJETIVO */
 function writeObjective(){
     let rdo = document.querySelector('#irdo').value.trim()
     if(rdo==''){
@@ -260,6 +685,7 @@ function writeObjective(){
     const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia}, era ${objective}, sendo sua natureza, ${nature}.`
     quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`    
 }
+/*  ENVIA O OBJETIVO PARA O RELATÓRIO */
 function sendObjective(){
     if(quillObjective.getText().trim()!=''){
         report_objective = quillObjective.root.innerHTML
@@ -267,16 +693,40 @@ function sendObjective(){
         report_objective = ''
     }    
     report_update()
-    /* 
-    let texto = quillObjective.root.innerHTML
-    document.querySelector('#article-objective').innerHTML = texto */
-    //hideModal()
-
-
-/* início*/
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESCREVE O HISTÓRICO */
 function writeHistoric(){
     let expert = `${document.querySelector('#input-expert').value.trim()}, perito criminal,`
     let ftp = `e ${document.querySelector('#iftp').value.trim()}, ${document.querySelector('#select-ftp').value},`
@@ -288,8 +738,7 @@ function writeHistoric(){
     if(document.querySelector('#check-authorit').checked){
         delegate = `${document.querySelector('#select-delegate').value} ${document.querySelector('#input-delegate').value.trim()}, presente ao local, acompanhou o trabalho da perícia`
         delegate = `<p>${delegate[0].toUpperCase()}${delegate.slice(1)}.</p>`
-    }
-    
+    }    
     switch(document.querySelector('#selectlocal').selectedIndex){
         case 0:
             localDoExame = `dirigiram-se ao local indicado, ${document.querySelector('#ilocaltype').value.trim()}. Quando da chegada da equipe, a ${police}, representada na pessoa ${partner}, de posse da viatura ${vtr}, guarnecia o local`
@@ -317,6 +766,7 @@ function writeHistoric(){
     quillHistoric.root.innerHTML = `<h2>Histórico</h2><p>${texto} ${expert} ${ftp} ${localDoExame}.</p>${delegate}`
     //hideModal()
 }
+/*  ENVIA O HISTÓRICO PARA O RELATÓRIO */
 function sendHistoric(){
     if(quillHistoric.getText().trim()!=''){
         report_historic = quillHistoric.root.innerHTML.trim()
@@ -324,14 +774,38 @@ function sendHistoric(){
         report_historic = ''  
         }
     report_update()
-    /* texto = quillHistoric.root.innerHTML.trim()
-    document.querySelector('#article-historic').innerHTML = texto
-    if(texto.lenght<80){
-        document.querySelector('#article-historic').style.display = 'none'
-    }else{
-        document.querySelector('#article-historic').style.display = 'block'
-    } */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ENVIA INFORMES PARA O RELATÓRIO */
 function sendInforms(){
     if(quillInforms.getText().trim()!=''){
         report_informs = quillInforms.root.innerHTML.trim()
@@ -346,9 +820,42 @@ function sendInforms(){
     }else{
     document.querySelector('#article-informs').style.display = 'block' */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ESCREVE O LOCAL - IMPLEMENTANDO AINDA*/
 function writeLocal(){
     texto = `Texto do local`
 }
+/*  ENVIA O TEXTO DO LOCAL PARA O RELATÓRIO */
 function sendLocal(){
     if(quillLocal.getText().trim()!=''){
         report_local = quillLocal.root.innerHTML.trim()
@@ -356,9 +863,39 @@ function sendLocal(){
         report_local = ''
     }    
     report_update()
-    /* let texto = quillLocal.root.innerHTML.trim()
-    document.querySelector('#article-local').innerHTML = texto */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ENVIA O TEXTO DE VEÍCULO PARA O RELATÓRIO */
 function sendVeicle(){
     if(quillVeicle.getText().trim()!=''){
         report_veicle = quillVeicle.root.innerHTML.trim()
@@ -366,14 +903,31 @@ function sendVeicle(){
         report_veicle = ''
     }    
     report_update()
-   /*  texto = quillVeicle.root.innerHTML.trim()
-    document.querySelector('#article-veicle').innerHTML = texto
-    if(texto.lenght<80){
-        document.querySelector('#article-veicle').style.display = 'none'
-    }else{
-        document.querySelector('#article-veicle').style.display = 'block'
-    } */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ENVIA O TEXTO DE PEÇAS PARA O RELATÓRIO */
 function sendThing(){
     if(quillThing.getText().trim()!=''){
         report_thing = quillThing.root.innerHTML.trim()
@@ -389,6 +943,41 @@ function sendThing(){
         document.querySelector('#article-thing').style.display = 'block'
     } */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ENVIA O TEXTO DE CADÁVERES PARA O RELATÓRIO */
 function sendCorpuses(){
     if(quillCorpuses.getText().trim()!=''){
         report_corpuses = quillCorpuses.root.innerHTML.trim()
@@ -396,14 +985,40 @@ function sendCorpuses(){
         report_corpuses = ''
     }    
     report_update()
-   /*  texto = quillCorpuses.root.innerHTML.trim()
-    document.querySelector('#article-corpuses').innerHTML = texto
-    if(texto.lenght<80){
-        document.querySelector('#article-corpuses').style.display = 'none'
-    }else{
-        document.querySelector('#article-corpuses').style.display = 'block'
-    } */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  ENVIA O TEXTO DE CONCLUSÃO PARA O RELATÓRIO */
 function sendConclusion(){
     if(quillConclusion.getText().trim()!=''){
         report_conclusion = quillConclusion.root.innerHTML.trim()
@@ -411,19 +1026,43 @@ function sendConclusion(){
         report_conclusion = ''
     }    
     report_update()
-    /* texto = quillConclusion.root.innerHTML.trim()
-    document.querySelector('#article-conclusion').innerHTML = texto
-    if(texto.lenght<80){
-        document.querySelector('#article-conclusion').style.display = 'none'
-    }else{
-        document.querySelector('#article-conclusion').style.display = 'block'
-    } */
 }
 
-/*Fim*/
 
 
-function showSubModal(element_){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* function showSubModal(element_){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style
     //lement_)
@@ -434,7 +1073,30 @@ function showSubModal(element_){
     modal.pointerEvents = 'all'
     modal.zIndex = '100'
     modal.transition = '0.5s'
-}
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function showModal(element_){
@@ -651,3 +1313,13 @@ let quillObjective = new Quill('#editorObjective', {
     textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">Vista Frontal do imóvel</p>`)
     thisquill.root.innerHTML = textHTML1
   }
+
+  function todayDate() {
+    let d = new Date()
+    let month = '' + (d.getMonth() + 1)
+    let day = '' + d.getDate()
+    let year = d.getFullYear()
+    if (month.length < 2) month = '0' + month
+    if (day.length < 2) day = '0' + day
+    return [year, month, day].join('-')
+}

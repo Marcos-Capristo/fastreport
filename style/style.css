@@ -97,6 +97,11 @@ button:hover{
 textarea{
     resize: none;
 }
+#report ol > li, #report ul > li {
+    margin-left: 4rem;
+    line-height: 1.7rem;
+    padding: 0;
+}
 #article-preamble{
     padding-left: 16rem;
     font-size: 0.8rem;
@@ -174,7 +179,7 @@ div.left, div.right{
 }
 .legenda{
     text-align: center;
-    color:red;
+    font-style: italic;
 }
 .level-midle{
     display: flex;

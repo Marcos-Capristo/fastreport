@@ -20,16 +20,22 @@ let report_signature = ''
 let report_footer = ''
 
 function report_update(){
-texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
-document.querySelector('#report').innerHTML = texto
-let h2 = document.querySelectorAll('#report>h2')
-let h2Num = 1
-h2.forEach(element =>{
-    element.innerHTML=`${h2Num} - ${element.textContent}`
-    h2Num++
-})
-//alert(texto)
-}
+    texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
+    document.querySelector('#report').innerHTML = texto
+    let h2 = document.querySelectorAll('#report>h2')
+    let im = document.querySelectorAll('#report>.legenda')
+    let h2Num = 1
+    h2.forEach(element =>{
+        element.innerHTML=`${h2Num} - ${element.textContent}`
+        h2Num++
+        }) 
+    h2Num=1
+    im.forEach(elementImg=>{
+        elementImg.innerHTML=`Figura ${h2Num} - ${elementImg.textContent}`
+        h2Num++
+        })
+    }
+
 /*  COMANDOS DO MENU */
 document.querySelector('#i-number').addEventListener('click', function(){showModal('#form-number-report')})
 document.querySelector('#i-preamble').addEventListener('click', function(){showModal('#form-preamble')})
@@ -547,14 +553,10 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar-local',
         toolbar: {
             container: toolbarOptionsImg,
-            handlers:{image:function(){
-                /* let val = this.quill.getSelection().index
-                var data = '<p class = "legenda">Imagem - </p>'
-                this.quill.clipboard.dangerouslyPasteHTML(val, data); */
-                addHTMLQuill(this.quill)
-            }
-        }
-            
+                handlers:{align:function(){
+                    addHTMLQuill(this.quill)
+                }
+            }            
         }
     },
     theme: 'snow'
@@ -564,7 +566,13 @@ let quillObjective = new Quill('#editorObjective', {
   let quillVeicle = new Quill('#editorVeicle', {
     modules: {
         //toolbar: '#toolbar-veicle',
-        toolbar: toolbarOptionsImg,
+        toolbar: {
+            container: toolbarOptionsImg,
+                handlers:{align:function(){
+                    addHTMLQuill(this.quill)
+                }
+            }            
+        }
       },
     theme: 'snow'
   });
@@ -573,7 +581,13 @@ let quillObjective = new Quill('#editorObjective', {
   let quillThing = new Quill('#editorThing', {
     modules: {
         //toolbar: '#toolbar-thing',
-        toolbar: toolbarOptionsImg,
+        toolbar: {
+            container: toolbarOptionsImg,
+                handlers:{align:function(){
+                    addHTMLQuill(this.quill)
+                }
+            }            
+        }
       },
     theme: 'snow'
   });
@@ -581,8 +595,14 @@ let quillObjective = new Quill('#editorObjective', {
   //QUILL CADÁVER
   let quillCorpuses = new Quill('#editorCorpuses', {
     modules: {
-        //toolbar: '#toolbar-veicle',
-        toolbar: toolbarOptionsImg,
+        //toolbar: '#toolbar-corpuse',
+        toolbar: {
+            container: toolbarOptionsImg,
+                handlers:{align:function(){
+                    addHTMLQuill(this.quill)
+                }
+            }            
+        }
       },
     theme: 'snow'
   });
@@ -624,22 +644,10 @@ let quillObjective = new Quill('#editorObjective', {
   }
 
   function addHTMLQuill(thisquill){
-    let myimgname = selectLocalImage()
-    alert(myimgname)
-    /* input.setAttribute('type', 'file');
-    input.click();
-    input.onchange = () => {
-    file = input.files[0]} */
-    let textHTML = thisquill.root.innerHTML
     let position = thisquill.getSelection().index
-    let data = `<p><span>||||||||||||</span></p>`
+    let data = `<span>[textodalegendaasersubstituido]</span>`
     thisquill.clipboard.dangerouslyPasteHTML(position, data)
     let textHTML1 = thisquill.root.innerHTML
-    //textHTML1.replace('||||||||||||', '<p class=legenda>Imagem - </p>')
-    //textFull = textFull.
-    //thisquill.root.innerHTML = textFull
-    //alert(`${textHTML}\n${textHTML1}\n - posição do cursor = ${position}\n ${file.type}`)
-    textHTML1 = textHTML1.replace(`||||||||||||`, `<p class=legenda>Imagem -Imagem - </p>`)
-    //alert(`${textHTML}\n${textHTML1}\n - nova posição do cursor = ${position}\n ${file.type}`)
+    textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">Vista Frontal do imóvel</p>`)
     thisquill.root.innerHTML = textHTML1
   }

@@ -203,8 +203,11 @@ document.querySelector('#magic-local-street').addEventListener('click', function
 
 
 
-
-
+ 
+/*  MANIPULAR IMAGENS 
+document.querySelector('.magicimg').addEventListener('dblclick', function(){
+    imageManipulate()
+}) */
 
 
 
@@ -864,7 +867,7 @@ function sendInforms(){
 
 
 
-
+//                                              LOCAL                                                   
 
 
 /*  ESCREVE O LOCAL - IMPLEMENTANDO AINDA*/
@@ -874,7 +877,8 @@ function writeLocal(){
 /*  ENVIA O TEXTO DO LOCAL PARA O RELATÓRIO */
 function sendLocal(){
     if(quillLocal.getText().trim()!=''){
-        report_local = quillLocal.root.innerHTML.trim()
+        let textoHTML = quillLocal.root.innerHTML.trim().replace('img', 'img class="magicimg" ondblclick="imageManipulate(this)"')
+        report_local = textoHTML
     }else{
         report_local = ''
     }    
@@ -1738,4 +1742,31 @@ let quillObjective = new Quill('#editorObjective', {
     if (month.length < 2) month = '0' + month
     if (day.length < 2) day = '0' + day
     return [year, month, day].join('-')
+}
+
+
+
+
+
+
+
+function imageManipulate(element){
+    element.style.border = '2px solid red'
+    let imgName = element.src
+    alert(imgName)
+    let theParent = element.parentNode
+    let myDiv = document.createElement('canvas')
+    myDiv.width='600'
+    myDiv.className = 'canvasImg'
+    myDiv.appendChild(element)
+    theParent.appendChild(myDiv)
+    let ctx = myDiv.getContext("2d");
+    let myImg = new Image()
+    myImg.src = imgName
+    let proportion = myImg.width/myImg.height
+    myDiv.height=(600/proportion)
+    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))}
+    
+   // ctx.fillRect(10, 10, 50, 60)
+   // ctx.stroke();
 }

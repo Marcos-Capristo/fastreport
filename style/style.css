@@ -33,6 +33,9 @@ article img{
 }
 article > div{
 }
+canvas{
+    border: 1px solid green;
+}
 textarea{
     padding: 1rem;
 }
@@ -202,6 +205,13 @@ div.left, div.right{
 }
 div.level-button, div.level-top{
     display:block;
+}
+.magicimg{
+    border: 2px solid blue;
+    width: 10cm;    
+}
+.magicimg:hover{
+    cursor: pointer;
 }
 .menu{
     position: fixed;

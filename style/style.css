@@ -120,6 +120,7 @@ textarea{
     font-style: italic;
     letter-spacing: 0;
     padding: 0;
+    break-before: avoid !important;
 }
 #draw{
     width: 12cm;
@@ -180,6 +181,7 @@ div.left, div.right{
 .legenda{
     text-align: center;
     font-style: italic;
+    break-before: avoid !important;
 }
 .level-midle{
     display: flex;

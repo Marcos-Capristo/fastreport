@@ -211,6 +211,19 @@ document.querySelector('#magic-local-street').addEventListener('click', function
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  BOTÕES DAS JANELAS AUXILIARES, ENVIAM TEXTOS PARA OS FORMULÁRIOS */
 /*      Preenche o formulário LOCAL com um texto de imóvel  */
 document.querySelector('#imovel-send').addEventListener('click', function(){

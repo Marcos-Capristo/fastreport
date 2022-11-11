@@ -156,6 +156,9 @@ textarea{
     opacity: 0;
     pointer-events: none;
 }
+#container{
+    width: fit-content;
+}
 #irdo{
     text-transform: uppercase;
 }

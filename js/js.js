@@ -150,6 +150,7 @@ document.querySelector('#i-corpuses').addEventListener('click', ()=>{showModal('
 document.querySelector('#i-conclusion').addEventListener('click', ()=>{showModal('#form-conclusion')})
 document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()})
 document.querySelector('#filedialogimg').addEventListener('change', ()=>{selecionarImagem()})
+document.querySelector('#i-print').addEventListener('click', ()=>{print()})
 
 function abrirEditorImgESelecionarImagem(){
     showModal('#i-image')
@@ -158,52 +159,42 @@ function abrirEditorImgESelecionarImagem(){
 
 function selecionarImagem(){
     showModal('#i-image')
-    let imagemSelecionada = document.querySelector('#filedialogimg').files
+    const imagemSelecionada = document.querySelector('#filedialogimg').files
     if(imagemSelecionada.length>0){
-        //console.log(imagemSelecionada[0])
-        let imagemSubida = imagemSelecionada[0]
-        let dadosImagemSubida =  new FileReader()
-        dadosImagemSubida.onload = (dados)=>{
-            let imagemBase64 = dados.target.result
-            
-            let canvas = document.querySelector('#i-canvas')
-            let ctx = canvas.getContext('2d')
-            let newImage = new Image()
-            newImage.src = imagemBase64
+        const imagemCarregada = imagemSelecionada[0]
 
-            newImage.onload = () => {ctx.drawImage(newImage, 0, 0)}
-            
+        const canvas = document.querySelector('#i-canvas')
+
+        const ctx = canvas.getContext('2d')
+
+        const newImagem = document.createElement('img')
+
+        const arquivoLido = new FileReader()
+
+        arquivoLido.onload = function(imagemTexto){
+
+            const imagemBase64 = imagemTexto.target.result
+
+            newImagem.src = imagemBase64
+
+            newImagem.onload = function(){
+                ctx.drawImage(newImagem, 0, 0, 600, 400)
+            }
+
+            //document.querySelector("#container").innerHTML = newImagem.outerHTML
         }
-        dadosImagemSubida.readAsDataURL(imagemSubida)
+        arquivoLido.readAsDataURL(imagemCarregada)
+
+        //const imgW = newImagem.naturalWidth
+
+        //const imgH = newImagem.naturalHeight
+
+        //console.log(`${imgW} ${imgH}`)
+        
     }else{
         console.log('Imagem não selecionada ...')
     }
 }
-
-
-/* function showImage(pathImg){
-    //let imageBase64 = ''
-    showModal('#i-image')   
-} */
-
-/*
-element.style.border = '2px solid red'
-    let imgName = element.src
-    alert(imgName)
-    let theParent = element.parentNode
-    let myDiv = document.createElement('canvas')
-    myDiv.width='600'
-    myDiv.className = 'canvasImg'
-    myDiv.appendChild(element)
-    theParent.appendChild(myDiv)
-    let ctx = myDiv.getContext("2d");
-    let myImg = new Image()
-    myImg.src = imgName
-    let proportion = myImg.width/myImg.height
-    myDiv.height=(600/proportion)
-    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))}
-
-*/
 
 
 

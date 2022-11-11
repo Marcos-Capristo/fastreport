@@ -138,12 +138,14 @@
  <!-- EDITOR DE IMAGENS - AINDA EM DESENVOLVIMENTO ---------------------------------------------------------->   
     <div class="modal" id="i-image">
         <h1>Desenho</h1>
-        <canvas id="i-canvas">
+        <button class="btn-close">X</button>
+        <canvas id="i-canvas" width="800">
             <p>Sem suporte ao CANVAS</p>
         </canvas>
-        <input type="text" id="i-labelimg" placeholder="Legenda da imagem..."><br>
-        <button onclick="draw()">Teste</button>
-        <input type="file" id="file-image">
+        <input type="text" id="fullPath" placeholder="Cole aqui a URL da imagem...">
+        <input type="text" id="i-labelimg" class="longtext4" placeholder="Ditie aqui a legenda da imagem...">
+        <input type="button" value="Imagem" id="btn-show-img">
+        <input type="file" id="filedialogimg" accept=".png, .jpg, .jpeg">
     </div>
 
 
@@ -1002,7 +1004,7 @@
                 <li><a href="#">Formulários</a> <!-- ACESSO ÀS OPÇÕES FORMULÁRIOS -->
                 <ul>
                     <li><a href="#">Requisição ao NBB</a></li>
-                    <li><a href="#" onclick="showModal('#i-image')">Testando Canvas</a></li>
+                    <li><a href="#" id="i-imagemEditor">Testando Canvas</a></li>
                 </li>
                 </ul>
                 <li><a href="#" onclick="imprimir()">Imprimir</a></li><!-- IMPRESSÃO -->

@@ -138,19 +138,72 @@ function report_update(){
 
 
 /*  COMANDOS DO MENU */
-document.querySelector('#i-number').addEventListener('click', function(){showModal('#form-number-report')})
-document.querySelector('#i-preamble').addEventListener('click', function(){showModal('#form-preamble')})
-document.querySelector('#i-objective').addEventListener('click', function(){showModal('#form-objective')})
-document.querySelector('#i-historic').addEventListener('click', function(){showModal('#form-historic')})
-document.querySelector('#i-informs').addEventListener('click', function(){showModal('#form-informs')})
-document.querySelector('#i-local').addEventListener('click', function(){showModal('#form-local')})
-document.querySelector('#i-veicle').addEventListener('click', function(){showModal('#form-veicle')})
-document.querySelector('#i-thing').addEventListener('click', function(){showModal('#form-thing')})
-document.querySelector('#i-corpuses').addEventListener('click', function(){showModal('#form-corpuses')})
-document.querySelector('#i-conclusion').addEventListener('click', function(){showModal('#form-conclusion')})
+document.querySelector('#i-number').addEventListener('click', ()=>{showModal('#form-number-report')})
+document.querySelector('#i-preamble').addEventListener('click', ()=>{showModal('#form-preamble')})
+document.querySelector('#i-objective').addEventListener('click', ()=>{showModal('#form-objective')})
+document.querySelector('#i-historic').addEventListener('click', ()=>{showModal('#form-historic')})
+document.querySelector('#i-informs').addEventListener('click', ()=>{showModal('#form-informs')})
+document.querySelector('#i-local').addEventListener('click', ()=>{showModal('#form-local')})
+document.querySelector('#i-veicle').addEventListener('click', ()=>{showModal('#form-veicle')})
+document.querySelector('#i-thing').addEventListener('click', ()=>{showModal('#form-thing')})
+document.querySelector('#i-corpuses').addEventListener('click', ()=>{showModal('#form-corpuses')})
+document.querySelector('#i-conclusion').addEventListener('click', ()=>{showModal('#form-conclusion')})
+document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()})
+document.querySelector('#filedialogimg').addEventListener('change', ()=>{selecionarImagem()})
+
+function abrirEditorImgESelecionarImagem(){
+    showModal('#i-image')
+    document.querySelector('#filedialogimg').click()
+}
+
+function selecionarImagem(){
+    showModal('#i-image')
+    let imagemSelecionada = document.querySelector('#filedialogimg').files
+    if(imagemSelecionada.length>0){
+        //console.log(imagemSelecionada[0])
+        let imagemSubida = imagemSelecionada[0]
+        let dadosImagemSubida =  new FileReader()
+        dadosImagemSubida.onload = (dados)=>{
+            let imagemBase64 = dados.target.result
+            
+            let canvas = document.querySelector('#i-canvas')
+            let ctx = canvas.getContext('2d')
+            let newImage = new Image()
+            newImage.src = imagemBase64
+
+            newImage.onload = () => {ctx.drawImage(newImage, 0, 0)}
+            
+        }
+        dadosImagemSubida.readAsDataURL(imagemSubida)
+    }else{
+        console.log('Imagem não selecionada ...')
+    }
+}
 
 
+/* function showImage(pathImg){
+    //let imageBase64 = ''
+    showModal('#i-image')   
+} */
 
+/*
+element.style.border = '2px solid red'
+    let imgName = element.src
+    alert(imgName)
+    let theParent = element.parentNode
+    let myDiv = document.createElement('canvas')
+    myDiv.width='600'
+    myDiv.className = 'canvasImg'
+    myDiv.appendChild(element)
+    theParent.appendChild(myDiv)
+    let ctx = myDiv.getContext("2d");
+    let myImg = new Image()
+    myImg.src = imgName
+    let proportion = myImg.width/myImg.height
+    myDiv.height=(600/proportion)
+    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))}
+
+*/
 
 
 
@@ -877,7 +930,7 @@ function writeLocal(){
 /*  ENVIA O TEXTO DO LOCAL PARA O RELATÓRIO */
 function sendLocal(){
     if(quillLocal.getText().trim()!=''){
-        let textoHTML = quillLocal.root.innerHTML.trim().replace('img', 'img class="magicimg" ondblclick="imageManipulate(this)"')
+        let textoHTML = quillLocal.root.innerHTML.trim()//.replace('img', 'img class="magicimg" ondblclick="imageManipulate(this)"')
         report_local = textoHTML
     }else{
         report_local = ''

@@ -35,6 +35,8 @@ function ini_(){
 
 /*  VARIÁVEL QUE ARMAZENA O NOME DO FORMULÁRIO QUE DEVERÁ RETORNAR APÓS UMA JANELA AUXILIAR*/
 let previusForm = ''
+let previusQuil = ''
+let previusIndex = 0
 
 
 
@@ -107,6 +109,13 @@ function report_update(){
     }
 
 
+    document.querySelector('#imgsave').addEventListener('click', ()=>{
+        const myCanvas = document.querySelector('#i-canvas')
+        let dataURI = myCanvas.toDataURL()
+        previusQuil.insertEmbed(previusIndex, 'image', dataURI)
+    })
+
+
 
 
 
@@ -158,39 +167,23 @@ function abrirEditorImgESelecionarImagem(){
 }
 
 function selecionarImagem(){
-    showModal('#i-image')
+    //showModal('#i-image')
     const imagemSelecionada = document.querySelector('#filedialogimg').files
     if(imagemSelecionada.length>0){
+       // let imgW, imgH = 0
         const imagemCarregada = imagemSelecionada[0]
-
         const canvas = document.querySelector('#i-canvas')
-
         const ctx = canvas.getContext('2d')
-
         const newImagem = document.createElement('img')
-
         const arquivoLido = new FileReader()
-
         arquivoLido.onload = function(imagemTexto){
-
             const imagemBase64 = imagemTexto.target.result
-
             newImagem.src = imagemBase64
-
             newImagem.onload = function(){
-                ctx.drawImage(newImagem, 0, 0, 600, 400)
+                ctx.drawImage(newImagem, 0, 0, 400, 200)
             }
-
-            //document.querySelector("#container").innerHTML = newImagem.outerHTML
         }
-        arquivoLido.readAsDataURL(imagemCarregada)
-
-        //const imgW = newImagem.naturalWidth
-
-        //const imgH = newImagem.naturalHeight
-
-        //console.log(`${imgW} ${imgH}`)
-        
+        arquivoLido.readAsDataURL(imagemCarregada)     
     }else{
         console.log('Imagem não selecionada ...')
     }
@@ -672,7 +665,7 @@ function writePreamble(){
     document.querySelector('#editor-preamble').value = texto
 }
 
-/*  ENVIA O PREÃMBULO PARA O RELATÓRIO */
+/*  ENVIA O PREÂMBULO PARA O RELATÓRIO */
 function sendPreamble(){
     report_preamble = document.querySelector('#editor-preamble').value.trim()
     if(report_preamble!=''){
@@ -1166,7 +1159,7 @@ function sendConclusion(){
 function showModal(element_){
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style
-    hideModal(element_)
+    hideModal()
     modal.zIndex = '100'
     fade.opacity = '1'
     fade.pointerEvents = 'all'
@@ -1205,6 +1198,12 @@ function hideSubModal(element_){
         element.style.pointerEvents = 'none'
         element.style.transition = '0.5s'
         element.style.zIndex = '1'
+        if(previusForm==''){
+            return
+        }else{
+            showModal(previusForm)
+            previusForm = ''
+        }
     }
 
 
@@ -1230,7 +1229,7 @@ function hideSubModal(element_){
 
 
 
-
+/*                                          QUILL EDITOR                                      */
 
 
 
@@ -1282,7 +1281,7 @@ let toolbarOptionsImg = [
 
 
 
-
+//                                                   QUILL OBJETVO
 
 
 
@@ -1321,8 +1320,7 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
-
-
+//                                                      QUILL HISTÓRICO
 
 
 
@@ -1363,9 +1361,7 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
-
-
-
+//                                                  QUILL INFORMES
 
 
   //QUILL INFORMES
@@ -1405,7 +1401,7 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
-
+//                                                      QUILL LOCAL
 
 
 
@@ -1415,7 +1411,18 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar-local',
         toolbar: {
             container: toolbarOptionsImg,
-                handlers:{align:function(){
+                handlers:{image:function(){
+                    if(this.quill.getSelection().index>0){
+                    previusForm = '#form-local'
+                    previusQuil = this.quill
+                    previusIndex = this.quill.getSelection().index
+                    abrirEditorImgESelecionarImagem()
+                }else{
+                    alert(this.quill.getSelection().index)
+                    return
+                }
+                },
+                    align:function(){
                     addHTMLQuill(this.quill)
                 }
             }            
@@ -1457,7 +1464,7 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
-
+ //                                                     QUILL VEÍCULO
 
 
 
@@ -1506,7 +1513,7 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
-
+//                                                      QUILL PEÇA
 
 
 

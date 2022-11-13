@@ -119,7 +119,6 @@ function report_update(){
         let dataURI = myCanvas.toDataURL()
         addLegenda()
         previusQuil.insertEmbed(previusIndex, 'image', dataURI)
-        alert(previusForm)
         showModal(previusForm)
     }
 
@@ -167,7 +166,7 @@ document.querySelector('#i-corpuses').addEventListener('click', ()=>{showModal('
 document.querySelector('#i-conclusion').addEventListener('click', ()=>{showModal('#form-conclusion')})
 document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()})
 document.querySelector('#filedialogimg').addEventListener('change', ()=>{selecionarImagem()})
-document.querySelector('#i-print').addEventListener('click', ()=>{print()})
+document.querySelector('#i-print').addEventListener('click', ()=>{printDocument()})
 
 //Botões
 document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
@@ -1265,8 +1264,7 @@ let toolbarOptionsImg = [
     ['bold', 'italic', 'underline'],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
     [{ 'script': 'sub'}, { 'script': 'super' }],
-    ['image'],
-    [{ 'align': 'center' }]                                                       
+    ['image'],                                                       
   ];
   
 
@@ -1428,22 +1426,16 @@ let quillObjective = new Quill('#editorObjective', {
             container: toolbarOptionsImg,
                 handlers:{image:function(){
                     if(this.quill.getSelection().index>0){
-                    previusForm = '#form-local'
-                    previusQuil = this.quill
-                    previusIndex = this.quill.getSelection().index
-                    abrirEditorImgESelecionarImagem()
-                }else{
-                    alert(this.quill.getSelection().index)
-                    return
-                }
+                        previusForm = '#form-local'
+                        previusQuil = this.quill
+                        previusIndex = this.quill.getSelection().index
+                        abrirEditorImgESelecionarImagem()
+                    }else{
+                        alert('Posicione o cursor do mouse no local onde a imagem será inserida.')
+                        return
+                    }
                 },
-                    align:function(){
-                    addHTMLQuill(this.quill)
-                }
             }            
-        },
-        clipboard: {
-            matchVisual: false
         }
     },
     theme: 'snow'
@@ -1488,16 +1480,23 @@ let quillObjective = new Quill('#editorObjective', {
 
   //QUILL VEÍCULO
   let quillVeicle = new Quill('#editorVeicle', {
-    modules: {
-        //toolbar: '#toolbar-veicle',
+    modules: {        
         toolbar: {
             container: toolbarOptionsImg,
-                handlers:{align:function(){
-                    addHTMLQuill(this.quill)
-                }
+                handlers:{image:function(){
+                    if(this.quill.getSelection().index>0){
+                        previusForm = '#form-veicle'
+                        previusQuil = this.quill
+                        previusIndex = this.quill.getSelection().index
+                        abrirEditorImgESelecionarImagem()
+                    }else{
+                        alert('Posicione o cursor do mouse no local onde a imagem será inserida.')
+                        return
+                    }
+                },
             }            
         }
-      },
+    },
     theme: 'snow'
   });
 
@@ -1537,16 +1536,23 @@ let quillObjective = new Quill('#editorObjective', {
 
   //QUILL PEÇA
   let quillThing = new Quill('#editorThing', {
-    modules: {
-        //toolbar: '#toolbar-thing',
+    modules: {        
         toolbar: {
             container: toolbarOptionsImg,
-                handlers:{align:function(){
-                    addHTMLQuill(this.quill)
-                }
+                handlers:{image:function(){
+                    if(this.quill.getSelection().index>0){
+                        previusForm = '#form-thing'
+                        previusQuil = this.quill
+                        previusIndex = this.quill.getSelection().index
+                        abrirEditorImgESelecionarImagem()
+                    }else{
+                        alert('Posicione o cursor do mouse no local onde a imagem será inserida.')
+                        return
+                    }
+                },
             }            
         }
-      },
+    },
     theme: 'snow'
   });
 
@@ -1584,16 +1590,23 @@ let quillObjective = new Quill('#editorObjective', {
 
   //QUILL CADÁVER
   let quillCorpuses = new Quill('#editorCorpuses', {
-    modules: {
-        //toolbar: '#toolbar-corpuse',
+    modules: {        
         toolbar: {
             container: toolbarOptionsImg,
-                handlers:{align:function(){
-                    addHTMLQuill(this.quill)
-                }
+                handlers:{image:function(){
+                    if(this.quill.getSelection().index>0){
+                        previusForm = '#form-corpuses'
+                        previusQuil = this.quill
+                        previusIndex = this.quill.getSelection().index
+                        abrirEditorImgESelecionarImagem()
+                    }else{
+                        alert('Posicione o cursor do mouse no local onde a imagem será inserida.')
+                        return
+                    }
+                },
             }            
         }
-      },
+    },
     theme: 'snow'
   });
 
@@ -1633,9 +1646,23 @@ let quillObjective = new Quill('#editorObjective', {
 
   //QUILL CONCLUSÃO
   let quillConclusion = new Quill('#editorConclusion', {
-    modules: {
-        toolbar: toolbarOptionsImg,
-      },
+    modules: {        
+        toolbar: {
+            container: toolbarOptionsImg,
+                handlers:{image:function(){
+                    if(this.quill.getSelection().index>0){
+                        previusForm = '#form-conclusion'
+                        previusQuil = this.quill
+                        previusIndex = this.quill.getSelection().index
+                        abrirEditorImgESelecionarImagem()
+                    }else{
+                        alert('Posicione o cursor do mouse no local onde a imagem será inserida.')
+                        return
+                    }
+                },
+            }            
+        }
+    },
     theme: 'snow'
   });
 
@@ -1825,11 +1852,26 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 
+function printDocument(){
+    let texto = document.querySelector('#editor-number').value.trim()
+    if(texto!=''){
+        document.title = texto.replace('Laudo', 'Laudo Técnico Pericial')
+    }/* else{
+        let myDate = new Date()
+        let y = myDate.getFullYear()
+        let m = oneToTwo(myDate.getMonth() +1)
+        let d = myDate.getDate()
+        let h = myDate.getHours()
+        let min = myDate.getMinutes()
+        texto +=`${y}${m}${d}${h}${min}`
+    } 
+    document.title = texto*/
+    print()
+}
 
 
 
-
-function imageManipulate(element){
+/* function imageManipulate(element){
     element.style.border = '2px solid red'
     let imgName = element.src
     alert(imgName)
@@ -1844,8 +1886,8 @@ function imageManipulate(element){
     myImg.src = imgName
     let proportion = myImg.width/myImg.height
     myDiv.height=(600/proportion)
-    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))}
+    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))} */
     
    // ctx.fillRect(10, 10, 50, 60)
    // ctx.stroke();
-}
+//}

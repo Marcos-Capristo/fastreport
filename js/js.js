@@ -109,11 +109,18 @@ function report_update(){
     }
 
 
-    document.querySelector('#imgsave').addEventListener('click', ()=>{
+    //document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
+
+    function salvarImagem(){
+        if(previusForm=='' || previusQuil==''){
+            return
+        }
         const myCanvas = document.querySelector('#i-canvas')
         let dataURI = myCanvas.toDataURL()
         previusQuil.insertEmbed(previusIndex, 'image', dataURI)
-    })
+        alert(previusForm)
+        showModal(previusForm)
+    }
 
 
 
@@ -160,6 +167,9 @@ document.querySelector('#i-conclusion').addEventListener('click', ()=>{showModal
 document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()})
 document.querySelector('#filedialogimg').addEventListener('change', ()=>{selecionarImagem()})
 document.querySelector('#i-print').addEventListener('click', ()=>{print()})
+
+//Botões
+document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
 
 function abrirEditorImgESelecionarImagem(){
     showModal('#i-image')
@@ -1157,6 +1167,10 @@ function sendConclusion(){
 
 /*  EXIBE A JANELA PARA PREENCHIMENTO DOS TEXTOS QUE SERÃO ENVIADOS AO RELATÓRIO */
 function showModal(element_){
+    if(element_==''){
+        hideModal()
+        return
+    }
     const fade = document.querySelector('#fade').style 
     const modal = document.querySelector(element_).style
     hideModal()

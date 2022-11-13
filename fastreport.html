@@ -6,7 +6,7 @@
 
 <!-- PENDÊNCIAS ---------------------------------------
 
-    PDF
+    PDF COM CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS
     LISTAR QUESITOS
     CONCLUIR QUESITOS
     IMÓVEIS
@@ -27,6 +27,9 @@
     ARRASTAR E SOLTAR ?
     LIMPAR VALORES DEFAULTS
     AUTOCOMPLETE NONE PARA ALGUNS INPUTS
+    REMOVER GAMBIARRAS E APLICAR ORIENTAÇÃO À OBJETO
+    FORMULÁRIOS PARA ATENDIMENTO DE LOCAL ESPECÍFICOS
+    FORMULÁRIOS PARA OS LABORATÓRIOS
 
 
 -->
@@ -137,20 +140,14 @@
 
  <!-- EDITOR DE IMAGENS - AINDA EM DESENVOLVIMENTO ---------------------------------------------------------->   
     <div class="modal" id="i-image">
-        <div id="hidden-image"></div>
-        <h1>Desenho</h1>
-        <input type="button" value="Save Image" id="imgsave">
+        <h1>Editor</h1>
         <button class="subbtn-close">X</button>
-        <!-- <div id="container"></div> -->
-            <img id="myNewImg">
             <canvas id="i-canvas" width="600" height="400">
                 <p>Sem suporte ao CANVAS</p>
             </canvas>
-        
-        <!-- <input type="text" id="fullPath" placeholder="Cole aqui a URL da imagem..."> -->
-        <input type="text" id="i-labelimg" class="longtext4" placeholder="Ditie aqui a legenda da imagem...">
-        <!-- <input type="button" value="Imagem" id="btn-show-img"> -->
+        <input type="text" id="i-labelimg" placeholder="Ditie aqui a legenda da imagem...">
         <input type="file" id="filedialogimg" accept=".png, .jpg, .jpeg">
+        <button class="btn-send" value="Save Image" id="imgsave">Enviar</button>
     </div>
 
 

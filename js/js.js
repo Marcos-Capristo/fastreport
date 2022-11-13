@@ -93,7 +93,7 @@ let report_footer = ''
         Numera os títulos com a TAG H2 e as Legendas */
 function report_update(){
     texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
-    document.querySelector('#report').innerHTML = texto
+    document.querySelector('#report').innerHTML = texto.replaceAll('<p><br></p>', '')
     let h2 = document.querySelectorAll('#report>h2')
     let im = document.querySelectorAll('#report>.legenda')
     let h2Num = 1
@@ -117,6 +117,7 @@ function report_update(){
         }
         const myCanvas = document.querySelector('#i-canvas')
         let dataURI = myCanvas.toDataURL()
+        addLegenda()
         previusQuil.insertEmbed(previusIndex, 'image', dataURI)
         alert(previusForm)
         showModal(previusForm)
@@ -1421,7 +1422,7 @@ let quillObjective = new Quill('#editorObjective', {
 
   //QUILL LOCAL
   let quillLocal = new Quill('#editorLocal', {
-    modules: {
+    modules: {        
         toolbar: '#toolbar-local',
         toolbar: {
             container: toolbarOptionsImg,
@@ -1440,6 +1441,9 @@ let quillObjective = new Quill('#editorObjective', {
                     addHTMLQuill(this.quill)
                 }
             }            
+        },
+        clipboard: {
+            matchVisual: false
         }
     },
     theme: 'snow'
@@ -1765,6 +1769,16 @@ let quillObjective = new Quill('#editorObjective', {
     let textHTML1 = thisquill.root.innerHTML
     textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">Vista Frontal do imóvel</p>`)
     thisquill.root.innerHTML = textHTML1
+  }
+
+  function addLegenda(){
+    let textoLegenda = document.querySelector('#i-labelimg').value.trim()
+    let position = previusIndex
+    let data = `<span>[textodalegendaasersubstituido]</span>`
+    previusQuil.clipboard.dangerouslyPasteHTML(position, data)
+    let textHTML1 = previusQuil.root.innerHTML
+    textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">${textoLegenda}</p>`).replace('<br>', '')
+    previusQuil.root.innerHTML = textHTML1
   }
 
 

@@ -283,7 +283,7 @@ div.level-button, div.level-top{
     transform: translate(-50%, -50%);
     opacity: 0;
     pointer-events: none;
-    max-height: 600px;
+    max-height: 680px;
 }
 .submodal{
     position: fixed;

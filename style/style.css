@@ -366,7 +366,11 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
 .toolbarbutton:hover{
     opacity: 1;
 }
-
+::placeholder {
+    color: rgb(197, 133, 197);
+    font-size : 0.8rem;
+    font-style: italic;
+  }
 /* IMPRESSÃO */
 @media print {
     *{

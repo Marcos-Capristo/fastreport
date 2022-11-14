@@ -117,8 +117,10 @@ function report_update(){
         }
         const myCanvas = document.querySelector('#i-canvas')
         let dataURI = myCanvas.toDataURL()
+        previusQuil.insertText(previusIndex, '\n')
         addLegenda()
         previusQuil.insertEmbed(previusIndex, 'image', dataURI)
+        //previusQuil.insertEmbed(previusIndex, 'normal')
         showModal(previusForm)
     }
 
@@ -171,34 +173,39 @@ document.querySelector('#i-print').addEventListener('click', ()=>{printDocument(
 //Botões
 document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function abrirEditorImgESelecionarImagem(){
     showModal('#i-image')
     document.querySelector('#filedialogimg').click()
-}
-
-function selecionarImagem1(){
-    const selectedRangeImage = document.querySelector('#filedialogimg').files
-    if(selectedRangeImage.length>0){
-        const selectedImage = selectedRangeImage[0]
-        const dataFromSelectedImage = new FileReader()
-        const canvas = document.querySelector('#i-canvas')
-        const ctx = canvas.getContext('2d')
-        const p = new Promise((/*resolve, reject*/)=>{
-        const newImage = document.createElement('img')
-            dataFromSelectedImage.onload = (txtImage)=>{
-                
-                const imageBase64 = txtImage.target.reuslt
-                newImage.src = imageBase64 
-                newImage.onload = ()=>{
-                    alert(`${imageBase64.width} x ${imageBase64.height}`)
-                    ctx.drawImage(imageBase64, 0, 0, 400, 200)
-                }
-            }
-        })
-        dataFromSelectedImage.readAsDataURL(selectedImage) 
-    }else{
-        console.log('Imagem não selecionada ...')
-    }
 }
 
 function selecionarImagem(){
@@ -293,17 +300,6 @@ document.querySelector('#magic-local-street').addEventListener('click', function
 
 
 
-
-
-
-
-
-
- 
-/*  MANIPULAR IMAGENS 
-document.querySelector('.magicimg').addEventListener('dblclick', function(){
-    imageManipulate()
-}) */
 
 
 
@@ -649,6 +645,12 @@ function formatDate(data){
 
 /*  ESCREVE O NÚMERO DO LAUDO COM A FORMATAÇÃO Laudo XX.XXX/AAAA */
 function writeNumberReport(){
+    
+    if(document.querySelector('#input-number-report').value.trim()==''){
+        alert('Numero do Laudo não pode ficar em branco.')
+        document.querySelector('#input-number-report').focus()
+        return
+    }
     const numberReport = formatMilhar(document.querySelector('#input-number-report').value.trim())
     const designatedDate = new Date(document.querySelector('#input-designated-date').value).getFullYear()
     texto = `${numberReport}/${designatedDate}`
@@ -1838,22 +1840,22 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 /*  FUNÇÃO PARA INSERIR HTML NO LOCAL DO CURSOR - TESTE */
-  function addHTMLQuill(thisquill){
+/*   function addHTMLQuill(thisquill){
     let position = thisquill.getSelection().index
     let data = `<span>[textodalegendaasersubstituido]</span>`
     thisquill.clipboard.dangerouslyPasteHTML(position, data)
     let textHTML1 = thisquill.root.innerHTML
     textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">Vista Frontal do imóvel</p>`)
     thisquill.root.innerHTML = textHTML1
-  }
+  } */
 
   function addLegenda(){
     let textoLegenda = document.querySelector('#i-labelimg').value.trim()
     let position = previusIndex
-    let data = `<span>[textodalegendaasersubstituido]</span>`
+    let data = `[textodalegendaasersubstituido]`
     previusQuil.clipboard.dangerouslyPasteHTML(position, data)
     let textHTML1 = previusQuil.root.innerHTML
-    textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">${textoLegenda}</p>`).replace('<br>', '')
+    textHTML1 = textHTML1.replace(`[textodalegendaasersubstituido]`, `<p class="legenda">${textoLegenda}</p><P>`)
     previusQuil.root.innerHTML = textHTML1
   }
 

@@ -195,7 +195,7 @@
             <div class="level-midle">
                 <div class="left">
                     <p class="longtext2">Número do Laudo</p>
-                    <input type="text" id="input-number-report" class="longtext2" value="12345" autocomplete="off">
+                    <input type="text" id="input-number-report" class="longtext2" value="12345" autocomplete="off" placeholder="Ex: 123456">
                     <p class="longtext2">Data da Designação</p>
                     <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12">
                 </div>
@@ -203,7 +203,7 @@
                     <img src="./img/magic.png" alt="Gerar número do laudo" id="magic-number" class="toolbarbutton">
                 </div>                    
                 <div class="right">
-                    <input type="text" id="editor-number" placeholder="Número do Laudo">
+                    <input type="text" id="editor-number" placeholder="O número do Laudo é exibido aqui.">
                 </div>                
             </div>
             <div class="level-button">
@@ -258,24 +258,29 @@
                         <option value="pelo Diretor deste Instituto de Criminalística, Dr.">Diretor</option>
                         <option value="pela Diretora deste Instituto de Criminalística, Dra.">Diretora</option>
                     </select>
-                    <input type="text" id="input-director" class="longtext4">
+                    <input type="text" id="input-director" class="longtext4" placeholder="Nome do(a) diretor(a) da instituição">
                     <select id="select-expert" class="longtext4">
                         <option value="designado o Perito Criminal">Perito</option>
                         <option value="designada a Perita Criminal">Perita</option>
                     </select>
-                    <input type="text" id="input-expert" class="longtext4">
+                    <input type="text" id="input-expert" class="longtext4" placeholder="Nome do(a) perito(a). Dr(a) é opcional.">
                     <select id="select-delegate" class="longtext4">
                         <option value="o Delegado de Polícia Dr.">Delegado</option>
                         <option value="a Delegada de Polícia Dra.">Delegada</option>
                     </select>
-                    <input type="text" id="input-delegate" class="longtext4">
+                    <input type="text" id="input-delegate" class="longtext4" placeholder="Nome da autoridade requisitante.">
                     <input type="checkbox" id="check-signature" checked="on"><label for="check-signature"> - Inserir nome ao final do laudo</label>
                 </div>
                     <div class="midle">
                         <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
                     </div>
                     <div class="right">
-                        <textarea id="editor-preamble" class="quilleditor" placeholder="... texto do praâmbulo será exibido aqui."></textarea>
+                        <textarea id="editor-preamble" class="quilleditor" placeholder="
+
+O texto do preâmbulo será exibido aqui.
+Preencha os dados das caixas de texto e click no ícone ao lado.
+É possível editar diretamente nessa caixa. Esse campo não admite formatação e deve ser escrito em um único parágrafo. Se o campo for enviado em branco, nenhum texto será adicionado ao preâmbulo.
+"></textarea>
                     </div>                
                 </div>
             <div class="level-button">

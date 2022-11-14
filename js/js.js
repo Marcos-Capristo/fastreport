@@ -176,24 +176,73 @@ function abrirEditorImgESelecionarImagem(){
     document.querySelector('#filedialogimg').click()
 }
 
-function selecionarImagem(){
-    //showModal('#i-image')
-    const imagemSelecionada = document.querySelector('#filedialogimg').files
-    if(imagemSelecionada.length>0){
-       // let imgW, imgH = 0
-        const imagemCarregada = imagemSelecionada[0]
+function selecionarImagem1(){
+    const selectedRangeImage = document.querySelector('#filedialogimg').files
+    if(selectedRangeImage.length>0){
+        const selectedImage = selectedRangeImage[0]
+        const dataFromSelectedImage = new FileReader()
         const canvas = document.querySelector('#i-canvas')
         const ctx = canvas.getContext('2d')
-        const newImagem = document.createElement('img')
-        const arquivoLido = new FileReader()
-        arquivoLido.onload = function(imagemTexto){
-            const imagemBase64 = imagemTexto.target.result
-            newImagem.src = imagemBase64
-            newImagem.onload = function(){
-                ctx.drawImage(newImagem, 0, 0, 400, 200)
+        const p = new Promise((/*resolve, reject*/)=>{
+        const newImage = document.createElement('img')
+            dataFromSelectedImage.onload = (txtImage)=>{
+                
+                const imageBase64 = txtImage.target.reuslt
+                newImage.src = imageBase64 
+                newImage.onload = ()=>{
+                    alert(`${imageBase64.width} x ${imageBase64.height}`)
+                    ctx.drawImage(imageBase64, 0, 0, 400, 200)
+                }
             }
-        }
-        arquivoLido.readAsDataURL(imagemCarregada)     
+        })
+        dataFromSelectedImage.readAsDataURL(selectedImage) 
+    }else{
+        console.log('Imagem não selecionada ...')
+    }
+}
+
+function selecionarImagem(){
+    //showModal('#i-image')
+    const selectedRangeImage = document.querySelector('#filedialogimg').files
+    if(selectedRangeImage.length>0){
+       // let imgW, imgH = 0
+        const selectedImage = selectedRangeImage[0]
+        const canvas = document.querySelector('#i-canvas')
+        const ctx = canvas.getContext('2d')
+        const newImage = document.createElement('img')
+        const arquivoLido = new FileReader()
+
+        const p = new Promise(()=>{
+            arquivoLido.onload = function(imagemTexto){
+                const imagemBase64 = imagemTexto.target.result
+                newImage.src = imagemBase64
+                pp = new Promise(()=>{
+                    newImage.onload = function(){
+                        let imageW = newImage.width
+                        let imageH = newImage.height
+                        let proportion = imageW/imageH
+                        let printImageW = 600
+                        let printImageH = printImageW / proportion
+                        if(printImageH>printImageW){
+                            let val = printImageH
+                            printImageH = printImageW
+                            printImageW = val
+                        }
+                        if(printImageH>400){
+                            printImageH = 400
+                            printImageW = printImageH*proportion
+                        }
+                        canvas.width = printImageW
+                        canvas.height = printImageH
+                        ctx.clearRect(0, 0, canvas.width, canvas.height)
+                        ctx.drawImage(newImage, 0, 0, printImageW, printImageH)                        
+                    }
+                })
+            }
+        })
+
+
+        arquivoLido.readAsDataURL(selectedImage)     
     }else{
         console.log('Imagem não selecionada ...')
     }

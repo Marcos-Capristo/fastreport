@@ -371,6 +371,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     font-size : 0.8rem;
     font-style: italic;
   }
+
 /* IMPRESSÃO */
 @media print {
     *{
@@ -379,19 +380,40 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         color: black;
     }
     @page{
-        margin-top: 3cm;
+        margin-top: 2cm;
         margin-bottom: 2cm;
     }
     header{
         margin-top:0;
         padding-top: 0;
     }
+    header > div{
+        margin: 0;
+        padding:0;
+    }
+    header > div > img{
+        padding: 0;
+        margin: 0;
+        width: 2cm;
+    }
+    header > div > p{
+        margin-left:1cm;
+        margin-right:1cm;
+        font-size: 9pt;
+    }
+    header > div > p.top2{
+        font-size: 8pt;
+    }
+    header > div > input[type=text]{
+        font-size: 8pt;
+    }
+
     p{
         widows: 3;
         orphans: 3;
     }
     h2{
-        page-break-before: avoid !important;
+        page-break-after: avoid !important;
     }
     #modal, .submodal, .menu{
         display: none;

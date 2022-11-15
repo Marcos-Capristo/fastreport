@@ -407,13 +407,33 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     header > div > input[type=text]{
         font-size: 8pt;
     }
-
+    #article-preamble{
+        padding-left: 6cm;
+        font-size: 8pt;
+    }
     p{
         widows: 3;
         orphans: 3;
     }
     h2{
         page-break-after: avoid !important;
+    }
+    article img{
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 12cm;
+        border: 1px solid black;
+        margin-top:1cm;
+        margin-bottom: 0;
+        padding: 0;
+        page-break-after:avoid !important;
+    }
+    .legenda{
+        break-before: avoid !important;
+        margin-top: 0.2cm;
+        margin-bottom: 1cm;
+        padding: 0;
     }
     #modal, .submodal, .menu{
         display: none;

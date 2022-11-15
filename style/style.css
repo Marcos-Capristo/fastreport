@@ -258,7 +258,7 @@ div.level-button, div.level-top{
 }    
 .menu li  ul{
     position:absolute;
-    top: 1.6rem;
+    top: 1.5rem;
     left:0;
     background-color:#585858;
     display:none;
@@ -371,7 +371,6 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     font-size : 0.8rem;
     font-style: italic;
   }
-
 /* IMPRESSÃO */
 @media print {
     *{
@@ -408,7 +407,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         font-size: 8pt;
     }
     #article-preamble{
-        padding-left: 6cm;
+        padding-left: 4cm;
         font-size: 8pt;
     }
     p{
@@ -424,15 +423,15 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         margin-right: auto;
         width: 12cm;
         border: 1px solid black;
-        margin-top:1cm;
+        margin-top:0.3cm;
         margin-bottom: 0;
         padding: 0;
         page-break-after:avoid !important;
     }
     .legenda{
         break-before: avoid !important;
-        margin-top: 0.2cm;
-        margin-bottom: 1cm;
+        margin-top: 0;
+        margin-bottom: 0.5cm;
         padding: 0;
     }
     #modal, .submodal, .menu{

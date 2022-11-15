@@ -242,7 +242,9 @@ function selecionarImagem(){
                         canvas.width = printImageW
                         canvas.height = printImageH
                         ctx.clearRect(0, 0, canvas.width, canvas.height)
-                        ctx.drawImage(newImage, 0, 0, printImageW, printImageH)                        
+                        ctx.drawImage(newImage, 0, 0, printImageW, printImageH) 
+                        document.querySelector('#i-labelimg').value = ''
+                        document.querySelector('#i-labelimg').focus()                
                     }
                 })
             }
@@ -1356,6 +1358,7 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar',
         toolbar: toolbarOptions,
       },
+      placeholder:'teste',
     theme: 'snow'
   });
 
@@ -1905,9 +1908,13 @@ let quillObjective = new Quill('#editorObjective', {
 
 function printDocument(){
     let texto = document.querySelector('#editor-number').value.trim()
-    if(texto!=''){
-        document.title = texto.replace('Laudo', 'Laudo Técnico Pericial')
-    }/* else{
+    if(texto==''){
+        texto = 'Laudo Técnico Pericial'
+        //document.title = texto.replace('Laudo', 'Laudo Técnico Pericial')
+    }
+    if(document.querySelector('#idelpol').value.trim()!=''){
+        texto += ` - ${document.querySelector('#idelpol').value.trim()}`
+    } /* else{
         let myDate = new Date()
         let y = myDate.getFullYear()
         let m = oneToTwo(myDate.getMonth() +1)
@@ -1915,8 +1922,8 @@ function printDocument(){
         let h = myDate.getHours()
         let min = myDate.getMinutes()
         texto +=`${y}${m}${d}${h}${min}`
-    } 
-    document.title = texto*/
+    } */
+    document.title = texto
     print()
 }
 

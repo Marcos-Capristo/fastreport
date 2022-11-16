@@ -145,14 +145,28 @@
 
  <!-- EDITOR DE IMAGENS - AINDA EM DESENVOLVIMENTO ---------------------------------------------------------->   
     <div class="modal" id="i-image">
-        <h1>Editor</h1>
-        <button class="subbtn-close">X</button>
-            <canvas id="i-canvas" width="600" height="400">
-                <p>Sem suporte ao CANVAS</p>
-            </canvas>
-        <input type="text" id="i-labelimg" placeholder="Ditie aqui a legenda da imagem...">
+        <!-- <div class="modal-header"> -->
+            <!-- <p></p>
+            <button class="subbtn-close">X</button> -->
+        <!-- </div> -->
+        <div class="level-midle">
+            <div class="left">
+                <img src="./img/magic.png" alt="ícone" class="toolbarbutton">
+                <button class="subbtn-close">X</button>
+            </div>
+            <div class="midle">
+                <canvas id="i-canvas" width="600" height="400">
+                    <p>Sem suporte ao CANVAS</p>
+                </canvas>
+                <input type="text" id="i-labelimg" placeholder="Ditie aqui a legenda da imagem...">
+            </div>
+           <!--  <div class="right">
+                <button class="subbtn-close">X</button>
+            </div> -->
+        </div>
         <input type="file" id="filedialogimg" accept=".png, .jpg, .jpeg">
         <button class="btn-send" value="Save Image" id="imgsave">Enviar</button>
+        <button class="btn-send" value="Save Image" id="imgsave">Descartar</button>
     </div>
 
 

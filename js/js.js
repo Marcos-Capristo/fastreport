@@ -115,7 +115,6 @@ function report_update(){
         if(previusForm=='' || previusQuil==''){
             return
         }
-        const myCanvas = document.querySelector('#i-canvas')
         let dataURI = myCanvas.toDataURL()
         previusQuil.insertText(previusIndex, '\n')
         addLegenda()
@@ -214,12 +213,10 @@ function selecionarImagem(){
     if(selectedRangeImage.length>0){
        // let imgW, imgH = 0
         const selectedImage = selectedRangeImage[0]
-        const canvas = document.querySelector('#i-canvas')
-        const ctx = canvas.getContext('2d')
+        //const canvas = document.querySelector('#i-canvas')
         const newImage = document.createElement('img')
         const arquivoLido = new FileReader()
-
-        const p = new Promise(()=>{
+        //const p = new Promise(()=>{
             arquivoLido.onload = function(imagemTexto){
                 const imagemBase64 = imagemTexto.target.result
                 newImage.src = imagemBase64
@@ -239,16 +236,16 @@ function selecionarImagem(){
                             printImageH = 400
                             printImageW = printImageH*proportion
                         }
-                        canvas.width = printImageW
-                        canvas.height = printImageH
-                        ctx.clearRect(0, 0, canvas.width, canvas.height)
+                        myCanvas.width = printImageW
+                        myCanvas.height = printImageH
+                        ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
                         ctx.drawImage(newImage, 0, 0, printImageW, printImageH) 
                         document.querySelector('#i-labelimg').value = ''
                         document.querySelector('#i-labelimg').focus()                
                     }
                 })
             }
-        })
+       // })
 
 
         arquivoLido.readAsDataURL(selectedImage)     
@@ -1754,9 +1751,10 @@ let quillObjective = new Quill('#editorObjective', {
 
 
   /*    DESENHAR NO CANVAS = EM TESTE  */
+
+
   function draw(){
-    let canvas = document.querySelector('#i-canvas')
-    let ctx = canvas.getContext('2d')
+    let ctx = myCanvas.getContext('2d')
     let img=new Image()
     img.src = './img/ceu.jpg'
     ctx.fillStyle='#845'
@@ -1843,7 +1841,9 @@ let quillObjective = new Quill('#editorObjective', {
 
 
 /*  FUNÇÃO PARA INSERIR HTML NO LOCAL DO CURSOR - TESTE */
-/*   function addHTMLQuill(thisquill){
+/*  Está aqui comentada. Passou para a função de baixo: addLegenda()
+
+function addHTMLQuill(thisquill){
     let position = thisquill.getSelection().index
     let data = `<span>[textodalegendaasersubstituido]</span>`
     thisquill.clipboard.dangerouslyPasteHTML(position, data)
@@ -1929,23 +1929,25 @@ function printDocument(){
 
 
 
-/* function imageManipulate(element){
-    element.style.border = '2px solid red'
-    let imgName = element.src
-    alert(imgName)
-    let theParent = element.parentNode
-    let myDiv = document.createElement('canvas')
-    myDiv.width='600'
-    myDiv.className = 'canvasImg'
-    myDiv.appendChild(element)
-    theParent.appendChild(myDiv)
-    let ctx = myDiv.getContext("2d");
-    let myImg = new Image()
-    myImg.src = imgName
-    let proportion = myImg.width/myImg.height
-    myDiv.height=(600/proportion)
-    myImg.onload = ()=>{ctx.drawImage(myImg, 0, 0, 600, (600/proportion))} */
-    
-   // ctx.fillRect(10, 10, 50, 60)
-   // ctx.stroke();
-//}
+
+/* Desenhar no canvas em edição */
+const myCanvas = document.querySelector('#i-canvas')
+const ctx = myCanvas.getContext('2d')
+let mousePresses = false
+myCanvas.addEventListener('mousedown', ()=>{
+    mousePresses = true
+})
+myCanvas.addEventListener('mouseup', ()=>{
+    mousePresses = false
+})
+myCanvas.addEventListener('mousemove', (eve)=>{
+    const thisRect = document.querySelector('#i-canvas').getBoundingClientRect()
+    let thisTop = thisRect.top
+    let thisLeft = thisRect.left
+    drawInCanvas(eve, thisTop, thisLeft)
+})
+function drawInCanvas(eve, top, left){
+    if(mousePresses){
+        console.log(`${eve.clientX-left} - ${eve.clientY-top} `)
+    }
+}

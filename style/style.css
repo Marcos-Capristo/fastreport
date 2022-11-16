@@ -160,15 +160,7 @@ textarea{
 #irdo{
     text-transform: uppercase;
 }
-.btn-close{
-    background-color: #f00;
-    opacity: 0.4;
-    float: right;
-    font-size: 0.5rem;
-    margin-top: -4rem;
-    margin-right: -1rem;
-}
-.subbtn-close{
+.btn-close, .subbtn-close{
     background-color: #f00;
     opacity: 0.4;
     float: right;

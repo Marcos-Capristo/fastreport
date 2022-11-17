@@ -107,7 +107,7 @@ textarea{
     width: 90%;
 }
 #report ol > li, #report ul > li {
-    margin-left: 4rem;
+    margin-left: 6rem;
     line-height: 1.7rem;
     padding: 0;
 }

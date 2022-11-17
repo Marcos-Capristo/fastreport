@@ -214,18 +214,18 @@ function selecionarImagem(){
        // let imgW, imgH = 0
         const selectedImage = selectedRangeImage[0]
         //const canvas = document.querySelector('#i-canvas')
-        const newImage = document.createElement('img')
         const arquivoLido = new FileReader()
         //const p = new Promise(()=>{
             arquivoLido.onload = function(imagemTexto){
-                const imagemBase64 = imagemTexto.target.result
-                newImage.src = imagemBase64
+                imagemBase64 = imagemTexto.target.result
+                fullImage.src = imagemBase64
                 pp = new Promise(()=>{
-                    newImage.onload = function(){
-                        let imageW = newImage.width
-                        let imageH = newImage.height
+                    fullImage.onload = function(){
+                        let imageW = fullImage.width
+                        let imageH = fullImage.height
                         let proportion = imageW/imageH
-                        let printImageW = 600
+
+                        /* let printImageW = 600
                         let printImageH = printImageW / proportion
                         if(printImageH>printImageW){
                             let val = printImageH
@@ -235,11 +235,12 @@ function selecionarImagem(){
                         if(printImageH>400){
                             printImageH = 400
                             printImageW = printImageH*proportion
-                        }
-                        myCanvas.width = printImageW
-                        myCanvas.height = printImageH
+                        } */
+                        myCanvas.width = proportioning(proportion).w
+                        myCanvas.height = proportioning(proportion).h
                         ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
-                        ctx.drawImage(newImage, 0, 0, printImageW, printImageH) 
+                        ctx.drawImage(fullImage, 0, 0, myCanvas.width,myCanvas.height) 
+                        curentImage.src = fullImage.src
                         document.querySelector('#i-labelimg').value = ''
                         document.querySelector('#i-labelimg').focus()                
                     }
@@ -291,6 +292,19 @@ document.querySelector('#magic-local-house').addEventListener('click', function(
     previusForm = '#form-local'
 })
 document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
+document.querySelector('#img-cut').addEventListener('click', ()=>{
+    redrawImage()
+})
+document.querySelector('#img-full').addEventListener('click', ()=>{
+    let proportion = fullImage.width / fullImage.height
+    myCanvas.width = proportioning(proportion).w
+    myCanvas.height = proportioning(proportion).h
+    ctx.drawImage(fullImage, 0, 0, myCanvas.width, myCanvas.height)
+    curentImage.src = myCanvas.toDataURL()
+})
+document.querySelector('#img-select').addEventListener('click', ()=>{
+    imgAlowdSelection = true;
+})
 
 
 
@@ -1933,21 +1947,90 @@ function printDocument(){
 /* Desenhar no canvas em edição */
 const myCanvas = document.querySelector('#i-canvas')
 const ctx = myCanvas.getContext('2d')
-let mousePresses = false
-myCanvas.addEventListener('mousedown', ()=>{
-    mousePresses = true
+const fullImage = document.createElement('img')
+let curentImage = document.createElement('img')
+let imgAlowdSelection = false
+let mousePressed = false
+let cropping = false
+let rectX = 0
+let rectY = 0
+let rectW = 0
+let rectH = 0
+//const rectFromCanvas = document.querySelector('#i-canvas').getBoundingClientRect()
+myCanvas.addEventListener('mousedown', (event)=>{
+    let posXY = getMousePosition(event)
+    mousePressed = true
+    rectX = posXY.x
+    rectY = posXY.y
+    //console.log(`${rectX}, ${rectY}`)
 })
-myCanvas.addEventListener('mouseup', ()=>{
-    mousePresses = false
+myCanvas.addEventListener('mouseup', (event)=>{
+    let posXY = getMousePosition(event)
+    mousePressed = false
+    rectW = posXY.x - rectX
+    rectH = posXY.y - rectY
+    if(cropping==true){
+        redrawImage()
+    }
+   // console.log(`${rectW}, ${rectH}`)
 })
-myCanvas.addEventListener('mousemove', (eve)=>{
-    const thisRect = document.querySelector('#i-canvas').getBoundingClientRect()
-    let thisTop = thisRect.top
-    let thisLeft = thisRect.left
-    drawInCanvas(eve, thisTop, thisLeft)
+myCanvas.addEventListener('mousemove', (event)=>{
+    if(mousePressed==true && imgAlowdSelection==true){
+        cropCanvas(event)
+    }
 })
-function drawInCanvas(eve, top, left){
-    if(mousePresses){
-        console.log(`${eve.clientX-left} - ${eve.clientY-top} `)
+function getMousePosition(event){
+    thisRectCanvas = document.querySelector('#i-canvas').getBoundingClientRect()
+    return {
+        x: event.clientX - thisRectCanvas.left,
+        y: event.clientY - thisRectCanvas.top
+    }
+}
+function cropCanvas(event){
+    let posXY = getMousePosition(event)
+    rectW = posXY.x - rectX
+    rectH = posXY.y - rectY
+    ctx.drawImage(curentImage, 0, 0, myCanvas.width, myCanvas.height)
+    ctx.strokeRectStyle = 'red'
+    ctx.strokeRect(rectX, rectY,rectW, rectH);
+}
+
+function redrawImage(){
+    let thisLeft = (rectX / myCanvas.width * curentImage.width)
+    let thisWidth = (rectW / myCanvas.width * curentImage.width)
+    let thisTop = (rectY / myCanvas.height * curentImage.height)
+    let thisHeight = (rectH / myCanvas.height * curentImage.height)
+    let proportion = thisWidth / thisHeight
+   /*  if(thisWidth<thisHeight){
+        myCanvas.height = 500
+        myCanvas.width = 500*proportion
+    }else{
+        myCanvas.width = 500
+        myCanvas.height = 500/proportion
+    } */
+    myCanvas.width = proportioning(proportion).w
+    myCanvas.height = proportioning(proportion).h
+    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
+    ctx.drawImage(curentImage, thisLeft, thisTop, thisWidth, thisHeight, 0, 0, myCanvas.width, myCanvas.height)    
+    curentImage.src = myCanvas.toDataURL()
+    //console.log(thisLeft)
+    imgAlowdSelection = false
+}
+
+function proportioning(proportion){
+    let printImageW = 600
+    let printImageH = printImageW / proportion
+    if(printImageH>printImageW){
+        let val = printImageH
+        printImageH = printImageW
+        printImageW = val
+    }
+    if(printImageH>400){
+        printImageH = 400
+        printImageW = printImageH*proportion
+    }
+    return{
+        w: printImageW,
+        h: printImageH
     }
 }

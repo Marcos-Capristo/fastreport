@@ -214,12 +214,12 @@
             <div class="level-midle">
                 <div class="left">
                     <p class="longtext2">Número do Laudo</p>
-                    <input type="text" id="input-number-report" class="longtext2" value="12345" autocomplete="off" placeholder="Ex: 123456">
+                    <input type="text" id="input-number-report" class="longtext2" value="12345" autocomplete="off" placeholder="Ex: 123456" title="Somente números, sem pontos nem barras. O ano da REP é acrescentado automaticamente.">
                     <p class="longtext2">Data da Designação</p>
-                    <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12">
+                    <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12" title="Data da designação, não deve ser posterior à data da realização do exame.">
                 </div>
                 <div class="midle">
-                    <img src="./img/magic.png" alt="Gerar número do laudo" id="magic-number" class="toolbarbutton">
+                    <img src="./img/magic.png" alt="Gerar número do laudo" id="magic-number" class="toolbarbutton" title="Formatar o número do laudo e trasnpor para a caixa de texto.">
                 </div>                    
                 <div class="right">
                     <input type="text" id="editor-number" placeholder="O número do Laudo é exibido aqui.">
@@ -277,29 +277,29 @@
                         <option value="pelo Diretor deste Instituto de Criminalística, Dr.">Diretor</option>
                         <option value="pela Diretora deste Instituto de Criminalística, Dra.">Diretora</option>
                     </select>
-                    <input type="text" id="input-director" class="longtext4" placeholder="Nome do(a) diretor(a) da instituição">
+                    <input type="text" id="input-director" class="longtext4" placeholder="Nome do(a) diretor(a) da instituição" title="Somente o nome, sem 'Dr.' ou 'Dra.'">
                     <select id="select-expert" class="longtext4">
                         <option value="designado o Perito Criminal">Perito</option>
                         <option value="designada a Perita Criminal">Perita</option>
                     </select>
-                    <input type="text" id="input-expert" class="longtext4" placeholder="Nome do(a) perito(a). Dr(a) é opcional.">
+                    <input type="text" id="input-expert" class="longtext4" placeholder="Nome do(a) perito(a). Dr(a) é opcional." title="Nome do perito, 'Dr.' ou 'Dra.' é opcional">
                     <select id="select-delegate" class="longtext4">
                         <option value="o Delegado de Polícia Dr.">Delegado</option>
                         <option value="a Delegada de Polícia Dra.">Delegada</option>
                     </select>
-                    <input type="text" id="input-delegate" class="longtext4" placeholder="Nome da autoridade requisitante.">
+                    <input type="text" id="input-delegate" class="longtext4" placeholder="Nome da autoridade requisitante. " title="Somente o nome, sem 'Dr.' ou 'Dra.'">
                     <input type="checkbox" id="check-signature" checked="on"><label for="check-signature"> - Inserir nome ao final do laudo</label>
                 </div>
                     <div class="midle">
-                        <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton">
+                        <img src="./img/magic.png" alt="Gerar preâmbulo" id="toolbar-preamble-magic" class="toolbarbutton" title="Transpor para o editor de texto.">
                     </div>
                     <div class="right">
-                        <textarea id="editor-preamble" class="quilleditor" placeholder="
+                        <textarea id="editor-preamble" class="quilleditor"></textarea><!--  placeholder="
 
 O texto do preâmbulo será exibido aqui.
 Preencha os dados das caixas de texto e click no ícone ao lado.
 É possível editar diretamente nessa caixa. Esse campo não admite formatação e deve ser escrito em um único parágrafo. Se o campo for enviado em branco, nenhum texto será adicionado ao preâmbulo.
-"></textarea>
+"> -->
                     </div>                
                 </div>
             <div class="level-button">
@@ -364,7 +364,8 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
                 </div>
                 <div class="midle">
                     <div id="toolbar">
-                        <img src="./img/magic.png" alt="Gerar texto" id="toolbar-magic" class="toolbarbutton">
+                        <img src="./img/list.png" alt="listar" class="toolbarbutton" id="btn-questions" title="Listar quesitos.">
+                        <img src="./img/magic.png" alt="Gerar texto" id="toolbar-magic" class="toolbarbutton" title="Transpor para o editor de texto.">
                     </div>
                 </div>
                 <div class="right">
@@ -378,7 +379,40 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
     </div>
 
 
-<!-- DESENVOLVER AQUI O FORMULÁRIO DE QUESITOS -->
+<!-- DESENVOLVER AQUI O FORMULÁRIO DE QUESITOS ---------------------------------------->
+<div class="modal" id="form-questions">
+    <div class="modal-header">
+        <!-- Aqui vai ocabeçalho do formulário -->
+        <h2>Lista de Quesitos</h2>
+        <button class="btn-close">X</button>
+    </div>
+    <div class="modal-body">
+        <!-- Aqui vai o contéudo do frmulário -->
+        <!-- <div class="level-top">
+            Conteúdo do topo
+        </div> -->
+        <div class="level-midle">
+           <!--  <div class="left">
+                <p>
+                    Coteúdo que deve aparecer no canto esquerdo da tela
+                </p>
+            </div> -->
+           <!--  <div class="midle">
+                <p>
+                    Conteúdo que deve aparecer no centro da tela
+                </p>
+            </div> -->
+            <div class="right">
+                    <div id="editorQuestions" class="quilleditor"></div>
+            </div>
+        </div>
+        <div class="level-button">
+            <!-- Conteúdo de baixo. -->
+            <button class="btn-send" id="send-questions">Avançar</button>
+        </div>
+    </div>
+</div>
+<!-- FORMULÁRIO MODELO FIM-->
 
 
 

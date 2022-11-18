@@ -101,7 +101,6 @@ function report_update(){
         element.innerHTML=`${h2Num} - ${element.textContent}`
         h2Num++
         }) 
-    h2Num=1
     im.forEach(elementImg=>{
         elementImg.innerHTML=`Figura ${h2Num} - ${elementImg.textContent}`
         h2Num++
@@ -304,6 +303,15 @@ document.querySelector('#img-full').addEventListener('click', ()=>{
 })
 document.querySelector('#img-select').addEventListener('click', ()=>{
     imgAlowdSelection = true;
+})
+document.querySelector('#btn-questions').addEventListener('click', ()=>{
+    showModal('#form-questions')
+    quillQuestions.format('list', 'ordered');
+    quillQuestions.focus()
+})
+document.querySelector('#send-questions').addEventListener('click', ()=>{
+    //quillObjective.insertText(quillObjective.getLength(),', e dar resposta aos seguintes quesitos:\n')
+    showModal('#form-objective')
 })
 
 
@@ -812,8 +820,20 @@ function writeObjective(){
         document.querySelector('#inature').focus()
         return
     }
-    const texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia}, era ${objective}, sendo sua natureza, ${nature}.`
-    quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`    
+    let texto = `O objetivo do exame pericial, em conformidade com a requisição ${rdo} - ${delegacia}, era ${objective}, sendo sua natureza, ${nature}`
+    let quesitos = quillQuestions.getText().trim()
+    if (quesitos.length<20){
+        texto+= `.`
+    }else{
+        texto+= `, visando dar resposta aos seguintes quesitos:${quillQuestions.root.innerHTML}`
+        let listaQuesitos = quesitos.split('\n')
+        quesitos = ''
+        for(let i=0; i<listaQuesitos.length; i++){
+            quesitos+= `<p class='i-questions'>${i+1}. ${listaQuesitos[i]}</p><p class='i-resp-questions'></p>`
+        }
+        quillConclusion.root.innerHTML += `<h3>Em resposta aos quesitos:</h3>${quesitos}`
+    }   
+    quillObjective.root.innerHTML = `<h2>Objetivo</h2><p>${texto}</p>`
 }
 /*  ENVIA O OBJETIVO PARA O RELATÓRIO */
 function sendObjective(){
@@ -1330,6 +1350,12 @@ let toolbarOptionsImg = [
     [{ 'script': 'sub'}, { 'script': 'super' }],
     ['image'],                                                       
   ];
+
+  /*  BARRA DE FERRAMENTAS DE JANELAS LIMITADAS À LISTAS E PARÁGRAFOS */
+let toolbarOptionsQuestions = [
+    [{ 'header': [false] }],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],                                                 
+  ];
   
 
 
@@ -1369,10 +1395,22 @@ let quillObjective = new Quill('#editorObjective', {
         toolbar: '#toolbar',
         toolbar: toolbarOptions,
       },
-      placeholder:'teste',
+      //placeholder:'teste',
     theme: 'snow'
   });
 
+
+
+
+  // QUILL OBJETVO
+let quillQuestions = new Quill('#editorQuestions', {
+    modules: {
+        toolbar: '#toolbar',
+        toolbar: toolbarOptionsQuestions,
+      },
+      //placeholder:'teste',
+    theme: 'snow'
+  });
 
 
 

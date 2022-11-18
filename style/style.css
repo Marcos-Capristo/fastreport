@@ -182,6 +182,23 @@ div.left, div.right{
     padding: 0px 5px 0px 5px;
     width: fit-content;
 }
+#report ol>li{
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    padding-top:0;
+}
+.i-questions{
+    line-height: 1rem;
+    margin-left: 4rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+.i-resp-questions{
+    line-height: 1rem;
+    margin-left: 5.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.8rem;
+}
 .legenda{
     text-align: center;
     font-style: italic;
@@ -341,6 +358,9 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
 }
 .quilleditor p, .quilleditor h3{
     margin-left: 40px;
+}
+.quilleditor ol>li, .quilleditor ul>li{
+    margin-left: 20px;
 }
 #editorHistoric{
     height: 400px;

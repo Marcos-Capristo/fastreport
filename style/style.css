@@ -358,6 +358,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
 }
 .left, .right, .midle{
     padding: 0px 20px 0px 20px;
+    scroll-margin-right: 10px;
 }
 .quilleditor{
     width: 500px;

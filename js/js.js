@@ -286,11 +286,27 @@ document.querySelector('#magic-number').addEventListener('click', function(){wri
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
+
+
+
+
+                            // DESCRIÇÃO DE LOCAL -  ADESENVOLVER
 /* document.querySelector('#magic-local-house').addEventListener('click', function(){
     showModal('#subform-local-house')
     previusForm = '#form-local'
 }) */
+
+
+
+
+
 //document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
+
+
+
+
+
+
 document.querySelector('#img-cut').addEventListener('click', ()=>{
     redrawImage()
 })

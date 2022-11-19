@@ -164,7 +164,9 @@ document.querySelector('#i-veicle').addEventListener('click', ()=>{showModal('#f
 document.querySelector('#i-thing').addEventListener('click', ()=>{showModal('#form-thing')})
 document.querySelector('#i-corpuses').addEventListener('click', ()=>{showModal('#form-corpuses')})
 document.querySelector('#i-conclusion').addEventListener('click', ()=>{showModal('#form-conclusion')})
-document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()})
+
+/* document.querySelector('#i-imagemEditor').addEventListener('click', ()=>{abrirEditorImgESelecionarImagem()}) */
+
 document.querySelector('#filedialogimg').addEventListener('change', ()=>{selecionarImagem()})
 document.querySelector('#i-print').addEventListener('click', ()=>{printDocument()})
 
@@ -307,9 +309,10 @@ document.querySelector('#magic-historic').addEventListener('click', function(){w
 
 
 
-document.querySelector('#img-cut').addEventListener('click', ()=>{
+/* document.querySelector('#img-cut').addEventListener('click', ()=>{
     redrawImage()
-})
+}) */
+
 document.querySelector('#img-full').addEventListener('click', ()=>{
     let proportion = fullImage.width / fullImage.height
     myCanvas.width = proportioning(proportion).w
@@ -317,7 +320,8 @@ document.querySelector('#img-full').addEventListener('click', ()=>{
     ctx.drawImage(fullImage, 0, 0, myCanvas.width, myCanvas.height)
     curentImage.src = myCanvas.toDataURL()
 })
-document.querySelector('#img-select').addEventListener('click', ()=>{
+document.querySelector('#img-crop').addEventListener('click', ()=>{
+    cropping = true
     imgAlowdSelection = true;
 })
 document.querySelector('#btn-questions').addEventListener('click', ()=>{
@@ -327,6 +331,8 @@ document.querySelector('#btn-questions').addEventListener('click', ()=>{
 })
 document.querySelector('#send-questions').addEventListener('click', ()=>{
     //quillObjective.insertText(quillObjective.getLength(),', e dar resposta aos seguintes quesitos:\n')
+    let btn = document.querySelector('#toolbar-magic')
+    btn.click()
     showModal('#form-objective')
 })
 
@@ -2065,6 +2071,7 @@ myCanvas.addEventListener('mouseup', (event)=>{
     rectH = posXY.y - rectY
     if(cropping==true){
         redrawImage()
+        cropping = false
     }
    // console.log(`${rectW}, ${rectH}`)
 })

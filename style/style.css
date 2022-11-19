@@ -187,6 +187,19 @@ div.left, div.right{
     margin-bottom: 1rem;
     padding-top:0;
 }
+.hgroup {
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.hgroup>legend {
+    font-size: 0.8rem;
+    text-align: left !important;
+    width: auto;
+}
+.hgroup>input[type='radio']{
+    margin-left:2rem;
+}
 .i-questions{
     line-height: 1rem;
     margin-left: 4rem;
@@ -438,7 +451,6 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         margin-top:0.3cm;
         margin-bottom: 0;
         padding: 0;
-        page-break-after:avoid !important;
     }
     .legenda{
         break-before: avoid !important;

@@ -286,11 +286,11 @@ document.querySelector('#magic-number').addEventListener('click', function(){wri
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
-document.querySelector('#magic-local-house').addEventListener('click', function(){
+/* document.querySelector('#magic-local-house').addEventListener('click', function(){
     showModal('#subform-local-house')
     previusForm = '#form-local'
-})
-document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
+}) */
+//document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
 document.querySelector('#img-cut').addEventListener('click', ()=>{
     redrawImage()
 })
@@ -342,15 +342,15 @@ document.querySelector('#send-questions').addEventListener('click', ()=>{
 
 /*  BOTÕES DAS JANELAS AUXILIARES, ENVIAM TEXTOS PARA OS FORMULÁRIOS */
 /*      Preenche o formulário LOCAL com um texto de imóvel  */
-document.querySelector('#imovel-send').addEventListener('click', function(){
+/* document.querySelector('#imovel-send').addEventListener('click', function(){
     quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
     showModal('#form-local')
-})
+}) */
 /*      Preenche o formulário LOCAL com um texto de via pública */
-document.querySelector('#via-send').addEventListener('click', function(){
+/* document.querySelector('#via-send').addEventListener('click', function(){
     quillLocal.root.innerHTML+='<h2>Submodal</h2><p>Texto que vem do submodal</p>'
     showModal('#form-local')
-})
+}) */
 
 
 
@@ -1958,26 +1958,66 @@ function addHTMLQuill(thisquill){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                          IMPRIMIR
 function printDocument(){
     let texto = document.querySelector('#editor-number').value.trim()
     if(texto==''){
         texto = 'Laudo Técnico Pericial'
-        //document.title = texto.replace('Laudo', 'Laudo Técnico Pericial')
     }
     if(document.querySelector('#idelpol').value.trim()!=''){
         texto += ` - ${document.querySelector('#idelpol').value.trim()}`
-    } /* else{
-        let myDate = new Date()
-        let y = myDate.getFullYear()
-        let m = oneToTwo(myDate.getMonth() +1)
-        let d = myDate.getDate()
-        let h = myDate.getHours()
-        let min = myDate.getMinutes()
-        texto +=`${y}${m}${d}${h}${min}`
-    } */
+    }
     document.title = texto
+    //alert('print')
     print()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

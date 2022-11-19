@@ -600,14 +600,14 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
         <div class="modal-body">
             <div class="level-midle">
                 <div class="midle">
-                    <img src="./img/house.png" alt="Gerar texto" id="magic-local-house" class="toolbarbutton">
-                    <img src="./img/street.png" alt="Gerar texto" id="magic-local-street" class="toolbarbutton">
+                    <img src="./img/house.png" alt="Gerar texto" id="magic-local-house" class="toolbarbutton" title="Descrição de imóveis. Em desenvolvimento">
+                    <img src="./img/street.png" alt="Gerar texto" id="magic-local-street" class="toolbarbutton" title="descrição de vias públicas, ainda em desenvolvimento.">
                 </div>
                 <div class="right">
                     <div class="right">
                         <div id="editorLocal" class="quilleditor">
                             <h2>Descrição e Exame do Local</h2>
-                            <h3>Descrição</h3>
+                            <h3>Caracteísticas do Local Examinado</h3>
                             <p>... descreva aqui as características do local ...</p>
                             <h3>Exame</h3>
                             <p>... descreva aqui os elementos e vestígios observados ...</p>
@@ -622,24 +622,31 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
     </div>
 
 <!-- DESCRIÇÃO DE IMÓVEL --------------------------------------------------------------------------------------------->
-    <div id="subform-local-house" class="submodal">
+    <!-- <div id="subform-local-house" class="submodal">
         <h2>Imóvel - Descrição e Exame</h2>
         <button class="subbtn-close">X</button>
-        <p class = "longtext4">Tipo de imóvel</p>
-        <input type="text" id="imovel-tipo" class="longtext4" placeholder="ex: residencial, comercial">
-        <p class="longtext4">Térreo / Assobradado</p>
-        <input type="text" id="imovel-terreo" class="longtext4">
-        <p class="longtext4">Recuado?</p>
-        <input type="text" id="imovel-recuo" class="longtext4">
+        <fieldset class="hgroup">
+            <legend>Tipo de Imóvel</legend>
+            <input type="radio" name="imoveltipo" id="imresidencial" value="imóvel residencial">
+            <label for="imresidencial">residencial</label>
+            <input type="radio" name="imoveltipo" id="imbar" value="imóvel de uso comercial onde funcionava uma bar">
+            <label for="imbar">bar</label>
+            <input type="radio" name="imoveltipo" id="imercado" value="imóvel de uso comercial onde funcionava uma supermercado">
+            <label for="immercado">supermercado</label>
+            <input type="radio" name="imoveltipo" id="imloja" value="imóvel de uso comercial onde funcionava uma loja">
+            <label for="imloja">loja</label>
+            <input type="radio" name="imoveltipo" id="industrial" value="imóvel industrial">
+            <label for="industrial">industrial</label>  
+        </fieldset>
         <button id="imovel-send" class="btn-send">Enviar</button>
-    </div>
+    </div> -->
 
 <!-- DESCRIÇÃO DE VIA PÚBLICA ---------------------------------------------------------------------------------------->
-    <div id="subform-local-street" class="modal">
+    <!-- <div id="subform-local-street" class="modal">
         <h2>Via - Descrição e Exame</h2>
         <button class="subbtn-close">X</button>
         <button id="via-send" class="btn-send">Enviar</button>
-    </div>
+    </div> -->
 
 
 
@@ -690,15 +697,19 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
                 <!-- <div class="left">                
                 </div> -->
                 <div class="midle">  
-                    <img src="./img/carcrash.png" id="magic-carchash" class="toolbarbutton">              
+                    <img src="./img/carcrash.png" id="magic-carchash" class="toolbarbutton" title="Em desenvolvimento">              
                 </div>
                 <div class="right">
                     <div id="editorVeicle" class="quilleditor">
-                        <h2>Tipo de Veículo</h2>
-                        <h3>Identificação ...</h3>
-                        <h3>Danos ...</h3>
-                        <h3>Sistemas ...</h3>
-                        <h3>Pneus ...</h3>
+                        <h2>Descrição e Exame do Veículo</h2>
+                        <p>Identificação ...</p>
+                        <p>Placa de Identificação</p>
+                        <p>Chassi</p>
+                        <p>Motor</p>
+                        <p>Localização e posição ...</p>
+                        <p>Danos ...</p>
+                        <p>Sistemas ...</p>
+                        <p>Pneus ...</p>
                     </div>
                 </div>                
             </div>

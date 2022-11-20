@@ -120,13 +120,13 @@ textarea{
     font-size: 1.2rem;
     letter-spacing: 0.7rem;    
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
     padding: 0;
 }
 #article-signature p#signature-label{
     margin-top: 0;
     font-size: 1rem;
-    font-style: italic;
     letter-spacing: 0;
     padding: 0;
     break-before: avoid !important;
@@ -393,7 +393,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     opacity: 1;
 }
 ::placeholder {
-    color: rgb(197, 133, 197);
+    color: rgb(177, 177, 177);
     font-size : 0.8rem;
     font-style: italic;
   }
@@ -405,12 +405,12 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         color: black;
     }
     @page{
-        margin-top: 2cm;
+        margin-top: 0;
         margin-bottom: 2cm;
     }
     header{
         margin-top:0;
-        padding-top: 0;
+        padding-top: 2cm;
     }
     header > div{
         margin: 0;
@@ -442,6 +442,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     }
     h2{
         page-break-after: avoid !important;
+        color: red;
     }
     article img{
         display:block;
@@ -462,4 +463,31 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     #modal, .submodal, .menu{
         display: none;
     }
-}
+
+
+
+
+
+
+   /*  #rodape::after { content: '| Página ' counter(page); }
+    #rodape {
+       string-set: footing content(); 
+      position: fixed;
+      bottom: -10px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 12px; */
+
+      /** Extra personal styles **/
+ /*      color: black;
+      text-align: right;
+      line-height: 12px;
+      padding: 2em auto 0;
+      max-width: 767px; */
+    }
+   /*  @page {
+      size: A4 portrait;
+             margin: 1.5cm 1cm 1.2cm; 
+      counter-increment: page;
+       } 
+}*/

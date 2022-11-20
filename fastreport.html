@@ -1026,116 +1026,73 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
 
 <!-- CABEÇALHO DO LAUDO - ESSA ABORDAGEM PODE MUDAR DEPOIS, MAS AGORA ESTÁ BOM -->
     <article>
-        <header>
-            <div><img src="img/brasao.png" alt="brasão" class="logo"></div>
-            <div>
-                <p><strong>SECRETARIA DA SEGURANÇA PÚBLICA</strong></p>
-                <p><strong>SUPERINTENDÊNCIA DA POLÍCIA TÉCNCIO-CIENTÍFICA</strong></p>
-                <p class="top2">INSTITUTO DE CRIMINALÍSTICA</p>
-                <P class="top2">PERITO CRIMINAL DR. OCTÁVIO DE BRITO ALVARENGA</P>
-                <input type="text" value="NÚCLEO DE AMERICANA (LIM)">
-            </div>
-            <div><img src="img/logopc.png" alt="logo" class="logo"></div>
-        </header>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- MENU ------------------------------------------------------------------------------------------------------>
-        <nav>
-            <ul class = "menu">
-                <li><a href="#">Laudo</a> <!-- ACESSO ÀS OPÇÕES DE EDIÇÃO DO LAUDO -->
-                <ul>            
-                    <li><a href="#" id="i-number">Numero</a></li>
-                    <li><a href="#" id="i-preamble">Preâmbulo</a></li>
-                    <li><a href="#" id="i-objective">Objetivo</a></li>
-                    <li><a href="#" id="i-historic">Histórico</a></li>
-                    <li><a href="#" id="i-informs">Informes</a></li>
-                    <li><a href="#" id="i-local">Local</a></li>
-                    <li><a href="#" id="i-veicle">Veículo</a></li>
-                    <li><a href="#" id="i-thing">Peça</a></li>
-                    <li><a href="#" id="i-corpuses">Cadáver</a></li>
-                    <li><a href="#" id="i-conclusion">Conclusão</a></li>
-                </li>
-                </ul>
-                <li><a href="#">Formulários</a> <!-- ACESSO ÀS OPÇÕES FORMULÁRIOS -->
-                <!-- <ul>
-                    <li><a href="#">Requisição ao NBB</a></li>
-                    <li><a href="#" id="i-imagemEditor">Testando Canvas</a></li>
-                </li>
-                </ul> -->
-                <li><a href="#" id="i-print">Imprimir</a></li>
-                <!-- <li><a href="#">Arquivo Técnico</a> 
-                    <ul>            
-                        <li><a target="_blank" href="./Arquivoteca/Maus-tratos o que são como identificar como denunciar VERSÃO DIGITAL - menor (1).pdf" id="i-ambiental">Maus Tratos Animais</a></li>
-                        <li><a target="_blank" href="./Arquivoteca/PORTARIA SPTC nº 173 - Termos e Definições HEMATOLOGIA FORENSE.pdf" id="i-preamble">Sangue</a></li>
-                        <li><a target="_blank" href="./Arquivoteca/perfis de projéteis - EB.pdf" id="i-objective">Balística</a></li>
-                        <li><a target="_blank" href="./Arquivoteca/Ferimento por Arma de fogo.pdf" id="i-historic">Ferimento Por Arma de Fogo</a></li>
-                    </ul>
-                </li> -->
-            </li>
-                
-            </ul>
-        </nav>    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- AQUI É GERADO O CONTEÚDO IMPRESSO DO LAUDO -->       
-        <div id="report">    
-            <!-- <py-script>print('yes you can!')</py-script> -->        
-        </div>
+        <table>
+            <thead>
+                <th>
+                    <header>
+                        <div><img src="img/brasao.png" alt="brasão" class="logo"></div>
+                        <div>
+                            <p><strong>SECRETARIA DA SEGURANÇA PÚBLICA</strong></p>
+                            <p><strong>SUPERINTENDÊNCIA DA POLÍCIA TÉCNCIO-CIENTÍFICA</strong></p>
+                            <p class="top2">INSTITUTO DE CRIMINALÍSTICA</p>
+                            <P class="top2">PERITO CRIMINAL DR. OCTÁVIO DE BRITO ALVARENGA</P>
+                            <input type="text" value="NÚCLEO DE AMERICANA (LIM)">
+                        </div>
+                        <div><img src="img/logopc.png" alt="logo" class="logo"></div>
+                    </header>
+                </th>
+            </thead>
+            <tr>
+                <td>
+    <!-- MENU ------------------------------------------------------------------------------->
+                    <nav>
+                        <ul class = "menu">
+                            <li><a href="#">Laudo</a> <!-- ACESSO ÀS OPÇÕES DE EDIÇÃO DO LAUDO -->
+                            <ul>            
+                                <li><a href="#" id="i-number">Numero</a></li>
+                                <li><a href="#" id="i-preamble">Preâmbulo</a></li>
+                                <li><a href="#" id="i-objective">Objetivo</a></li>
+                                <li><a href="#" id="i-historic">Histórico</a></li>
+                                <li><a href="#" id="i-informs">Informes</a></li>
+                                <li><a href="#" id="i-local">Local</a></li>
+                                <li><a href="#" id="i-veicle">Veículo</a></li>
+                                <li><a href="#" id="i-thing">Peça</a></li>
+                                <li><a href="#" id="i-corpuses">Cadáver</a></li>
+                                <li><a href="#" id="i-conclusion">Conclusão</a></li>
+                            </li>
+                            </ul>
+                            <li><a href="#">Formulários</a> <!-- ACESSO ÀS OPÇÕES FORMULÁRIOS -->
+                            <!-- <ul>
+                                <li><a href="#">Requisição ao NBB</a></li>
+                                <li><a href="#" id="i-imagemEditor">Testando Canvas</a></li>
+                            </li>
+                            </ul> -->
+                            <li><a href="#" id="i-print">Imprimir</a></li>
+                            <!-- <li><a href="#">Arquivo Técnico</a> 
+                                <ul>            
+                                    <li><a target="_blank" href="./Arquivoteca/Maus-tratos o que são como identificar como denunciar VERSÃO DIGITAL - menor (1).pdf" id="i-ambiental">Maus Tratos Animais</a></li>
+                                    <li><a target="_blank" href="./Arquivoteca/PORTARIA SPTC nº 173 - Termos e Definições HEMATOLOGIA FORENSE.pdf" id="i-preamble">Sangue</a></li>
+                                    <li><a target="_blank" href="./Arquivoteca/perfis de projéteis - EB.pdf" id="i-objective">Balística</a></li>
+                                    <li><a target="_blank" href="./Arquivoteca/Ferimento por Arma de fogo.pdf" id="i-historic">Ferimento Por Arma de Fogo</a></li>
+                                </ul>
+                            </li> -->
+                        </li>
+                            
+                        </ul>
+                    </nav>    
+                            <!-- AQUI É GERADO O CONTEÚDO IMPRESSO DO LAUDO -->       
+                    <div id="report">    
+                        <!-- <py-script>print('yes you can!')</py-script> -->        
+                    </div>           
+                </td>
+            </tr>
+            <tr id="rodape">
+            </tr>
+        </table>
     </article>
-
-
-
-
-
-
 
 
 

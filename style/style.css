@@ -31,6 +31,9 @@ article img{
     width: 12cm;
     border: 1px solid black;
 }
+article > table > tfoot{
+    bottom: 3rem;
+}
 canvas{
     border: 3px solid green;
 }
@@ -464,30 +467,4 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
         display: none;
     }
 
-
-
-
-
-
-   /*  #rodape::after { content: '| Página ' counter(page); }
-    #rodape {
-       string-set: footing content(); 
-      position: fixed;
-      bottom: -10px;
-      margin-left: auto;
-      margin-right: auto;
-      height: 12px; */
-
-      /** Extra personal styles **/
- /*      color: black;
-      text-align: right;
-      line-height: 12px;
-      padding: 2em auto 0;
-      max-width: 767px; */
-    }
-   /*  @page {
-      size: A4 portrait;
-             margin: 1.5cm 1cm 1.2cm; 
-      counter-increment: page;
-       } 
-}*/
+}

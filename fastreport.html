@@ -6,58 +6,6 @@
 
 <!-- PENDÊNCIAS ---------------------------------------
 
-    * Trabalhando no Editor de imagens - Tem bug a ser corrigido. quando se insere uma imagem logo abaixo da legenda, ela não é carregada no relatório. Aparece no formulário, mas não vai para o relatório.
-    Falta dimensionar, recortar, inserir marcadores.
-    Melhorar a interface do editor de imgens.
-
-    PDF COM CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS
-    LISTAR QUESITOS
-    CONCLUIR QUESITOS
-    IMÓVEIS
-    VIAS PÚBLICAS
-    VEÍCULOS ACIDENTADOS
-    VEÍCULOS VISTORIA
-    PEÇAS
-        ARMAS
-        MUNIÇÕES
-        CHAVES
-        IMPRESSÕES
-        SANGUE
-    CADÁVER
-        NOME
-        IDADE
-        SEXO
-        ....
-    ARRASTAR E SOLTAR ?
-    LIMPAR VALORES DEFAULTS
-    AUTOCOMPLETE NONE PARA ALGUNS INPUTS
-    REMOVER GAMBIARRAS E APLICAR ORIENTAÇÃO À OBJETO
-    FORMULÁRIOS PARA ATENDIMENTO DE LOCAL ESPECÍFICOS
-    FORMULÁRIOS PARA OS LABORATÓRIOS
-
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -159,7 +107,7 @@
                 <img src="./img/crop.png" alt="selecionar" class="toolbarbutton" id="img-crop">
                 <!-- <img src="./img/cut.png" alt="ícone" class="toolbarbutton" id="img-cut"> -->
                 <img src="./img/full.png" alt="ícone" class="toolbarbutton" id="img-full">
-                <button class="subbtn-close">X</button>
+                <!-- <button class="subbtn-close">X</button> -->
             </div>
             <div class="midle">
                 <canvas id="i-canvas" width="600" height="400">
@@ -173,7 +121,7 @@
         </div>
         <input type="file" id="filedialogimg" accept=".png, .jpg, .jpeg">
         <button class="btn-send" value="Save Image" id="imgsave">Enviar</button>
-        <button class="btn-send" value="Save Image" id="imgsave">Descartar</button>
+        <button class="btn-send" value="Save Image" id="imgnosave">Descartar</button>
     </div>
 
 
@@ -218,7 +166,7 @@
             <div class="level-midle">
                 <div class="left">
                     <p class="longtext2">Número do Laudo</p>
-                    <input type="text" id="input-number-report" class="longtext2" value="12345" autocomplete="off" placeholder="Ex: 123456" title="Somente números, sem pontos nem barras. O ano da REP é acrescentado automaticamente.">
+                    <input type="text" id="input-number-report" class="longtext2" value="" autocomplete="off" placeholder="Ex: 123456" title="Somente números, sem pontos nem barras. O ano da REP é acrescentado automaticamente.">
                     <p class="longtext2">Data da Designação</p>
                     <input type="date" id="input-designated-date" class="longtext2" value="2022-10-12" title="Data da designação, não deve ser posterior à data da realização do exame.">
                 </div>
@@ -1045,52 +993,59 @@ Preencha os dados das caixas de texto e click no ícone ao lado.
                     </header>
                 </th>
             </thead>
-            <tr>
-                <td>
-    <!-- MENU ------------------------------------------------------------------------------->
-                    <nav>
-                        <ul class = "menu">
-                            <li><a href="#">Laudo</a> <!-- ACESSO ÀS OPÇÕES DE EDIÇÃO DO LAUDO -->
-                            <ul>            
-                                <li><a href="#" id="i-number">Numero</a></li>
-                                <li><a href="#" id="i-preamble">Preâmbulo</a></li>
-                                <li><a href="#" id="i-objective">Objetivo</a></li>
-                                <li><a href="#" id="i-historic">Histórico</a></li>
-                                <li><a href="#" id="i-informs">Informes</a></li>
-                                <li><a href="#" id="i-local">Local</a></li>
-                                <li><a href="#" id="i-veicle">Veículo</a></li>
-                                <li><a href="#" id="i-thing">Peça</a></li>
-                                <li><a href="#" id="i-corpuses">Cadáver</a></li>
-                                <li><a href="#" id="i-conclusion">Conclusão</a></li>
-                            </li>
-                            </ul>
-                            <li><a href="#">Formulários</a> <!-- ACESSO ÀS OPÇÕES FORMULÁRIOS -->
-                            <!-- <ul>
-                                <li><a href="#">Requisição ao NBB</a></li>
-                                <li><a href="#" id="i-imagemEditor">Testando Canvas</a></li>
-                            </li>
-                            </ul> -->
-                            <li><a href="#" id="i-print">Imprimir</a></li>
-                            <!-- <li><a href="#">Arquivo Técnico</a> 
+            <tbody>
+                <tr>
+                    <td>
+        <!-- MENU ------------------------------------------------------------------------------->
+                        <nav>
+                            <ul class = "menu">
+                                <li><a href="#">Laudo</a> <!-- ACESSO ÀS OPÇÕES DE EDIÇÃO DO LAUDO -->
                                 <ul>            
-                                    <li><a target="_blank" href="./Arquivoteca/Maus-tratos o que são como identificar como denunciar VERSÃO DIGITAL - menor (1).pdf" id="i-ambiental">Maus Tratos Animais</a></li>
-                                    <li><a target="_blank" href="./Arquivoteca/PORTARIA SPTC nº 173 - Termos e Definições HEMATOLOGIA FORENSE.pdf" id="i-preamble">Sangue</a></li>
-                                    <li><a target="_blank" href="./Arquivoteca/perfis de projéteis - EB.pdf" id="i-objective">Balística</a></li>
-                                    <li><a target="_blank" href="./Arquivoteca/Ferimento por Arma de fogo.pdf" id="i-historic">Ferimento Por Arma de Fogo</a></li>
+                                    <li><a href="#" id="i-number">Numero</a></li>
+                                    <li><a href="#" id="i-preamble">Preâmbulo</a></li>
+                                    <li><a href="#" id="i-objective">Objetivo</a></li>
+                                    <li><a href="#" id="i-historic">Histórico</a></li>
+                                    <li><a href="#" id="i-informs">Informes</a></li>
+                                    <li><a href="#" id="i-local">Local</a></li>
+                                    <li><a href="#" id="i-veicle">Veículo</a></li>
+                                    <li><a href="#" id="i-thing">Peça</a></li>
+                                    <li><a href="#" id="i-corpuses">Cadáver</a></li>
+                                    <li><a href="#" id="i-conclusion">Conclusão</a></li>
+                                </li>
                                 </ul>
-                            </li> -->
-                        </li>
-                            
-                        </ul>
-                    </nav>    
-                            <!-- AQUI É GERADO O CONTEÚDO IMPRESSO DO LAUDO -->       
-                    <div id="report">    
-                        <!-- <py-script>print('yes you can!')</py-script> -->        
-                    </div>           
-                </td>
-            </tr>
-            <tr id="rodape">
-            </tr>
+                                <li><a href="#">Formulários</a> <!-- ACESSO ÀS OPÇÕES FORMULÁRIOS -->
+                                <!-- <ul>
+                                    <li><a href="#">Requisição ao NBB</a></li>
+                                    <li><a href="#" id="i-imagemEditor">Testando Canvas</a></li>
+                                </li>
+                                </ul> -->
+                                <li><a href="#" id="i-print">Imprimir</a></li>
+                                <!-- <li><a href="#">Arquivo Técnico</a> 
+                                    <ul>            
+                                        <li><a target="_blank" href="./Arquivoteca/Maus-tratos o que são como identificar como denunciar VERSÃO DIGITAL - menor (1).pdf" id="i-ambiental">Maus Tratos Animais</a></li>
+                                        <li><a target="_blank" href="./Arquivoteca/PORTARIA SPTC nº 173 - Termos e Definições HEMATOLOGIA FORENSE.pdf" id="i-preamble">Sangue</a></li>
+                                        <li><a target="_blank" href="./Arquivoteca/perfis de projéteis - EB.pdf" id="i-objective">Balística</a></li>
+                                        <li><a target="_blank" href="./Arquivoteca/Ferimento por Arma de fogo.pdf" id="i-historic">Ferimento Por Arma de Fogo</a></li>
+                                    </ul>
+                                </li> -->
+                            </li>
+                                
+                            </ul>
+                        </nav>    
+                                <!-- AQUI É GERADO O CONTEÚDO IMPRESSO DO LAUDO -->       
+                        <div id="report">    
+                            <!-- <py-script>print('yes you can!')</py-script> -->        
+                        </div>           
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr id="rodape">
+                    <td>
+                        
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </article>
 

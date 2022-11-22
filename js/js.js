@@ -1,5 +1,6 @@
-document.onload = ini_()
+//import somar from './image.mjs'
 
+document.onload = ini_()
 
 
 
@@ -13,8 +14,9 @@ function ini_(){
     document.querySelector('#input-designated-date').value = todayDate('Sun May 11,2014')
     document.querySelector('#input-execution-date').value = todayDate()+'T12:00'
     document.querySelector('#input-director').value="Samuel Alves de Melo Neto"
-    document.querySelector('#input-expert').value="Marcos Capristo"
-    document.querySelector('#input-delegate').value="Rodrigo Rodrigues"
+    document.querySelector('#input-expert').value=""
+    document.querySelector('#input-delegate').value=""
+    //console.log(somar(12, 34)) //Apenas para testar o carregamento de módulos
 }
 
 
@@ -105,6 +107,8 @@ function report_update(){
         elementImg.innerHTML=`Figura ${h2Num} - ${elementImg.textContent}`
         h2Num++
         })
+    /* let rodape = document.querySelector('#rodape')
+    rodape.innerHTML = `<td>${report_number.replace('h1', 'p')}</td>` */
     }
 
 
@@ -118,8 +122,8 @@ function report_update(){
         previusQuil.insertText(previusIndex, '\n')
         addLegenda()
         previusQuil.insertEmbed(previusIndex, 'image', dataURI)
-        //previusQuil.insertEmbed(previusIndex, 'normal')
         showModal(previusForm)
+        previusQuil.focus()
     }
 
 
@@ -154,10 +158,10 @@ function report_update(){
 
 
 /*  COMANDOS DO MENU */
-document.querySelector('#i-number').addEventListener('click', ()=>{showModal('#form-number-report')})
-document.querySelector('#i-preamble').addEventListener('click', ()=>{showModal('#form-preamble')})
-document.querySelector('#i-objective').addEventListener('click', ()=>{showModal('#form-objective')})
-document.querySelector('#i-historic').addEventListener('click', ()=>{showModal('#form-historic')})
+document.querySelector('#i-number').addEventListener('click', ()=>{showModal('#form-number-report', document.querySelector('#input-number-report'))})
+document.querySelector('#i-preamble').addEventListener('click', ()=>{showModal('#form-preamble',document.querySelector('#input-expert'))})
+document.querySelector('#i-objective').addEventListener('click', ()=>{showModal('#form-objective',document.querySelector('#irdo'))})
+document.querySelector('#i-historic').addEventListener('click', ()=>{showModal('#form-historic',docuement.querySelector('#input-execution-date'))})
 document.querySelector('#i-informs').addEventListener('click', ()=>{showModal('#form-informs')})
 document.querySelector('#i-local').addEventListener('click', ()=>{showModal('#form-local')})
 document.querySelector('#i-veicle').addEventListener('click', ()=>{showModal('#form-veicle')})
@@ -172,6 +176,7 @@ document.querySelector('#i-print').addEventListener('click', ()=>{printDocument(
 
 //Botões
 document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
+document.querySelector('#imgnosave').addEventListener('click', ()=>{showModal(previusForm)})
 
 
 
@@ -408,15 +413,15 @@ document.querySelector('#send-questions').addEventListener('click', ()=>{
 /*  TRANSIÇÕES DE UM FORMULÁRIO PARA OUTRO - BOTÃO ENVIAR */
 document.querySelector('#btn-form-number-report').addEventListener('click', function(){
     sendNumerReport()
-    showModal('#form-preamble')
+    showModal('#form-preamble', document.querySelector('#input-expert'))
 })
 document.querySelector('#btn-form-preamble').addEventListener('click', function(){
     sendPreamble()
-    showModal('#form-objective')
+    showModal('#form-objective', document.querySelector('#irdo'))
 })
 document.querySelector('#btn-form-objective').addEventListener('click', function(){
     sendObjective()
-    showModal('#form-historic')
+    showModal('#form-historic', document.querySelector('#input-execution-date'))
 })
 /*  COMANDOS DO SELECT DO HISTÓRCIO*/
 document.querySelector('#selectlocal').addEventListener('change', function(){
@@ -1272,7 +1277,7 @@ function sendConclusion(){
 
 
 /*  EXIBE A JANELA PARA PREENCHIMENTO DOS TEXTOS QUE SERÃO ENVIADOS AO RELATÓRIO */
-function showModal(element_){
+function showModal(element_, withfocus=''){
     if(element_==''){
         hideModal()
         return
@@ -1287,6 +1292,9 @@ function showModal(element_){
     modal.opacity = '1'
     modal.pointerEvents = 'all'
     modal.transition = '0.5s'
+    if(withfocus!=''){
+        withfocus.focus()
+    }
 }
 
 /*  ESCONDE AS JANELAS MODAIS */
@@ -2071,6 +2079,8 @@ myCanvas.addEventListener('mouseup', (event)=>{
     rectH = posXY.y - rectY
     if(cropping==true){
         redrawImage()
+        document.querySelector('#i-labelimg').value = ''
+        document.querySelector('#i-labelimg').focus()
         cropping = false
     }
    // console.log(`${rectW}, ${rectH}`)
@@ -2102,19 +2112,11 @@ function redrawImage(){
     let thisTop = (rectY / myCanvas.height * curentImage.height)
     let thisHeight = (rectH / myCanvas.height * curentImage.height)
     let proportion = thisWidth / thisHeight
-   /*  if(thisWidth<thisHeight){
-        myCanvas.height = 500
-        myCanvas.width = 500*proportion
-    }else{
-        myCanvas.width = 500
-        myCanvas.height = 500/proportion
-    } */
     myCanvas.width = proportioning(proportion).w
     myCanvas.height = proportioning(proportion).h
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height)
     ctx.drawImage(curentImage, thisLeft, thisTop, thisWidth, thisHeight, 0, 0, myCanvas.width, myCanvas.height)    
     curentImage.src = myCanvas.toDataURL()
-    //console.log(thisLeft)
     imgAlowdSelection = false
 }
 

@@ -39,6 +39,8 @@ function ini_(){
 let previusForm = ''
 let previusQuil = ''
 let previusIndex = 0
+let previusImage = ''
+let imgIndex = 0
 
 
 
@@ -94,11 +96,13 @@ let report_footer = ''
 /*  ATUALIZAÇÃO DA PÁGINA A SER IMPRESSA, SERÁ CHAMADA SEMPRE QUE UM FORMULÁRIO FOR ENVIADO
         Numera os títulos com a TAG H2 e as Legendas */
 function report_update(){
+    imgIndex = 0
     texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
     document.querySelector('#report').innerHTML = texto.replaceAll('<p><br></p>', '')
     let h2 = document.querySelectorAll('#report>h2')
     let im = document.querySelectorAll('#report>.legenda')
     let h2Num = 1
+    let imagens = document.querySelectorAll('#report>p>img')
     h2.forEach(element =>{
         element.innerHTML=`${h2Num} - ${element.textContent}`
         h2Num++
@@ -107,10 +111,25 @@ function report_update(){
         elementImg.innerHTML=`Figura ${h2Num} - ${elementImg.textContent}`
         h2Num++
         })
-    /* let rodape = document.querySelector('#rodape')
-    rodape.innerHTML = `<td>${report_number.replace('h1', 'p')}</td>` */
+    imagens.forEach(element=>{
+        if(element.getAttribute('id')===null || element.getAttribute('id')===undefined){
+            element.setAttribute(`id`,`reportImage${imgIndex}`)
+            imgIndex++
+            console.log(element.getAttribute('id'))
+        }
+        element.addEventListener('dblclick', ()=>{
+            let valor = element.style.width.replace('cm', '').trim()
+            previusImage = `#${element.getAttribute('id')}`
+            document.querySelector('#image_width').value = valor
+            showModal('#form-width-imagem')
+        })
+    })
     }
 
+    document.querySelector('#btn_image-width-send').addEventListener('click', ()=>{
+        hideModal()
+        document.querySelector(previusImage).style.width = `${document.querySelector('#image_width').value.trim()}cm`
+    })
 
     //document.querySelector('#imgsave').addEventListener('click', ()=>{salvarImagem()})
 

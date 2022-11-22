@@ -445,13 +445,11 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     }
     h2{
         page-break-after: avoid !important;
-        color: red;
     }
     article img{
         display:block;
         margin-left: auto;
         margin-right: auto;
-        width: 12cm;
         border: 1px solid black;
         margin-top:0.3cm;
         margin-bottom: 0;
@@ -460,7 +458,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     .legenda{
         break-before: avoid !important;
         margin-top: 0;
-        margin-bottom: 0.5cm;
+        margin-bottom: 0.7cm;
         padding: 0;
     }
     #modal, .submodal, .menu{

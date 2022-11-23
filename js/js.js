@@ -96,7 +96,7 @@ let report_footer = ''
 /*  ATUALIZAÇÃO DA PÁGINA A SER IMPRESSA, SERÁ CHAMADA SEMPRE QUE UM FORMULÁRIO FOR ENVIADO
         Numera os títulos com a TAG H2 e as Legendas */
 function report_update(){
-    imgIndex = 0
+    imgIndex = 1
     texto = `${report_number}${report_preamble}${report_objective}${report_historic}${report_informs}${report_local}${report_veicle}${report_thing}${report_corpuses}${report_conclusion}${report_signature}`
     document.querySelector('#report').innerHTML = texto.replaceAll('<p><br></p>', '')
     let h2 = document.querySelectorAll('#report>h2')
@@ -108,8 +108,8 @@ function report_update(){
         h2Num++
         }) 
     im.forEach(elementImg=>{
-        elementImg.innerHTML=`Figura ${h2Num} - ${elementImg.textContent}`
-        h2Num++
+        elementImg.innerHTML=`Figura ${imgIndex} - ${elementImg.textContent}`
+        imgIndex++
         })
     imagens.forEach(element=>{
         if(element.getAttribute('id')===null || element.getAttribute('id')===undefined){
@@ -320,16 +320,22 @@ document.querySelector('#magic-historic').addEventListener('click', function(){w
 
 
                             // DESCRIÇÃO DE LOCAL -  ADESENVOLVER
-/* document.querySelector('#magic-local-house').addEventListener('click', function(){
-    showModal('#subform-local-house')
-    previusForm = '#form-local'
-}) */
-
-
-
-
-
-//document.querySelector('#magic-local-street').addEventListener('click', function(){showModal('#subform-local-street')})
+document.querySelector('#magic-local-house').addEventListener('click', function(){
+    let hei = window.innerHeight
+    let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
+    window.open('./imoveis.html', 'janela', atributos)
+    //janela.screenLeft
+})
+document.querySelector('#magic-local-street').addEventListener('click', function(){
+    let hei = window.innerHeight
+    let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
+    window.open('./via.html', 'janela', atributos)
+})
+document.querySelector('#magic-carchash').addEventListener('click', ()=>{
+    let hei = window.innerHeight
+    let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
+    window.open('./veiculos.html', 'janela', atributos)
+})
 
 
 

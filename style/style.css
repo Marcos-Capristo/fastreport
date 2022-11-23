@@ -176,6 +176,11 @@ textarea{
     float: right;
     margin-top: 1.8rem;
 }
+.btn-describe{
+    background-color: #007bff;
+    float: left;
+    margin-top: 1.8rem;
+}
 .btn-transp{
     float: right;
     margin-top: 1.8rem;
@@ -342,7 +347,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     line-height: 1.2rem;
     font-size: 0.8rem;
 }
-.modal input[type='text'], .modal input[type='date'], .modal input[type='checkbox'], .modal input[type='datetime-local']{
+input[type='text'], .modal input[type='date'], .modal input[type='checkbox'], .modal input[type='datetime-local']{
     border-top: none;
     border-right: none;
     border-left: none;
@@ -434,6 +439,7 @@ p.longtext2, select.longtext2, p.longtext4, select.longtext4{
     }
     header > div > input[type=text]{
         font-size: 8pt;
+        border:none;
     }
     #article-preamble{
         padding-left: 4cm;

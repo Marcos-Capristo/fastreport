@@ -119,6 +119,9 @@ function report_update(){
         }
         element.addEventListener('dblclick', ()=>{
             let valor = element.style.width.replace('cm', '').trim()
+            if(valor===null || valor===undefined || valor == ''){
+                valor=12
+            }
             previusImage = `#${element.getAttribute('id')}`
             document.querySelector('#image_width').value = valor
             showModal('#form-width-imagem')

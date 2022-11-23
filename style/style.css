@@ -20,7 +20,7 @@ body p, textarea{
     line-height: 1.5rem;
     padding-bottom: 1rem;
 }
-article p{
+article>p, #veiculos-descricao>p{
     margin-left: 4rem;
     margin-right: 1rem;
 }
@@ -160,7 +160,7 @@ textarea{
 #container{
     width: fit-content;
 }
-#irdo{
+#irdo, #veiculo-placa, #veiculo-chassi, #veiculo-motor{
     text-transform: uppercase;
 }
 .btn-close, .subbtn-close{

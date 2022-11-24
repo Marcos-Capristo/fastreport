@@ -315,6 +315,18 @@ document.querySelector('#magic-number').addEventListener('click', function(){wri
 document.querySelector('#toolbar-preamble-magic').addEventListener('click', function(){writePreamble()})
 document.querySelector('#toolbar-magic').addEventListener('click', function(){writeObjective()})
 document.querySelector('#magic-historic').addEventListener('click', function(){writeHistoric()})
+document.querySelector('#magic-informs').addEventListener('click', ()=>{
+    if(quillInforms.getText().trim()==''){
+        quillInforms.root.innerHTML = `<h2>Informes</h2>`
+    }
+    quillInforms.root.innerHTML += `<h3>Declarações de ...</h3><p>... descreva aqui as informações prestadas ...</p>`
+})
+document.querySelector('#magic-local-estruct').addEventListener('click', ()=>{
+    if(quillLocal.getText().trim()==''){
+        quillLocal.root.innerHTML = `<h2>Descrição e Exame do Local</h2><h3>Características do Local Examinado</h3><p></p><h3>Exame</h3><p></p><p></p>`
+    }
+   // alert('teste')
+})
 
 
 
@@ -331,10 +343,20 @@ document.querySelector('#magic-local-street').addEventListener('click', function
     let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
     window.open('./via.html', 'janela', atributos)
 })
+document.querySelector('#magic-veicle-estruct').addEventListener('click', ()=>{
+    if(quillVeicle.getText().trim()==''){
+        quillVeicle.root.innerHTML = `<h2>Descrição e Exame do Veículo</h2><p>Identificação ...</p><p>Placa de Identificação</p><p>Chassi</p><p>Motor</p><p>Localização e posição ...</p><p>Danos ...</p><p>Sistemas ...</p><p>Pneus ...</p>`
+    }
+})
 document.querySelector('#magic-carchash').addEventListener('click', ()=>{
     let hei = window.innerHeight
     let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
     window.open('./veiculos.html', 'janela', atributos)
+})
+document.querySelector('#magic-things-estruct').addEventListener('click', ()=>{
+    if(quillThing.getText().trim()==''){
+        quillThing.root.innerHTML = `<h2>Descrição e Exame de Peças</h2><h3>Peça 1</h3><p></p>`
+    }
 })
 
 
@@ -684,7 +706,7 @@ function formatDate(data){
     const day = date.getDate()
     const month = date.getMonth()+1
     const year = date.getFullYear()
-    return `${day}-${month}-${year}`
+    return `${oneToTwo(day)}-${month}-${year}`
 }
 
 
@@ -773,7 +795,12 @@ function sendNumerReport(){
 
 /*  ESCREVE O PREÂMBULO */
 function writePreamble(){
-    let designatedDate = formatDate(new Date(document.querySelector('#input-designated-date').value))
+    const _data = document.querySelector('#input-designated-date').value
+    const designatedDate_ = typeof _data === 'string' ? new Date( _data.replace(/-/g, '\/')) : _data
+    const designatedDate = formatDate(designatedDate_)
+
+
+    //let designatedDate = formatDate(new Date(document.querySelector('#input-designated-date').value))
     let director = document.querySelector('#input-director').value.trim()
     if(director == ''){
         alert('Informe o nome do diretor.')

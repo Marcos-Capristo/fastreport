@@ -358,6 +358,11 @@ document.querySelector('#magic-things-estruct').addEventListener('click', ()=>{
         quillThing.root.innerHTML = `<h2>Descrição e Exame de Peças</h2><h3>Peça 1</h3><p></p>`
     }
 })
+document.querySelector('#magic-corpuses').addEventListener('click', ()=>{
+    let hei = window.innerHeight
+    let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
+    window.open('./corpuses.html', 'janela', atributos)
+})
 
 
 

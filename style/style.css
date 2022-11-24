@@ -483,5 +483,4 @@ input[type='text'], .modal input[type='date'], .modal input[type='checkbox'], .m
     #modal, .submodal, .menu{
         display: none;
     }
-
 }

@@ -327,18 +327,19 @@ document.querySelector('#magic-local-estruct').addEventListener('click', ()=>{
     }
    // alert('teste')
 })
-
-
-
-
-                            // DESCRIÇÃO DE LOCAL -  ADESENVOLVER
 document.querySelector('#magic-local-house').addEventListener('click', function(){
+    if(quillLocal.getText().trim()==''){
+        quillLocal.root.innerHTML = `<h2>Descrição e Exame do Local</h2><h3>Características do Local Examinado</h3><p></p><h3>Exame</h3><p></p><p></p>`
+    }
     let hei = window.innerHeight
     let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
     window.open('./imoveis.html', 'janela', atributos)
     //janela.screenLeft
 })
 document.querySelector('#magic-local-street').addEventListener('click', function(){
+    if(quillLocal.getText().trim()==''){
+        quillLocal.root.innerHTML = `<h2>Descrição e Exame do Local</h2><h3>Características do Local Examinado</h3><p></p><h3>Exame</h3><p></p><p></p>`
+    }
     let hei = window.innerHeight
     let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
     window.open('./via.html', 'janela', atributos)
@@ -359,6 +360,9 @@ document.querySelector('#magic-things-estruct').addEventListener('click', ()=>{
     }
 })
 document.querySelector('#magic-corpuses').addEventListener('click', ()=>{
+    if(quillCorpuses.getText().trim()==''){
+        quillCorpuses.root.innerHTML = `<h2>Descrição e Exame do Cadáver</h2><p></p><p>A descrição minuciosa do cadáver, suas características e determinação da causa da morte, são objetos de laudo pericial a ser expedido pelo Instituto Médico Legal.</p>`
+    }
     let hei = window.innerHeight
     let atributos = `width=660, height=${hei}, top=0, left=699, scrollbars=yes, status=no, toolbar=no,location=no, directories=no, menubar=no,resizable=no, fullscreen=no`
     window.open('./corpuses.html', 'janela', atributos)

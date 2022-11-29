@@ -24,6 +24,12 @@ function describeCorpuses(){
     let texto = `<br><br><br><br><p><h2>Descrição Para Exame Perinecroscópicos</h2>
     <h3>Identificação</h3>
     <p>${nome}</p>
+
+    <h2>Metodologia</h2>
+    <h3>Suicídio</h3>
+    <p>O exame consistiu na busca por objetos, instrumentos ou substâncias que pudessem ter sido empregadas de forma violenta contra a pessoa e produzir lesão corporal ou morte, e também por vestígios da presença ou da participação de outrem quando da morte.</p>
+
+    <h2>IML</h2>
     <p>A descrição minuciosa do cadáver, suas características e determinação da causa da morte, são objetos de laudo pericial a ser expedido pelo Instituto Médico Legal.</p>`
 
     document.querySelector('#corpuses-descricao').innerHTML = texto
